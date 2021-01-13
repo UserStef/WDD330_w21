@@ -1,26 +1,74 @@
 
 console.log(" -- Start of Navigation Build Script -- ");
 
-{/* <div class="homebtn"><a href="../index.html">&#127968;</a></div> */}
-let ol = document.querySelector('ol');
+let head = document.querySelector('header');
 
-let number_of_weeks = 5;
+// let homebtn = document.createElement('div');
+// homebtn.classList.add("homebtn");
+// let homelink = document.createElement('a');
+// homelink.setAttribute('href', '../index.html');
+// homelink.innerText = '&#127968;';
+// homebtn.appendChild(homelink);
+// head.appendChild(homebtn);
+
+/* <div class="homebtn"><a href="../index.html">&#127968;</a></div> */
+
+let ol = document.createElement('ol');
+head.appendChild(ol);
+
+let number_of_weeks = 3;
+
+let links = [
+    {
+        label: "&#127968;",
+        url: "../index.html",
+        classlist: ["homebtn"]
+    }
+];
+
+if(document.title == "WDD330 - Home"){
+    links[0].url = "index.html";
+    for(let i = 1; i<number_of_weeks+1; i++){
+        weekNumb = i;
+        if (i<10){weekNumb = "0"+i;}
+        links.push({label: "Week "+weekNumb, url: "week"+weekNumb+"/index.html", classlist: ["mbtn", "mbtn-on"]});
+    }
+} else {
+    for(let i = 1; i<number_of_weeks+1; i++){
+        weekNumb = i;
+        if (i<10){weekNumb = "0"+i;}
+        links.push({label: "Week "+weekNumb, url: "../week"+weekNumb+"/index.html", classlist: ["mbtn", "mbtn-on"]});
+    }
+}
+
+links.map(link => {
+    let classes = link.classlist.join(" ");
+    if (link.label != document.title){
+        ol.innerHTML += 
+        `<li><a href="${link.url}"><button class="${classes}">${link.label}</button></a></li>`;
+    } else {
+        ol.innerHTML += 
+        `<li><button class="${link.classlist[0]} mbtn-off">${link.label}</button></li>`;
+    }
+});
+
+
 
 // Building the data in the links.
 // let links = [];
 // for(let i = 1; i<number_of_weeks+1; i++){
 //     weekNumb = i;
-    // if (i<10){
-    //     weekNumb = "0"+i;
-    // }
+//     if (i<10){
+//         weekNumb = "0"+i;
+//     }
 //     links.push({label: "Week "+weekNumb, url: "../week"+weekNumb+"/index.html"});
 // }
 
 // links.forEach(
 //     link => {
-//         if (link.label != document.title){
-//             ol.innerHTML += 
-//             `<li><a href="${link.url}"><button class="mbtn">${link.label}</button></a></li>`;
+        // if (link.label != document.title){
+        //     ol.innerHTML += 
+        //     `<li><a href="${link.url}"><button class="mbtn">${link.label}</button></a></li>`;
         // } else {
         //     ol.innerHTML += 
         //     `<li><button class="mbtn">${link.label}</button></li>`;
@@ -29,19 +77,19 @@ let number_of_weeks = 5;
 // );
 
 // // --Single loop.
-for(let i = 1; i<number_of_weeks+1; i++){
-    weekNumb = i;
-    if (i<10){
-        weekNumb = "0"+i;
-    }
-    if (document.title != `Week ${weekNumb}`){
-        ol.innerHTML += 
-            `<li><a href="../week${weekNumb}/index.html"><button class="mbtn">Week ${weekNumb}</button></a></li>`;
-    } else {
-        ol.innerHTML += 
-        `<li><button class="mbtn">Week ${weekNumb}</button></li>`;
-    }
-}
+// for(let i = 1; i<number_of_weeks+1; i++){
+//     weekNumb = i;
+//     if (i<10){
+//         weekNumb = "0"+i;
+//     }
+//     if (document.title != `Week ${weekNumb}`){
+//         ol.innerHTML += 
+//             `<li><a href="../week${weekNumb}/index.html"><button class="mbtn">Week ${weekNumb}</button></a></li>`;
+//     } else {
+//         ol.innerHTML += 
+//         `<li><button class="mbtn2">Week ${weekNumb}</button></li>`;
+//     }
+// }
 
 // for(let i = 1; i<number_of_weeks+1; i++){
 //     const li = document.createElement("li");

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week02 - Team Activity</title>
+
+    <style>
+        body{
+            margin: 0px;
+            background-color: rgba(3, 22, 27, 0.9);
+            color: rgba(233, 251, 255, 0.9);
+        }
+        .head{
+            display: flex;
+            flex-direction: column;
+            margin: 12px;
+            border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+        }
+        .title{
+            margin: 8px 8px 4px 8px;
+            font-size: 3em;
+        }
+        .subtitle{            
+            margin: 4px 8px;
+            font-size: 2em;
+        }
+        .inputs{
+            margin: 12px 24px;
+            display: flex;
+            flex-direction: column;
+            font-size: 1.5em;
+        }
+        .input{
+            max-width: 100px;
+            margin: 4px;
+            font-size: 1.2em;
+        }
+        .controllers{
+            margin: 12px;
+            display: flex;
+            flex-direction: row;
+            border-top: 2px solid rgba(16, 161, 197, 0.9);
+            padding: 8px 0px;
+            border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+        }
+        .mybtn{
+            min-width: 50px;
+            margin: 4px;
+            padding: 8px;
+            /* border: solid rgba(16, 161, 197, 0.9) 1px; */
+            border: solid 0px;
+            border-top: solid rgba(16, 161, 197, 0.9) 1px;
+            border-bottom: solid rgba(16, 161, 197, 0.9) 1px;
+            border-radius: 5px;
+            background-color: rgba(16, 161, 197, 0.2);
+            color: rgba(233, 251, 255, 0.9);
+            font-size: 1.5em;
+        }
+        .btn-on{
+            /* background-color: rgba(16, 161, 197, 0.8); */
+            background-image: radial-gradient(rgba(16, 161, 197, 0.8) 20%, rgba(16, 161, 197, 0.2) 80%); 
+        }
+        #result{
+            margin: 8px 16px;
+            padding: 8px;
+            font-size: 2em;
+            text-align: center;
+            border: 2px solid rgba(16, 161, 197, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="head">
+            <span class="title">Week 02</span>
+            <span class="subtitle">Team Activity</span>
+        </div>
+    </header>
+    <main>
+        <section>
+            <div class="inputs">
+                <label for="quantity">Input: </label>
+                <input type="number" id="input_a" name="name" class="input" value="5">
+                <input type="number" id="input_b" name="name" class="input" value="3">
+            </div>
+            <div class="controllers">
+                <button id="save_btn" class="mybtn" data-op="sum">1+2+..n</button>
+                <button id="add_btn" class="mybtn" data-op="add">+</button>
+                <button id="sub_btn" class="mybtn" data-op="sub">-</button>
+                <button id="mul_btn" class="mybtn" data-op="mul">*</button>
+                <button id="div_btn" class="mybtn" data-op="div">/</button>
+            </div>
+            <div id="result">
+                -
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function ToggleBtn(){
+            document.querySelectorAll('.mybtn').forEach(elem =>{
+                if(elem.classList.contains("btn-on")){
+                    elem.classList.remove("btn-on");
+                }
+            })
+        }
+        document.querySelectorAll('.mybtn').forEach(elem =>{
+            elem.addEventListener('click', ev =>{
+                ToggleBtn();
+                ev.target.classList.add("btn-on");
+                console.dir(ev.target.dataset.op);
+                let a = document.querySelector('#input_a').value*1;
+                let b = document.querySelector('#input_b').value*1;
+                let result = 0;
+                switch (ev.target.dataset.op){
+                    case 'sum':
+                        for(let i = a; i>0; i--){
+                            result = result + i;
+                        }
+                        break;
+                    case 'add':
+                        result = a + b;
+                        break;
+                    case 'sub':
+                        result = a - b;
+                        break;
+                    case 'mul':
+                        result = a * b;
+                        break;
+                    case 'div':
+                        result = a / b;
+                        break;
+                    default:
+                        break;
+                }
+                document.querySelector('#result').innerHTML = result;
+            });
+        });
+    </script>
+</body>
+</html>

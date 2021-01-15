@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week02 - Team Activity</title>
+    <!-- <link rel="stylesheet" href="styles/mainstyle.css"> -->
+</head>
+<body>
+    <header>
+        <div class="title"><h1>Welcome</h1></div>
+    </header>
+    <main>
+        <section>
+            <div>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div>
+                <button id="save_btn">Save</button>
+            </div>
+        </section>
+        <section>
+            <span id="result"></span>
+        </section>
+    </main>
+    
+    <!-- <script src="scripts/main.js"></script> -->
+    <!-- <script src="scripts/nav-build.js"></script> -->
+    <script>
+        let save_btn = document.querySelector('#save_btn');
+        save_btn.addEventListener('click', save1);
+
+        function save1(){
+            // console.log('save_btn 1');
+            let input_name = document.querySelector('#name').value;
+            console.dir(input_name);
+
+            document.querySelector('#result') = input_name;
+        }
+
+        const save2 = function(){
+            console.log('save_btn 2');
+        }
+
+        const save3 = () => {
+            console.log('save_btn 3');
+        }
+
+    </script>
+</body>
+</html>

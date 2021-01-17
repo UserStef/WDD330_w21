@@ -110,8 +110,6 @@ li{
     /* background-image: radial-gradient(hsla(30, 75%, 50%, 80%) 40%, hsla(30, 70%, 40%, 20%) 80%); */
 }
 
-/* ↓ Content classes ↓ */
-
 .notes{
     margin: 8px 4px;
     padding: 20px;
@@ -127,7 +125,7 @@ li{
 }
 code{
     color: rgb(240, 0, 100);
-    background-color: rgba(20,20,20,0.4);
+    background-color: rgba(20,20,20,0.1);
     padding: 0px 4px;
 }
 

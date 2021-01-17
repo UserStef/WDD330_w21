@@ -34,7 +34,6 @@
             border-bottom: 2px inset hsl(225, 50%, 24%, 89%);
         }
         .code-format{
-            padding: 8px;
             color: rgb(240, 0, 100);
             background-color: rgba(30,30,30,0.9);
         }
@@ -57,7 +56,7 @@
             color: rgb(156,220,254);
         }
         .ykey{
-            color: rgb(223, 223, 145);
+            color: rgb(218, 218, 123);
         }
         .wkey{
             color: rgb(212,212,212);
@@ -72,7 +71,7 @@
     <div id="module-links">
         This week:
         <ul id="w2ul">
-            <li>Notes and Code Samples</li>
+            <li>Notes and/or Code Samples</li>
             <li><a href="team-activity"><button id="basicbtn">Team Activity</button></a></li>
             <li><a href="team-activity-later" class="w2btn">Team Activity++</a></li>
         </ul>
@@ -81,19 +80,44 @@
     <div class="notes">
         Notes:
         <ul id="w2ul">
-            <li>Notes and Code Samples</li>
+            <li>Notes and/or Code Samples</li>
         </ul>
+        <div id="try" class="ykey pre-format code-format"></div>
         <div class="pre-format">
-        When writing a function some options are:
-        First is to declare a function:
-        <div id="code_display_01" class="ykey code-format"></div>
-        Another option is to store the function on a variable:
-        <div id="code_display_02" class="ykey code-format"></div>
-        A third option is to use a lambda function by using the <code>'=>'</code> characters:
-        <div id="code_display_03" class="ykey code-format"></div>
-        → all 3 work as desired for the example.
+            When writing a function some options are:
+            First is to declare a function:
+            <div id="code_display_01" class="ykey code-format">
+            </div>
+            Another option is to store the function on a variable:
+            <div id="code_display_02" class="ykey code-format">
+            </div>
+            A third option is to use a lambda function by using the <code>'=>'</code> characters:
+            <div id="code_display_03" class="ykey code-format">
+            </div>
+            → all 3 work as desired for the example.
         </div>
-        <div id="try" class="ykey pre-format code-format hidden"></div>
+        <pre class="sample">
+            When writing a function some options are:
+            First is to declare a function:
+            <div class="code-format">
+                function save1(){
+                    console.log('save_btn 1');
+                }
+            </div>
+            Another option is to store the function on a variable:
+            <code>
+                const save2 = function(){
+                    console.log('save_btn 2');
+                }
+            </code>
+            A third option is to use a lambda function by using the <code>'=>'</code> characters:
+            <code>
+                const save3 = () => {
+                    console.log('save_btn 3');
+                }
+            </code>
+            → all 3 work as desired for the example.
+        </pre>
     </div>
 
     
@@ -107,7 +131,7 @@
         const r_regex = /(\' | \")/gi;
         const g_regex = /console/gi
         const b_regex = /(var|let|const|function)/gi;
-        const w_regex = /(\=\>|\(|\)|\.|\,|\;|\{|\}|\[|\]|\+|\-|\*|\/|\=)/gi;
+        const w_regex = /(\(|\)|\.|\,|\;|\{|\}|\[|\]|\+|\-|\*|\/|\=)/gi;
 
         const regex_var = /(var)/gi;
         const regex_let = /(let)/gi;
@@ -150,22 +174,25 @@
         ];
 
         var block_offset = [];
-        // -- let block_offset_open = false;
-        // -- open = true (open), means we have one quote mark '
-        // -- open = false (closed), means that there is no previous quote mark ' 
+        // let block_offset_open = false;
+        // open = true (open), means we have one quote mark '
+        // open = false (closed), means that there is no previous quote mark ' 
         function r_replacer_set(match, offset, string) {
-            // console.log("\t -- 'r_replacer_set' was called -- ");
-            // console.log("match: "+match);
-            // console.log("offset: "+offset);
-            // console.log("string: "+string);
+            console.log("\t -- 'r_replacer_set' was called -- ");
+            // return `'<span class="rkey">`+match+`</span>`;
+            // block_offset_open = !block_offset_open;
+            console.log("match: "+match);
+            console.log("offset: "+offset);
+            console.log("string: "+string);
 
             block_offset.push(offset);
-            // console.dir(block_offset);
+            console.dir(block_offset);
 
+            // return `♦`+match;
             return match;
         }
         function r_replacer(match, offset, string) {
-            // console.log("\t -- 'r_replacer' was called -- ");
+            console.log("\t -- 'r_replacer' was called -- ");
             // console.log("match: "+match);
             // console.log("p1: "+p1);
             // console.log("p2: "+p2);
@@ -173,15 +200,18 @@
             // console.log("offset: "+offset);
             // console.log("string: "+string);
 
-            // -- if the index is even, then it is the start of the block.
-            // -- if the index is odd, then it is the end of the block.
+            // if the index is even, then it is the start of the block.
+            // if the index is odd, then it is the end of the block.
             if(block_offset.indexOf(offset)%2 == 0){
+                // return `<span class="rkey">`+match;
                 return `♦<span class="rkey">'`;
             } else if(block_offset.indexOf(offset)%2 > 0) {
+                // return match+`</span>`;
                 return `'</span>♦`;
             } else {
                 return `☻`;
             }
+            // return `☻`;
         }
         function w_replacer(match, p1, p2, p3, offset, string) {
             // console.log("\t -- 'w_replacer' was called -- ");
@@ -201,19 +231,24 @@
             code_samples.forEach(code_s =>{
                 let code_replace = code_s;
                 let code_replaced = "";
-                // -- divide by block ' or "
-                // -- divide by new line
-                // -- divide by word
+                // --divide by block ' or "
+                // --divide by new line
+                // --divide by word
                 
 
-                // (1) -- divide by block ' or "
+                // (1) --divide by block ' or "
+                // code_replace = code_replace.split(`'`);
+                // code_replace = code_replace.replace(r_regex, r_replacer_set);
                 code_replace = code_replace.replace(/\'/gi, r_replacer_set);
                 code_replace = code_replace.replace(/\'/gi, r_replacer);
-                // console.log("after r_replace: "+code_replace);
+                console.log("after r_replace: "+code_replace);
                 code_replace = code_replace.split(`♦`);
-                // console.log("♦here:♦\n"+code_replace.join('\n\n'));
+                console.log("♦here:♦\n"+code_replace.join('\n\n'));
+                // console.dir(code_replace);
+                // code_replace.forEach(elem => { code_apart.push(elem.split(`"`)); });
+                // let code_replace = code_replace.split(`"`);
 
-                // (2) -- divide by new line
+                // (2) --divide by new line
                 let code_apart = [];
                 code_replace.forEach(block => { 
                     if (code_replace.indexOf(block)%2 > 0){
@@ -226,38 +261,69 @@
                     } else {
                         code_apart.push(block);
                     }
+                    // code_apart.push(block.split(`"`)); 
                 });
                 console.log("code_apart→→");
                 console.log(code_apart);
                 // console.dir(code_apart);
 
-                // (3) -- divide by word
+                // (3) --divide by word
                 code_apart = code_apart.map(line => {
                     let rline = line;
                     if(rline[0] == " " && code_apart.indexOf(line) != 1){
-                        console.log("line bef: █"+rline+"█");
-                        rline = rline.replace(/\s/,"\n ");
-                        console.log("line aft: █"+rline+"█");
+                        console.log("line bef: "+rline);
+                        // line = line.slice(1,);
+                        rline = rline.replace(/\s/,"\n");
+                        console.log("line aft: "+rline);
                     }
                     if(rline[0] == "♦"){
-                        // console.log("line bef: "+rline);
+                        console.log("line bef: "+rline);
                         rline = rline.slice(1,);
-                        // console.log("line aft: "+rline);
+                        console.log("line aft: "+rline);
                     } else {
-                        // console.log("line: "+rline);
+                        console.log("line: "+rline);
+                        // code_replaced = line;
                         rline = rline.replace(w_regex, w_replacer);
                         rline = rline.replace(regex_var, '<span class="bkey">var</span>');
                         rline = rline.replace(regex_let, '<span class="bkey">let</span>');
                         rline = rline.replace(regex_const, '<span class="bkey">const</span>');
                         rline = rline.replace(regex_function, '<span class="bkey">function</span>');
                         rline = rline.replace(regex_console, '<span class="gkey">console</span>');
-                        // console.log("→code_replaced→ "+rline);
+                        console.log("→code_replaced→ "+rline);
                     }
                     return rline;
                 });
 
                 console.log("\nResult from Code Apart\n"+code_apart.join(""));
                 document.querySelector("#"+tar_elem_id).innerHTML += code_apart.join("")+"\n";
+
+                // let code_replaced = code_s;
+                // code_replaced = code_replaced.replace(w_regex, w_replacer);
+                // code_replaced = code_replaced.replace(regex_var, '<span class="bkey">var</span>');
+                // code_replaced = code_replaced.replace(regex_let, '<span class="bkey">let</span>');
+                // code_replaced = code_replaced.replace(regex_const, '<span class="bkey">const</span>');
+                // code_replaced = code_replaced.replace(regex_function, '<span class="bkey">function</span>');
+                // code_replaced = code_replaced.replace(regex_console, '<span class="gkey">console</span>');
+                
+                // // code_replace = code_replace.replace(w_regex, '<span class="gkey">console</span>');
+
+
+
+
+                // document.querySelector("#try").innerHTML = code_replaced;
+
+
+                // // code_replace
+                // console.log(code_s);
+                // // console.dir(code_s);
+                // let code_space = code_s.replace(/\s/gi, "♦");
+                // console.log(code_space);
+                // let code_tab = code_s.replace(w_regex, "•");
+                // console.log(code_tab);
+
+                // let code_split = code_s.split("\n");
+                // console.log(code_split);
+                // console.dir(code_split);
             });
         };
 
@@ -283,6 +349,18 @@
         const save3 = () => {
             console.log('save_btn 3');
         }
+
+        // let save_btn = document.querySelector('#save_btn');
+        // save_btn.addEventListener('click', save1);
+
+        // function save1(){
+        //     // console.log('save_btn 1');
+        //     let input_name = document.querySelector('#name').value;
+        //     console.dir(input_name);
+
+        //     document.querySelector('#result') = input_name;
+        // }
+
     </script>
 </body>
 </html>

@@ -40,7 +40,7 @@
         }
         .pre-format{
             font-family: monospace;
-            white-space: pre;
+            white-space: pre-wrap;
             border: groove 2px gray;
             margin: 8px; padding: 8px;
         }
@@ -70,9 +70,8 @@
     <div class="title">Week 02</div>
 
     <div id="module-links">
-        This week:
+        Team Activity Links:
         <ul id="w2ul">
-            <li>Notes and Code Samples</li>
             <li><a href="team-activity"><button id="basicbtn">Team Activity</button></a></li>
             <li><a href="team-activity-later" class="w2btn">Team Activity++</a></li>
         </ul>
@@ -83,18 +82,17 @@
         <ul id="w2ul">
             <li>Notes and Code Samples</li>
         </ul>
-        <div class="pre-format">
-        When writing a function some options are:
-        First is to declare a function:
-        <div id="code_display_01" class="ykey code-format"></div>
-        Another option is to store the function on a variable:
-        <div id="code_display_02" class="ykey code-format"></div>
-        A third option is to use a lambda function by using the <code>'=>'</code> characters:
-        <div id="code_display_03" class="ykey code-format"></div>
-        → all 3 work as desired for the example.
-        </div>
-        <div id="try" class="ykey pre-format code-format hidden"></div>
-    </div>
+<div class="pre-format">Three ways to write a function.
+First is to declare a function:
+<div id="code_display_01" class="ykey code-format"></div>
+Another option is to store the function on a variable:
+<div id="code_display_02" class="ykey code-format"></div>
+A third option is to use a lambda function by using the <code>'=>'</code> characters:
+<div id="code_display_03" class="ykey code-format"></div>
+→ all 3 work as desired for the example.
+</div>
+<div id="try" class="ykey pre-format code-format hidden"></div>
+</div>
 
     
     <script src="../scripts/nav-build.js"></script>
@@ -117,36 +115,36 @@
         
         const code_sample_01 = [
         `
-        function save1(){
-            console.log('save_btn 1');
-        }`
+    function save1(){
+        console.log('save_btn 1');
+    }`
         ];
         const code_sample_02 = [
         `
-        const save2 = function(){
-            console.log('save_btn 2');
-        }`
+    const save2 = function(){
+        console.log('save_btn 2');
+    }`
         ];
         const code_sample_03 = [
         `
-        const save3 = () => {
-            console.log('save_btn 3');
-        }`
+    const save3 = () => {
+        console.log('save_btn 3');
+    }`
         ];
 
         const code_samples = [
-        `
-        function save1(){
-            console.log('save_btn 1');
-        }`,
-        `
-        const save2 = function(){
-            console.log('save_btn 2');
-        }`,
-        `
-        const save3 = () => {
-            console.log('save_btn 3');
-        }`
+    `
+    function save1(){
+        console.log('save_btn 1');
+    }`,
+    `
+    const save2 = function(){
+        console.log('save_btn 2');
+    }`,
+    `
+    const save3 = () => {
+        console.log('save_btn 3');
+    }`
         ];
 
         var block_offset = [];
@@ -227,17 +225,17 @@
                         code_apart.push(block);
                     }
                 });
-                console.log("code_apart→→");
-                console.log(code_apart);
+                // console.log("code_apart→→");
+                // console.log(code_apart);
                 // console.dir(code_apart);
 
                 // (3) -- divide by word
                 code_apart = code_apart.map(line => {
                     let rline = line;
                     if(rline[0] == " " && code_apart.indexOf(line) != 1){
-                        console.log("line bef: █"+rline+"█");
+                        // console.log("line bef: █"+rline+"█");
                         rline = rline.replace(/\s/,"\n ");
-                        console.log("line aft: █"+rline+"█");
+                        // console.log("line aft: █"+rline+"█");
                     }
                     if(rline[0] == "♦"){
                         // console.log("line bef: "+rline);
@@ -256,7 +254,7 @@
                     return rline;
                 });
 
-                console.log("\nResult from Code Apart\n"+code_apart.join(""));
+                // console.log("\nResult from Code Apart\n"+code_apart.join(""));
                 document.querySelector("#"+tar_elem_id).innerHTML += code_apart.join("")+"\n";
             });
         };

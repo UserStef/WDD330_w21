@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Week 02</title>
-    <link rel="stylesheet" href="../styles/mainstyle.css">
+    <title>Week 03 - Notes</title>
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
     <!-- <link rel="stylesheet" href="../styles/sample-code-style.css"> -->
     <style>
         #w2ul li{
@@ -59,6 +59,9 @@
         .ykey{
             color: rgb(223, 223, 145);
         }
+        .skey{
+            color: rgb(112, 112, 112);
+        }
         .wkey{
             color: rgb(212,212,212);
         }
@@ -67,84 +70,72 @@
 <body>
     <header class="head">
     </header>
-    <div class="title">Week 02</div>
-
-    <div id="module-links">
-        Team Activity Links:
-        <ul id="w2ul">
-            <li><a href="team-activity"><button id="basicbtn">Team Activity</button></a></li>
-            <li><a href="team-activity-later" class="w2btn">Team Activity++</a></li>
-        </ul>
-    </div>
+    <div class="title">Week 03</div>
 
     <div class="notes">
         Notes:
-        <ul id="w2ul">
-            <li>Notes and Code Samples</li>
-        </ul>
-<div class="pre-format">Three ways to write a function.
-First is to declare a function:
-<div id="code_display_01" class="ykey code-format"></div>
-Another option is to store the function on a variable:
-<div id="code_display_02" class="ykey code-format"></div>
-A third option is to use a lambda function by using the <code>'=>'</code> characters:
-<div id="code_display_03" class="ykey code-format"></div>
+<div class="pre-format">Selecting DOM elements
+Consider the HTML element
+<div id="code_display_00" class="wkey code-format"></div>
+The DOM element can be selected by the tag, like <code>'&lt;div&gt;'</code>.
+<div id="code_display_01" class="ckey code-format"></div>
+DOM elements can also be selected by their id by adding the <code>'#'</code> sign.
+<div id="code_display_02" class="ckey code-format"></div>
+To select by class add a period <code>'.'</code> to the class:
+<div id="code_display_03" class="ckey code-format"></div>
 → all 3 work as desired for the example.
 </div>
-<div id="try" class="ykey pre-format code-format hidden"></div>
+
 </div>
 
     
-    <script src="../scripts/nav-build.js"></script>
-    <script>
-
-        // const b_keywords = ["var","let","const","function"];
-        // const g_keywords = ["console"];
-        // const w_keywords = [`(`, `)`, `=`, `.`, `,`, `;`, `{`, `}`, `[`, `]`, `+`, `-`, `*`, `/`];
-        
+    <!-- <script src="../../scripts/nav-build.js"></script> -->
+    <script>        
         const r_regex = /(\' | \")/gi;
         const g_regex = /console/gi
-        const b_regex = /(var|let|const|function)/gi;
-        const w_regex = /(\=\>|\(|\)|\.|\,|\;|\{|\}|\[|\]|\+|\-|\*|\/|\=)/gi;
+        const b_regex = /(var|let|const|function|div)/gi;
+        const sw_regex = /(\<div|div\>|id\=|class\=|\=\>|\<\/|\<|\>|\(|\)|\.|\,|\;|\{|\}|\[|\]|\+|\-|\*|\/|\=)/gi;
+        // const sw_regex = /(id\=|class\=|\=\>|\<\/|\<|\>|\(|\)|\.|\,|\;|\{|\}|\[|\]|\+|\-|\*|\/|\=)/gi;
+        // const s_regex = /(&lt;\/|&lt;|&gt;)/gi;
+        // const w_regex = /(\=\>|\(|\)|\.|\,|\;|\{|\}|\[|\]|\+|\-|\*|\/|\=)/gi;
+        const y_regex = /(log|querySelector)/gi;
+        const c_regex = /(id\=|class\=)/gi;
+        
+        const ltgt_regex = /(\<|\>)/gi;
+        // const ltgt_regex = /(&lt;|&gt;)/gi;
 
         const regex_var = /(var)/gi;
         const regex_let = /(let)/gi;
         const regex_const = /(const)/gi;
         const regex_function = /(function)/gi;
-        const regex_console = /console/gi
+        const regex_console = /console/gi;
+
+        const regex_yColor = /(querySelector)/gi;
         
+        const code_sample_00 = [
+        `
+    <div id='byID' class='byClass'>Sample</div>`
+        ];
         const code_sample_01 = [
         `
-    function save1(){
-        console.log('save_btn 1');
-    }`
+    const sectionByTag = document.querySelector('div');`
         ];
         const code_sample_02 = [
         `
-    const save2 = function(){
-        console.log('save_btn 2');
-    }`
+    const sectionByID = document.querySelector('#byID');`
         ];
         const code_sample_03 = [
         `
-    const save3 = () => {
-        console.log('save_btn 3');
-    }`
+    const sectionByClass = document.querySelector('.byClass');`
         ];
 
         const code_samples = [
     `
-    function save1(){
-        console.log('save_btn 1');
-    }`,
+    const sectionByTag = document.querySelector('section');`,
     `
-    const save2 = function(){
-        console.log('save_btn 2');
-    }`,
+    const sectionByID = document.querySelector('#byID');`,
     `
-    const save3 = () => {
-        console.log('save_btn 3');
-    }`
+    const sectionByClass = document.querySelector('.byClass');`
         ];
 
         var block_offset = [];
@@ -153,24 +144,11 @@ A third option is to use a lambda function by using the <code>'=>'</code> charac
         // -- open = false (closed), means that there is no previous quote mark ' 
         function r_replacer_set(match, offset, string) {
             // console.log("\t -- 'r_replacer_set' was called -- ");
-            // console.log("match: "+match);
-            // console.log("offset: "+offset);
-            // console.log("string: "+string);
-
             block_offset.push(offset);
-            // console.dir(block_offset);
-
             return match;
         }
         function r_replacer(match, offset, string) {
             // console.log("\t -- 'r_replacer' was called -- ");
-            // console.log("match: "+match);
-            // console.log("p1: "+p1);
-            // console.log("p2: "+p2);
-            // console.log("p3: "+p3);
-            // console.log("offset: "+offset);
-            // console.log("string: "+string);
-
             // -- if the index is even, then it is the start of the block.
             // -- if the index is odd, then it is the end of the block.
             if(block_offset.indexOf(offset)%2 == 0){
@@ -181,15 +159,61 @@ A third option is to use a lambda function by using the <code>'=>'</code> charac
                 return `☻`;
             }
         }
-        function w_replacer(match, p1, p2, p3, offset, string) {
-            // console.log("\t -- 'w_replacer' was called -- ");
+
+        function y_replacer(match, p1, offset, string){
+            // console.log("\t -- 'y_replacer' was called -- ");
             // console.log("match: "+match);
             // console.log("p1: "+p1);
             // console.log("p2: "+p2);
             // console.log("p3: "+p3);
             // console.log("offset: "+offset);
             // console.log("string: "+string);
+            return '<span class="ykey">'+match+'</span>';
+        }
+
+        function b_replacer(match, p1, offset, string){
+            // console.log("\t -- 'b_replacer' was called -- ");
+            return '<span class="bkey">'+match+'</span>';
+        }
+
+        function s_replacer(match, p1, offset, string) {
+            console.log("\t -- 's_replacer' was called -- ");
+            return '<span class="skey">'+match+'</span>';
+        }
+
+        function w_replacer(match, p1, offset, string) {
+            // console.log("\t -- 'w_replacer' was called -- ");
             return '<span class="wkey">'+match+'</span>';
+        }
+
+        function sw_replacer(match, p1, offset, string) {
+            // console.log("\t -- 'all_replacer' was called -- ");
+            switch(match){
+                case "</":
+                    return '<span class="skey">&lt;/</span>';
+                    break;
+                case "<":
+                    return '<span class="skey">&lt;</span>';
+                    break;
+                case ">":
+                    return '<span class="skey">&gt;</span>';
+                    break;
+                case "id=":
+                    return '<span class="ckey">id</span>'+'<span class="wkey">=</span>';
+                    break;
+                case "class=":
+                    return '<span class="ckey">class</span>'+'<span class="wkey">=</span>';
+                    break;
+                case "<div":
+                    return '<span class="skey">&lt;</span>'+'<span class="bkey">div</span>';
+                    break;
+                case "div>":
+                    return '<span class="bkey">div</span>'+'<span class="skey">&gt;</span>';
+                    break;
+                default:
+                    return '<span class="wkey">'+match+'</span>';
+                    break;
+            }
         }
 
         // -- Adds code samples from an array to a specific div by the 'id' without the # sign.
@@ -199,10 +223,10 @@ A third option is to use a lambda function by using the <code>'=>'</code> charac
             code_samples.forEach(code_s =>{
                 let code_replace = code_s;
                 let code_replaced = "";
-                // -- divide by block ' or "
-                // -- divide by new line
-                // -- divide by word
-                
+
+                code_test = code_replace.replace(/\n/gi, "♦n");
+                // console.log(code_replace); //has extra line
+                // console.log(code_test);
 
                 // (1) -- divide by block ' or "
                 code_replace = code_replace.replace(/\'/gi, r_replacer_set);
@@ -225,17 +249,20 @@ A third option is to use a lambda function by using the <code>'=>'</code> charac
                         code_apart.push(block);
                     }
                 });
-                // console.log("code_apart→→");
-                // console.log(code_apart);
+                console.log("code_apart→→");
+                console.log(code_apart);
                 // console.dir(code_apart);
 
                 // (3) -- divide by word
                 code_apart = code_apart.map(line => {
                     let rline = line;
-                    if(rline[0] == " " && code_apart.indexOf(line) != 1){
-                        // console.log("line bef: █"+rline+"█");
-                        rline = rline.replace(/\s/,"\n ");
-                        // console.log("line aft: █"+rline+"█");
+                    // if(rline[0] == " " && code_apart.indexOf(line) != 1){
+                    //     // console.log("line bef: █"+rline+"█");
+                    //     rline = rline.replace(/\s/,"\n ");
+                    //     // console.log("line aft: █"+rline+"█");
+                    // }
+                    if(code_apart.indexOf(line) != 1){
+                        rline = rline.replace(/♦n/,"\n");
                     }
                     if(rline[0] == "♦"){
                         // console.log("line bef: "+rline);
@@ -243,11 +270,18 @@ A third option is to use a lambda function by using the <code>'=>'</code> charac
                         // console.log("line aft: "+rline);
                     } else {
                         // console.log("line: "+rline);
-                        rline = rline.replace(w_regex, w_replacer);
-                        rline = rline.replace(regex_var, '<span class="bkey">var</span>');
-                        rline = rline.replace(regex_let, '<span class="bkey">let</span>');
-                        rline = rline.replace(regex_const, '<span class="bkey">const</span>');
-                        rline = rline.replace(regex_function, '<span class="bkey">function</span>');
+                        // rline = rline.replace(ltgt_regex, relace_ltgt);
+                        // rline = rline.replace(s_regex, s_replacer);
+                        // rline = rline.replace(w_regex, w_replacer);
+
+                        rline = rline.replace(sw_regex, sw_replacer);
+                        
+                        rline = rline.replace(y_regex, y_replacer);
+                        rline = rline.replace(b_regex, b_replacer);
+                        // rline = rline.replace(regex_var, '<span class="bkey">var</span>');
+                        // rline = rline.replace(regex_let, '<span class="bkey">let</span>');
+                        // rline = rline.replace(regex_const, '<span class="bkey">const</span>');
+                        // rline = rline.replace(regex_function, '<span class="bkey">function</span>');
                         rline = rline.replace(regex_console, '<span class="gkey">console</span>');
                         // console.log("→code_replaced→ "+rline);
                     }
@@ -262,13 +296,16 @@ A third option is to use a lambda function by using the <code>'=>'</code> charac
         // to format the text
         // use a loop with a switch inside
 
-        
+        addSampleCode(code_sample_00,"code_display_00");
         addSampleCode(code_sample_01,"code_display_01");
         addSampleCode(code_sample_02,"code_display_02");
         addSampleCode(code_sample_03,"code_display_03");
 
         addSampleCode(code_samples,"try");
         
+        const sectionByTag = document.querySelector('section');
+        const sectionByID = document.querySelector('#byID');
+        const sectionByClass = document.querySelector('.byClass');
 
         function save1(){
             console.log('save_btn 1');

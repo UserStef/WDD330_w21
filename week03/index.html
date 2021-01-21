@@ -7,14 +7,40 @@
     <title>Week 03</title>
     <link rel="stylesheet" href="../styles/mainstyle.css">
     <!-- <link rel="stylesheet" href="../styles/sample-code-style.css"> -->
+    <style>
+        #basicbtn{
+            padding: 4px 12px;
+            font-size: 1em;
+        }
+        .w2btn{
+            min-width: 50px;
+            margin: 4px;
+            padding: 8px;
+            /* border: solid rgba(16, 161, 197, 0.9) 1px; */
+            /* border: solid 0px; */
+            border-top: solid rgba(16, 161, 197, 0.9) 1px;
+            border-bottom: solid rgba(16, 161, 197, 0.9) 1px;
+            border-radius: 5px;
+            background-color: rgba(16, 161, 197, 0.2);
+            color: rgba(233, 251, 255, 0.9);
+            font-size: 1em;
+        }
+        #module-links{
+            margin: 8px 4px;
+            padding: 20px;
+            border-bottom: 2px inset hsl(225, 50%, 24%, 89%);
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="head">
     </header>
-    <div class="title"><h1>Week 03</h1></div>
+    <div class="title">Week 03</div>
 
-    <div class="warning">
-        Loading... (this week hasn't started yet.)
+    <div id="module-links">
+            <a href="notes" class="w2btn">My Notes</a>
+            <a href="team-activity"><button id="basicbtn">Team Activity</button></a>
+            <!-- <a href="team-activity-later" class="w2btn">Team Activity++</a> -->
     </div>
     
     <script src="../scripts/nav-build.js"></script>

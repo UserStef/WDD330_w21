@@ -9,20 +9,36 @@
     <!-- <link rel="stylesheet" href="../styles/sample-code-style.css"> -->
     <style>
         .head{
-            /* display: flex;
+            display: flex;
             flex-direction: column;
-            margin: 12px; */
-            /* border-bottom: 2px solid rgba(16, 161, 197, 0.9); */
-            border-bottom: 2px inset hsl(225, 50%, 24%, 89%);
-        }
-        #w2ul li{
             margin: 12px;
+            /* border-bottom: 2px solid rgba(16, 161, 197, 0.9); */
+            border-bottom: 2px solid hsl(225, 50%, 24%, 89%);
         }
-        #basicbtn{
-            padding: 4px 12px;
-            font-size: 1em;
+        .title{
+            margin: 8px 8px 4px 8px;
+            padding: 0px;
+            font-size: 3em;
+            display: flex;
+            justify-content: left;
+            border-bottom: 0px inset hsl(225, 50%, 24%, 89%);
+            font-weight: normal;
         }
-        .w2btn{
+        .subtitle{            
+            margin: 4px 8px;
+            font-size: 1.6em;
+        }
+        #play-ul{
+            list-style-type: none;
+            padding-left: 8px;
+            /* list-style-type: square; */
+            /* margin: 12px; */
+        }
+        #play-ul li{
+            margin: 8px;
+            padding: 8px;
+        }
+        #w2btn{
             min-width: 50px;
             margin: 4px;
             padding: 8px;
@@ -32,26 +48,40 @@
             border-bottom: solid rgba(16, 161, 197, 0.9) 1px;
             border-radius: 5px;
             background-color: rgba(16, 161, 197, 0.2);
-            color: rgba(233, 251, 255, 0.9);
+            /* color: rgba(233, 251, 255, 0.9); */
+            font-size: 1em;
+        }
+        #w3btn{
+            min-width: 50px;
+            margin: 4px;
+            padding: 6px;
+            
+            border: solid hsla(171, 90%, 45%, 90%) 1px;
+            border-left: solid hsla(171, 90%, 45%, 0%) 0px;
+            border-right: solid hsla(171, 90%, 45%, 0%) 0px;
+
+            border-radius: 5px;
+            background-color: hsla(171, 90%, 45%, 20%);
+            color: hsla(171, 90%, 45%, 90%);
             font-size: 1em;
         }
     </style>
 </head>
 <body>
-    <header class="head">
-    </header>
-    <div class="title">Week 02</div>
-
-    <div class="notes">
-    This week:
-        <ul id="w2ul">
-            <li>Notes and/or Code Samples</li>
-            <li><a href="team-activity"><button id="basicbtn">Team Activity</button></a></li>
-            <li><a href="team-activity-later" class="w2btn">Team Activity++</a></li>
-        </ul>
-
+    <div class="head">
+        <span class="title">Playground</span>
+        <span class="subtitle">for testing web things</span>
     </div>
     
-    <script src="../scripts/nav-build.js"></script>
+
+    <div class="notes">
+    Experiments
+        <ul id="play-ul">
+            <li><a href="../week02/" id="w2btn">Week 02 Button</a></li>
+            <li><a href="../week03/" id="w3btn">Week 03</a></li>
+        </ul>
+    </div>
+    
+    <!-- <script src="../scripts/nav-build.js"></script> -->
 </body>
 </html>

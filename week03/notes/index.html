@@ -8,6 +8,27 @@
     <link rel="stylesheet" href="../../styles/mainstyle.css">
     <!-- <link rel="stylesheet" href="../styles/sample-code-style.css"> -->
     <style>
+        .head{
+            display: flex;
+            flex-direction: column;
+            margin: 12px;
+            /* border-bottom: 2px solid rgba(16, 161, 197, 0.9); */
+            border-bottom: 2px solid hsl(225, 50%, 24%, 89%);
+        }
+        .title{
+            margin: 8px 8px 4px 8px;
+            padding: 0px;
+            font-size: 3em;
+            display: flex;
+            justify-content: left;
+            border-bottom: 0px inset hsl(225, 50%, 24%, 89%);
+            font-weight: normal;
+        }
+        .subtitle{            
+            margin: 4px 8px;
+            font-size: 2em;
+        }
+
         #w2ul li{
             margin: 12px;
         }
@@ -68,9 +89,12 @@
     </style>
 </head>
 <body>
-    <header class="head">
-    </header>
-    <div class="title">Week 03</div>
+    <!-- <header class="head">
+    </header> -->
+    <div class="head">
+        <span class="title">Week 03</span>
+        <span class="subtitle">Notes from class.</span>
+    </div>
 
     <div class="notes">
         Notes:
@@ -83,7 +107,6 @@ DOM elements can also be selected by their id by adding the <code>'#'</code> sig
 <div id="code_display_02" class="ckey code-format"></div>
 To select by class add a period <code>'.'</code> to the class:
 <div id="code_display_03" class="ckey code-format"></div>
-→ all 3 work as desired for the example.
 </div>
 
 </div>

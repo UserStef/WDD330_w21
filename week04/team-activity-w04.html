@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 04</title>
+    <link rel="stylesheet" href="../styles/mainstyle.css">
+    <style>
+        .cell{
+            height: 50px; width: 50px;
+            margin: 8px; padding: 20px;
+            font-size: 2em;
+            background-color: rgba(20,20,20,0.5);
+            /* align-items: center; */
+            text-align: center;
+            /* justify-content: center; */
+        }
+        tr:nth-child(2) td{
+            border-top: 2px solid red;
+            border-bottom: 2px solid red;
+        }
+        td:nth-child(2) {
+            border-right: 2px solid red;
+            border-left: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <header class="head">
+    </header>
+    <div class="head">
+        <span class="title">Week 04</span>
+        <span class="subtitle">Team Activity</span>
+    </div>
+
+    <div class="notes">
+        Loading...
+    </div>
+
+    <table>
+        <tr>
+            <td><div id="c7" class="cell" data-board="true"></div></td>
+            <td><div id="c8" class="cell" data-board="true"></div></td>
+            <td><div id="c9" class="cell" data-board="true"></div></td>
+        </tr>
+        <tr>
+            <td><div id="c4" class="cell" data-board="true"></div></td>
+            <td><div id="c5" class="cell" data-board="true"></div></td>
+            <td><div id="c6" class="cell" data-board="true"></div></td>
+        </tr>
+        <tr>
+            <td><div id="c1" class="cell" data-board="true"></div></td>
+            <td><div id="c2" class="cell" data-board="true"></div></td>
+            <td><div id="c3" class="cell" data-board="true"></div></td>
+        </tr>
+    </table>
+
+    <button id="reset">Reset</button>
+
+    <!-- <script src="../scripts/nav-build.js"></script> -->
+    <script>
+       var player = 'X'
+        window.addEventListener('touchend', (ev) => {
+            // console.dir(ev.target);
+            if(ev.target.dataset.board && ev.target.innerText == ""){
+                ev.target.innerText = player;
+                if(player == 'X'){
+                    player = 'O';
+                } else player = 'X';
+            }
+            if(ev.target.id == "reset"){
+                location.reload();
+            }
+        })
+    </script>
+
+</body>
+</html>

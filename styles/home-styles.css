@@ -1,0 +1,21 @@
+
+.preview{
+    height: auto; width: 90vw;
+    margin: 0px; padding: 12px;
+    /* background-color: rgba(255,255,255,0); */
+    /* box-shadow: inset 0px 0px 50px 10px rgba(0, 250, 255, 0.89); */
+}
+.link-title{
+    font-size: 1.5rem;
+}
+
+.link-assignment{
+    margin-top: 8px;
+    font-size: 1.1rem;
+}
+
+.midterm{
+    padding: 8px;
+    border: 2px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
+}

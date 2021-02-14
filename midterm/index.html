@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Midterm - To Do</title>
+    <link rel="stylesheet" href="../styles/mainstyle.css">
+    <link rel="stylesheet" href="styles/midterm-styles.css">
+    <style>
+        .litest{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 8px; padding: 8px;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- <header class="head">
+    </header> -->
+    <div class="head">
+        <span class="title">To Do</span>
+        <span class="subtitle">Midterm</span>
+    </div>
+
+    <div class="litest btml hidden">
+        <button class="my_checkbox mybtn check_on_false" data-is-checked="false">&#10003;</button>
+        <div class="taskname">Allows a process to mark tasks as complete</div>
+        <button class="remove-btn mybtn">X</button>
+    </div>
+
+    <table class="litest btml hidden">
+        <tr>
+            <td><button class="my_checkbox mybtn check_on_false" data-is-checked="false">&#10003;</button></td>
+            <td><div class="taskname">Allows a process to mark tasks as complete</div></td>
+            <td><button class="remove-btn mybtn">X</button></td>
+        </tr>
+    </table>
+
+        
+    <main>
+        <section id="section-tasks-table" class="centerAll">
+            <table id="table-tasks">
+                <tbody id="tablelist">
+
+                </tbody>
+            </table>
+        </section>
+        <section id="section-filter-controllers">
+            <div class="output-div">
+                <span id="task-count"></span>
+            </div>
+            <div id="controllers">
+                <button id="btn-filter-all" class="mybtn controller-btn" data-filter="all">All.</button>
+                <button id="btn-filter-active" class="mybtn controller-btn" data-filter="active">Active.</button>
+                <button id="btn-filter-completed" class="mybtn controller-btn" data-filter="completed">Completed</button>
+            </div>
+        </section>
+        <section id="add-to-scroll">
+        </section>
+    </main>
+    <fixed class="fixed-section topline">
+        <section id="section-add">
+            <form>
+                <div class="centerAll">
+                    <input type="text" id="newtask" name="newtask" placeholder="new task">
+                    <button id="addbtn" class="mybtn">+</button>
+                </div>
+            </form>
+        </section>
+    </fixed>
+
+    <!-- <script src="../scripts/nav-build.js"></script> -->
+    <script src="scripts/main.js" type="module"></script>
+</body>
+</html>

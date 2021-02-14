@@ -16,7 +16,7 @@ let head = document.querySelector('header');
 let ol = document.createElement('ol');
 head.appendChild(ol);
 
-let number_of_weeks = 3;
+let number_of_weeks = 6;
 
 let links = [
     {

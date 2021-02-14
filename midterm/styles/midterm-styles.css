@@ -1,0 +1,168 @@
+body{
+    height: 100vh; width: 100vw;
+    margin: 0px;
+}
+.subtitle{
+    font-size: 1.2rem;
+    color: hsl(225, 50%, 89%, 54%);
+}
+
+#table-tasks{
+    margin: 0px 12px;
+}
+.btml_task td{
+    border-bottom: 2px inset hsl(225, 50%, 24%, 54%);
+}
+
+#ulList {
+    list-style-type: none;
+    margin: 0px 12px; 
+    padding: 8px;
+}
+ul li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 0px 12px 0px;
+}
+
+.centerAll{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mybtn{
+    min-height: 32px; min-width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px; padding: 4px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.taskname{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 4px 4px; padding: 4px;
+    text-overflow: ellipsis;
+}
+.remove-btn{
+    height: 36px; width: 36px;
+    background-color: rgba(200,20,50,0.8);
+    border: 2px solid rgba(100,15,30,0.8);
+    color: white;
+}
+
+#add-to-scroll{
+    height: 76px; width: auto;
+}
+#section-add{
+    margin: 12px;
+}
+.fixed-section{
+    height: auto; width: 100vw;
+    position: fixed;
+    bottom: 0px;
+    background-color: rgba(0,5,20,0.54);
+}
+.topline{
+    border-top: 2px solid hsl(225, 50%, 24%, 89%);
+}
+
+
+.my_checkbox{
+    height: 36px; width: 36px;
+    margin: 4px; padding: 4px;
+    background-color: rgba(255,255,255,1);
+    border: 2px solid rgba(50,50,50,0.5);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.0);
+}
+.check_on_false{
+    background-color: rgba(255,255,255,1);
+    border: 2px solid rgba(50,50,50,0.5);
+    color: rgba(255,255,255,0.0);
+    transition: all 0.1s ease-in;
+}
+.check_on_true{
+    background-color: rgba(20,80,220,0.8);
+    border: 2px solid rgba(10,50,200,0.8);
+    color: rgba(255,255,255,1);
+    transition: all 0.2s ease-in;
+}
+
+#newtask{
+    height: 36px; width: auto;
+    margin: 4px;
+    font-size: 1.2rem;
+}
+#addbtn{
+    height: 42px; width: 42px;
+    background-color: rgba(20,200,50,0.8);
+    border: 2px solid rgba(10,150,30,0.8);
+    font-size: 1.8rem;
+    color: white;
+}
+
+
+#section-filter-controllers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#controllers{
+    display: flex;
+    flex-direction: row;
+}
+.controller-btn{
+    height: 42px; width: auto;
+    padding: 0px 8px;
+    background-color: rgba(20,20,20,0.0);
+    box-shadow: 2px 2px 5px 0px rgba(20,20,20,0.4);
+    border: 2px solid rgba(200,200,200,0.8);
+    color: white;
+    font-weight: 400;
+}
+.output-div{
+    height: 50px; width: auto;
+    display: flex;
+    align-items: center;
+    padding: 0px 8px;
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+}
+
+/* .testbtn{
+    margin: 4px; padding: 4px;
+    background-color: rgba(20,200,50,0.8);
+    border: 2px solid rgba(10,150,30,0.8);
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+.testbtn2{
+    height: 36px; width: 36px;
+    margin: 4px; padding: 4px;
+    background-color: rgba(255,255,255,1);
+    border: 2px solid rgba(50,50,50,0.5);
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.0);
+    transition: all 0.1s ease-in;
+}
+.testbtn2_on{
+    background-color: rgba(20,200,50,0.8);
+    border: 2px solid rgba(10,150,30,0.8);
+    color: rgba(255,255,255,1);
+    transition: all 0.2s ease-in;
+} */
+
+.hidden{
+    display: none;
+}

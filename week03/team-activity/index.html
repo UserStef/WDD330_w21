@@ -77,28 +77,42 @@
         let filter_inventors = [];
         inventors.forEach(elem => { if(1500 < elem.year && elem.year < 1600){filter_inventors.push(elem)} });
         console.log(inventors1500);
-        console.log(filter_inventors);
+        console.table(filter_inventors);
+
+
 
         // Array.prototype.map()
         // 2. Give us an array of the inventors' first and last names
         let map_inventors = inventors.map(elem => { return {first: elem.first, last: elem.last} });
-        console.log(map_inventors);
+        console.table(map_inventors);
 
         // Array.prototype.sort()
         // 3. Sort the inventors by birthdate, oldest to youngest
         let sort_inventors = inventors.sort((a,b) => { return b.year - a.year; });
-        console.log(sort_inventors);
+        console.table(sort_inventors);
 
         // Array.prototype.reduce()
         // 4. How many years did all the inventors live?
-        // let reduce_inventors = inventors.reduce();
+        let reduce_inventors = inventors.reduce((accumulator, currentValue, currentIndex, array) => {
+            return accumulator + (currentValue.passed - currentValue.year);
+        }, 0)
+        console.log("reduce_inventors: ");
+        console.log(reduce_inventors);
 
         let life_span_inventors = inventors.map(elem => { return elem.passed - elem.year });
         console.log(life_span_inventors);
+        
+        
 
         // 5. Sort the inventors by years lived
         let sort_life_span_inventors = life_span_inventors.sort(function(a,b) { return a - b; });
         console.log(sort_life_span_inventors);
+
+        let life_span = inventors.sort((a,b) => {return (a.passed - a.year) - (b.passed - b.year)});
+        console.table(life_span);
+
+        let years_lived = life_span.map(elem => {elem["life_s"] = elem.passed - elem.year; return elem});
+        console.table(life_span);
 
         // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
         // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris

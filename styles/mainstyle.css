@@ -34,6 +34,7 @@ h1{
 /* ──── ↓ Head Styles/Classes ↓ ──── */
 
 .homebtn{
+    min-height: 32px;
     /* position: absolute; */
     font-size: 1.1em;
     opacity: 0.9;
@@ -95,37 +96,89 @@ h1{
 /* ── ↓ Navigation Styles/Classes ↓  ── */
 
 .navbar{
-    /* height: auto; width: 96vw; */
-    /* height: auto; width: 375px; */
-    height: auto; max-width: 375px;
-    /* position: relative; */
-    /* top: 0px; left: 0px; */
+    height: auto; max-width: 100vw;
     margin: 0px; padding: 8px;
-    /* overflow: scroll; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
-ol{
-    /* height: auto; width: 375px; */
-    /* margin: 8px; padding: 0px; */
-    height: auto; width: 96vw;
-    /* margin: 8px 2vw; padding: 0px; */
+li{
+    margin: 2px;
+}
+#olnav{
+    height: auto; width: 85vw;
     margin: 0px; padding: 0px;
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */    
 
     list-style-type: none;
     list-style-position: inside;
     
     /* flex-wrap: wrap; */
+    /* overflow: scroll; */
+}
+.olnav-scroll{    
+    /* flex-wrap: wrap; */
     overflow: scroll;
 }
-li{
-    margin: 2px;
+.olnav-wrap{    
+    flex-wrap: wrap;
+    /* overflow: scroll; */
+}
+
+/* .navswitch-btn{
+    height: 20px; min-width: 24px;
+    margin: 2px; padding: 4px;
+    background-color: hsla(225, 89%, 40%, 54%);
+    border-radius: 5px;
+    border: outset 2px gray;
+}
+.navswitch{
+    min-height: 20px; min-width: 24x;
+    font-size: 1rem;
+    background-color: hsla(225, 50%, 50%, 0%);
+    border-radius: 5px;
+    color: rgba(0,0,0,0);
+}
+.navswitch-scroll{
+    transform: rotate(-90deg);
+    text-shadow: 0px 0px 0px hsla(225, 0%, 80%, 90%),
+                 -2px 2px 2px hsla(225, 75%, 0%, 70%);
+    transition: all 0.2s ease-in-out;
+}
+.navswitch-wrap{
+    transform: rotate(0deg);
+    text-shadow: 0px 0px 0px hsla(225, 0%, 80%, 90%),
+                 2px 2px 2px hsla(225, 75%, 0%, 70%);
+    transition: all 0.2s ease-in-out;
+} */
+
+.navswitch-btn{
+    position: relative;
+    min-height: 20px; min-width: 24px;
+    height: 38px; width: 38px;
+    margin: 0px; padding: 0px;
+    background-color: hsla(225, 89%, 40%, 0%);
+    border-radius: 5px;
+    border: outset 0px gray;
+    top: 2px; left: 2px;
+}
+.navswitch-emoji{
+    position: absolute;
+    min-height: 20px; min-width: 24x;
+    font-size: 1.8rem;
+    background-color: hsla(225, 50%, 50%, 0%);
+    border-radius: 5px;
+    top: -5px; left: -5px;
+}
+.opac{
+    opacity: 0;
+    transition: all 0.2s ease-in;
 }
 
 /* main button style */
 .mbtn{
-    /* min-height: 36px; */
+    min-height: 32px;
     min-width: 70px;
     /* width: auto; */
     padding: 4px;

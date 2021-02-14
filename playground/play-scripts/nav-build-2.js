@@ -3,15 +3,15 @@ console.log(" -- Start of Navigation Build Script -- ");
 
 let head = document.querySelector('header');
 
-// ───────────────  ───────────────  ─────────────── 
+// let homebtn = document.createElement('div');
+// homebtn.classList.add("homebtn");
+// let homelink = document.createElement('a');
+// homelink.setAttribute('href', '../index.html');
+// homelink.innerText = '&#127968;';
+// homebtn.appendChild(homelink);
+// head.appendChild(homebtn);
 
-let week_numb = 0;
-let nav_form = "wrap";
-if(document.title != "WDD330 - Home"){
-    week_numb = +document.title.split(" ")[1];
-} else {
-    week_numb = 9;
-}
+/* <div class="homebtn"><a href="../index.html">&#127968;</a></div> */
 
 // ───────────────  ───────────────  ─────────────── 
 
@@ -33,17 +33,12 @@ nav_wrap.innerHTML = "&#127791;";
 
 navswitch_btn.appendChild(nav_scroll);
 navswitch_btn.appendChild(nav_wrap);
-if(week_numb > 5){
-    head.appendChild(navswitch_btn);
-    nav_form = "scroll";
-}
-
-
+head.appendChild(navswitch_btn);
 
 // -- Add the list of links.
 let ol = document.createElement('ol');
 ol.id = "olnav";
-ol.classList.add("olnav-"+nav_form);
+ol.classList.add("olnav-scroll");
 let navbar = document.createElement('div');
 navbar.appendChild(ol);
 head.appendChild(navbar);
@@ -100,3 +95,4 @@ links.map(link => {
         `<li><button class="${link.classlist[0]} mbtn-off">${link.label}</button></li>`;
     }
 });
+

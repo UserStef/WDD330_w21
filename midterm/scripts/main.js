@@ -223,4 +223,12 @@ window.addEventListener("click", ev => {
         // console.log(ev.target.dataset.filter);
         filterBy(ev.target.dataset.filter);
     }
+    if(ev.target.dataset.toggleNav != null){
+        ev.target.classList.toggle("navswitch-scroll");
+        ev.target.classList.toggle("navswitch-wrap");
+
+        let olnav = document.querySelector("#olnav");
+        olnav.classList.toggle("olnav-scroll");
+        olnav.classList.toggle("olnav-wrap");
+    }
 });

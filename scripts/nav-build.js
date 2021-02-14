@@ -43,7 +43,10 @@ if(document.title == "WDD330 - Home"){
 
 links.map(link => {
     let classes = link.classlist.join(" ");
-    if (link.label != document.title){
+    if (document.title == "WDD330 - Home" && link.label == "&#127968;"){
+        ol.innerHTML += 
+        `<li><button class="homebtn mhbtn-off">${link.label}</button></li>`;
+    } else if (link.label != document.title){
         ol.innerHTML += 
         `<li><a href="${link.url}"><button class="${classes}">${link.label}</button></a></li>`;
     } else {

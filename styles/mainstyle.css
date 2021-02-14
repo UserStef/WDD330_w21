@@ -167,11 +167,15 @@ li{
     /* box-shadow: inset 0px 2px 2px 0px hsla(30, 75%, 50%, 100%); */
     /* background-image: radial-gradient(hsla(30, 75%, 50%, 80%) 40%, hsla(30, 70%, 40%, 20%) 80%); */
 }
+.mhbtn-off{
+    background-color: gray;
+    border: inset 2px white;
+}
 
 /* ── ↓ Content Styles/Classes ↓ ── */
 
 .week-contents{
-    margin: 8px 4px;
+    margin: 0px 4px;
     padding: 20px;
 }
 

@@ -70,7 +70,7 @@ if (localStorage.getItem('todos')){
     const newTodo = new ToDo("Check this task");
     todos.push(newTodo);
     setTimeout(() => { 
-        const newTodo2 = new ToDo("Delete the samples.");
+        const newTodo2 = new ToDo("Delete the samples");
         todos.push(newTodo2); 
         console.log("Task 2 ready!"); 
         setToDoList(); 

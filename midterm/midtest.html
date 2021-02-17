@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="../styles/mainstyle.css">
     <link rel="stylesheet" href="styles/midterm-styles.css">
     <style>
+        body{
+            height: auto; width: 100vw;
+            margin: 0px;
+        }
         #testA{
             position: absolute;
             top: 0px; left: 0px;
@@ -22,9 +26,9 @@
         }
         #testB{
             position: absolute;
-            top: 0pv; left: 25vw;
+            top: 0px; left: 10vw;
             /* height: 100px; width: 100px; */
-            height: 80vh; width: 50vw;
+            height: 85vh; width: 10vw;
             border: inset 0px cyan;
             /* background-color: rgba(200,20,80,0.5); */
             box-shadow: inset 0px 0px 0px 3px rgba(20,200,250,0.89);
@@ -35,11 +39,23 @@
             top: 70vh; left: 0px;
             /* height: 100px; width: 100px; */
             height: 10vh; width: 100vw;
-            border: inset 0px cyan;
+            border: inset 0px lime;
             /* background-color: rgba(200,20,80,0.5); */
-            box-shadow: inset 0px 0px 0px 5px rgba(50,250,120,0.54);
+            box-shadow: inset 0px 0px 0px 5px rgba(10,250,90,0.54);
             /* border: inset 1vw magenta; */
         }
+        #testD{
+            position: absolute;
+            top: 0px; left: 50vw;
+            min-height: 50px; min-width: 50px;
+            border: inset 0px whitesmoke;
+            /* background-color: rgba(200,20,80,0.5); */
+            box-shadow: inset 0px 0px 0px 1px rgba(245,245,245,0.89),
+                        inset 0px 0px 0px 4px rgba(245,245,245,0.54),
+                        inset 0px 0px 2px 5px rgba(245,245,245,0.29);
+            /* border: inset 1vw magenta; */
+        }
+
         .litest{
             display: flex;
             flex-direction: row;
@@ -55,6 +71,7 @@
     <div id="testA">&nbsp;</div>
     <div id="testB">&nbsp;</div>
     <div id="testC">&nbsp;</div>
+    <div id="testD">&nbsp;</div>
 
     <!-- <header class="head">
     </header> -->
@@ -103,7 +120,8 @@
         <section id="section-add">
             <form>
                 <div class="centerAll">
-                    <input type="text" id="newtask" name="newtask" placeholder="new task">
+                    <!-- <input type="text" id="newtask" name="newtask" placeholder="new task"> -->
+                    <input type="number" id="newtask" name="newtask" placeholder="height">
                     <button id="addbtn" class="mybtn">+</button>
                 </div>
             </form>

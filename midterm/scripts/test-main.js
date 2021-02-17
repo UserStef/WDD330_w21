@@ -133,10 +133,14 @@ button.addEventListener('click', (ev) => {
     event.preventDefault();
 
     const content = document.querySelector('#newtask').value;
-    const newTodo = new ToDo(content);
-    todos.push(newTodo);
-    updateStorage();
-    document.querySelector('#newtask').value = "";
+    // const newTodo = new ToDo(content);
+    // todos.push(newTodo);
+    // updateStorage();
+    // document.querySelector('#newtask').value = "";
+
+    console.log(content);
+    let testD = document.querySelector('#testD');
+    testD.style = `height: ${content}vh;`;
 })
 
 function removeTask(taskId){

@@ -8,6 +8,15 @@
     flex-direction: column;
 
 }
+
+.block-holder{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 .link-title{
     font-size: 1.5rem;
 }
@@ -25,7 +34,8 @@
 }
 
 .map-nav-card{
-    height: auto; width: 90vw;
+    /* height: auto; width: 90vw; */
+    height: auto; width: 36vw;
     margin: 8px; padding: 8px;
     border: 2px solid hsl(225, 50%, 24%, 89%);
     border-radius: 5px;

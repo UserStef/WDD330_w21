@@ -97,6 +97,12 @@ ul li {
     color: rgba(255,255,255,1);
     transition: all 0.2s ease-in;
 }
+.strike_text_false{
+    text-decoration: none;
+}
+.strike_text_true{
+    text-decoration: line-through;
+}
 
 #newtask{
     height: 36px; width: auto;

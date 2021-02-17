@@ -1,71 +1,12 @@
 
-// var refresh = 0;
-// localStorage.setItem("","");
-
-// const head = ["✔️", "Task", "due"];
-
-// const ToDoList = [];
-
-// ToDoList.forEach( task => {
-//     // create new row in table.
-//     // add [check box ☑️ DOM] (is clickable) to [first column].
-//     // add [tasks DOM] (shows content) to [second column].
-//     // add the [due date] to the [last column].
-// });
-    
-// window.addEventListener("touchend", ev => {
-//     // if [dataset.check],
-//         // mark check box.
-//         // update model.
-//     // if [dataset.sort],
-//         // querySelectAll.
-//         // SortBy( [dataset.sort-selection] ).
-//         // add to table.
-//     // if [dataset.task],
-//         // [ev.target] show [edit] or [delete] buttons.
-//     // if [dataset.show-edit],
-//         // display [input text box] for content.
-//         // display [date input box] for the due date.
-//         // display [confirm] and [cancel] buttons.
-//     // if [dataset.edit],
-//         // if [#new-content] != null,
-//             // update [task.content]
-//         // if [#new-due-date] != null,
-//             // update [task.due-date]
-//     // if [dataset.cancel]
-//         // hide [edit form].
-//         // hide [confirm] and [cancel] buttons.
-//     // if [dataset.delete],
-//         // display [confirmation alert 🚨]
-//     // if [dataset.
-// });
-
-
-// ───────────────  ───────────────  ─────────────── 
-/*
-
-load.
-    → check if any data on storage.
-    → load what data is there.
-use.
-    → add new one.
-    → sort current ones.
-    → 
-
-*/
-// ───────────────  ───────────────  ─────────────── 
-
 import { ToDo } from './todo.js';
 
 // -- Temporaly holding data in 'todos'
 let todos = [];
-// let todoslen = 0;
 setTimeout(() => {  console.log("Loading..."); }, 1000);
 if (localStorage.getItem('todos')){
     todos = JSON.parse(localStorage.getItem('todos'));
-    // todoslen = todos.length;
     setToDoList();
-    console.log("Done!");
 } else {
     const newTodo = new ToDo("Check this task");
     todos.push(newTodo);
@@ -75,12 +16,13 @@ if (localStorage.getItem('todos')){
         console.log("Task 2 ready!"); 
         setToDoList(); 
     }, 1000);
-    console.log("Done!");
 }
+setTimeout(() => {  console.log("Done!"); }, 2000);
+
+let current_filter = "all";
 
 
 function countTasks(){
-    // task-count
     let undone = todos.filter(task => !task['Completed']);
     // console.log(undone);
     // console.log(undone.length);
@@ -91,40 +33,33 @@ function countTasks(){
 function setToDoList(){
     if (todos.length > 0){
         // -- for the 'table'
-        // tasks-list
         const tablelist = document.querySelector("#tablelist");
         tablelist.innerHTML = '';
         todos.forEach((todo) =>{
             tablelist.innerHTML += `
             <tr id="${todo.Id}" data-id="${todo.Id}" data-pinned="${todo.Pinned}" class="tr-task btml_task">
                 <td><button class="my_checkbox mybtn check_on_${todo.Completed}" data-is-checked="${todo.Completed}">&#10003;</button></td>
-                <td><div class="taskname">${todo.Content}</div></td>
+                <td><div class="taskname strike_text_${todo.Completed}">${todo.Content}</div></td>
                 <td><button class="remove-btn mybtn" data-remove="${todo.Id}">X</button></td>
             </tr>`;
         });
-        // // -- for the 'ul' (unordered list)
-        // const ulList = document.querySelector("#ulList");
-        // ulList.innerHTML = '';
-        // todos.forEach((todo) =>{
-        //     ulList.innerHTML += `
-        //     <li id="${todo.Id}" data-id="${todo.Id}" data-completed="${todo.Id}">
-        //     <button class="my_checkbox mybtn check_on_${todo.Completed}" data-is-checked="${todo.Completed}">&#10003;</button>
-        //     <div class="taskname">${todo.Content}</div>
-        //     <button class="remove-btn mybtn" data-remove="${todo.Id}">X</button>
-        //     </li>`;
-        // });
     }
     else {
         document.querySelector("#tablelist").innerHTML = '';
     }
-    countTasks()
+    countTasks();
     console.log(todos);
 }
+// Called by:
+// -- Add new Task
+// -- Remove Task.
+// -- Check Completed.
 function updateStorage(){
     console.log(" ── Update Local Storage ── ");
     localStorage.setItem("todos", JSON.stringify(todos));
-    // countTasks();
-    setToDoList();
+    countTasks();
+    // filterTasks();
+    // setToDoList();
 }
 
 const button = document.querySelector('#addbtn');
@@ -137,26 +72,66 @@ button.addEventListener('click', (ev) => {
     todos.push(newTodo);
     updateStorage();
     document.querySelector('#newtask').value = "";
+    setToDoList();
 })
 
 function removeTask(taskId){
+    // -- check the lenght to later confirm it was removed.
+    // let allTasks = document.querySelectorAll('.tr-task');
+    // console.log(`allTasks.length: ${allTasks.length}`);
+
+    
     // console.log(todos);
+    let taskToRemove = todos.filter(task => task['Id'] == taskId);
     todos = todos.filter(task => task['Id'] != taskId);
     // console.log(todos);
+
+    // -- get the DOM element with that 'Id'
+    let taskElem = document.getElementById(taskToRemove[0].Id);
+    // -- remove the Element from the DOM.
+    taskElem.remove();
+
+    // -- confirm it is removed.
+    // allTasks = document.querySelectorAll('.tr-task');
+    // console.log(`allTasks.length: ${allTasks.length}`);
+
+
     updateStorage();
 }
 
-function toggleComplete(taskId){
+function toggleComplete(targetElem){
+    // -- Switch the checkmark.
+    targetElem.classList.toggle("check_on_true");
+    targetElem.classList.toggle("check_on_false");
+    if(targetElem.dataset.isChecked == "true"){
+        targetElem.dataset.isChecked = "false";
+    } else if(targetElem.dataset.isChecked == "false"){
+        targetElem.dataset.isChecked = "true";
+    }
+    
+    // -- Get task id.
+    let taskId = targetElem.parentElement.parentElement.id;
+    // console.log(`→toggleComplete2(#${taskId})`);
+
     if(taskId != ""){
         let toUpdate = todos.filter(task => task['Id'] == taskId);
         if(toUpdate.length != 0){
+            // -- Get content elem.
+            let taskContent = targetElem.parentElement.parentElement.children[1].children[0];
+            // -- Toggle strike on text.
+            taskContent.classList.toggle("strike_text_true");
+            taskContent.classList.toggle("strike_text_false");
+
+            // -- Update the task' attribute.
             toUpdate[0].Completed = !toUpdate[0].Completed;
             updateStorage();
+            filterTasks();
         }
     }
 }
 
-function filterBy(filrequest){
+function filterTasks(){
+    // Previous Parameter: 'filrequest'
     // console.log('filterBy() -'+filrequest+'-');
     let allTasks = document.querySelectorAll('.tr-task');
     allTasks.forEach(taskelem => {
@@ -164,9 +139,15 @@ function filterBy(filrequest){
             taskelem.classList.toggle('hidden');
         }
     });
-    switch(filrequest){
+    // console.log("filterTask() by : "+current_filter);
+    switch(current_filter){
         case "all":
             // console.log("Show All");
+            // allTasks.forEach(taskelem => {
+            //     if(taskelem.classList.contains('hidden')){
+            //         taskelem.classList.toggle('hidden');
+            //     }
+            // });
             break;
         case "active":
             // console.log("filter by Active");
@@ -186,11 +167,11 @@ function filterBy(filrequest){
             });
             break;
         default:
-            console.log("default");
+            console.log("Error: filter got to default!");
     }
 }
 
-// document.querySelectorAll('button');
+
 window.addEventListener("click", ev => {
     if(ev.target.dataset.remove != null){
         console.log(ev.target);
@@ -199,21 +180,12 @@ window.addEventListener("click", ev => {
     }
 
     if(ev.target.dataset.isChecked != null){
-        if(ev.target.dataset.isChecked == "false"){
-            ev.target.classList.toggle("check_on_true");
-            ev.target.classList.toggle("check_on_false");
-            ev.target.dataset.isChecked = "true";
-            if(ev.target.parentElement.parentElement.id != ""){
-                toggleComplete(ev.target.parentElement.parentElement.id);
-            }
-        } else if(ev.target.dataset.isChecked == "true"){
-            ev.target.classList.toggle("check_on_true");
-            ev.target.classList.toggle("check_on_false");
-            ev.target.dataset.isChecked = "false";
-            if(ev.target.parentElement.parentElement.id != ""){
-                toggleComplete(ev.target.parentElement.parentElement.id);
-            }
-        } else {
+        // console.log(ev.target);
+        // console.log(ev.target.dataset.isChecked);
+        let taskcheck = ev.target.dataset.isChecked;
+        if(taskcheck == "false" || taskcheck == "true"){
+            toggleComplete(ev.target);
+        }else {
             console.log(ev.target);
             console.log(ev.target.dataset.isChecked);
         }
@@ -221,7 +193,9 @@ window.addEventListener("click", ev => {
     if(ev.target.dataset.filter != null){
         // console.log(ev.target);
         // console.log(ev.target.dataset.filter);
-        filterBy(ev.target.dataset.filter);
+        current_filter = ev.target.dataset.filter;
+        console.log("filterTask() by : " + current_filter);
+        filterTasks();
     }
     if(ev.target.dataset.toggleNav != null){
         ev.target.classList.toggle("navswitch-scroll");

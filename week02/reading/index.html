@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 02 - Reading</title>
+    <link rel="stylesheet" href="../styles/mainstyle.css">
+    <!-- <link rel="stylesheet" href="styles/week-styles.css"> -->
+</head>
+<body>
+    <header class="navbar">
+    </header>
+    <div class="head">
+        <span class="title btml">Week 02</span>
+        <span class="subtitle">Reading notes.</span>
+    </div>
+
+    <div class="week-contents btml">
+        Loading... &#128679;
+    </div>
+    
+    <script src="../scripts/nav-build.js"></script>
+    <!-- <link rel="stylesheet" href="scripts/week-script.css"> -->
+    <script>
+
+        // ♦ ── ── Chapter 2 ── ── ♦ //
+        
+        // ── Comments ── //
+
+        // Single comment.
+        /* Multiple
+        line comment */
+
+        // ── JavaScript Grammar ── //
+        const helloMessage = 'Hello Master ;)';
+        alert(helloMessage);
+
+        // ── Reserved Words ── //
+
+        /* abstract, await, boolean, break, byte, 
+        case, catch, char, class, const, 
+        continue, debugger, default, delete, do, 
+        double, else, enum, export, extends, 
+        false, final, finally, float, for, 
+        function, goto, if, implements, import, 
+        in instanceof, int, interface, let, long, 
+        native, new, null, package, private, 
+        protected, public, return, short, static, 
+        super, switch, synchronized, this, throw, 
+        throws, transient, true, try, typeof, 
+        var, volatile, void, while, with, 
+        yield */
+        
+        /* undefined, NaN, Infinity */
+        
+        // ── Primitive Data Types ── //
+
+        /* 
+        • String
+        • Symbol
+        • Number
+        • Boolean
+        • Undefined
+        • Null
+        */
+
+       typeof 'hello';
+       // → 'string'
+       typeof 10;
+       // → 'number'
+       typeof true;
+       // → 'bolean'
+       typeof {object: 'sample'};
+       // → 'object'
+       typeof [1,2,3];
+       // → 'object'
+
+
+        // ── Declaring and Assigning ── //
+
+       let x = 3, y = 4, z = 5;
+
+        // ── Scope ── //
+
+
+
+        // ── Naming Constants & Variables ── //
+
+        /* Constant and variable names can start with any upper or lower-case letter, an underscore, _ , or dollar character, $ . 
+        They can also contain numbers, but cannot start with them. */
+        
+        /* Constant and variable names are case sensitive, so ANSWER is different to Answer and answer . */
+
+        // Camel case
+        let firstNameAndLastName;
+        // Underscore
+        let first_name_and_last_name;
+
+        // ── Direct Assignment and Assignment By Reference ── //
+
+
+        // ── Strings ── //
+        
+        // Backslashes allow specific instructions in the string format.
+        /*
+        • Single quote marks \'
+
+        • Double quote marks \"
+
+        • End of line \n
+
+        • Carriage return \r
+
+        • Tab \t
+
+        • "This is a backslash \\"
+        */
+
+
+        // ── String Properties and Methods ── //
+
+        let name = 'Alexa';
+        name.length;
+        // → 5
+        name['length'];
+        // → 5
+
+        name.toUpperCase();
+        // → 'ALEXA'
+
+        name.toLowerCase();
+        // → 'alexa'
+
+        name.charAt(1);
+        // → 'l'
+
+        name.indexOf('A');
+        // → 0
+
+        name.indexOf('z');
+        // → -1
+
+        name.lastIndexOf('a');
+
+        name.includes('a');
+
+        name.includes('z');
+
+        name.startsWith('A');
+
+        name.startsWith('a');
+
+        name.endsWith('A');
+
+        name.endsWith('a');
+
+        'JavaScript'.concat('Ninja');
+
+        'Hello'.concat(' ','World','!');
+
+        'Java' + 'Script' + ' ' + 'Ninja';
+
+        '    Hello World     '.trim();
+
+        '   \t\t  JavaScript Ninja! \r'.trim()
+
+        'Hello'.repeat(2);
+
+
+
+        // ── Template Literals ── //
+
+        const name = `Siri`;
+        `Hello ${ name }!`;
+        // << 'Hello Siri!'
+        const age = 39;
+        `I will be ${ age + 1 } next year`;
+        // << 'I will be 40 next year'
+
+        // ── Symbols ── //
+
+        // ── Numbers ── //
+
+        Number.isInteger(42);
+        // → true
+        Number.isInteger(3.142);
+        // → false
+
+        // ── Octal and Hexadecimal Numbers ── //
+
+
+        // ── Exponential Notation ── //
+        // ── Number Methods ── //
+        // ── Arithmetic Operations ── //
+        // ── Changing The Value of Variables ── //
+        // ── Incrementing Values ── //
+        // ── Infinity ── //
+        1e308; // 1 with 308 zeroes!
+        // << 1e308
+
+        1/0;
+        // << Infinity
+
+        // ── NaN ── //
+        // ── Checking a Value is a Number ── //
+        // ── Type Coercion ── //
+        // ── Converting Between Strings and Numbers ── //
+        // ── Converting Strings to Numbers ── //
+        // ── Converting Numbers to Strings ── //
+        // ── Parsing Numbers ── //
+        // ── Undefined ── //
+        // ── Null ── //
+        // ── Booleans ── //
+        // ── Logical Operators ── //
+        // ── Lazy Evaluation ── //
+        // ── Bitwise Operators ── //
+        // ── Bitwise Shift Operators ── //
+        // ── Comparison ── //
+        // ── Equality ── //
+        // ── Inequality ── //
+        // ── Greater Than and Less Than ── //
+
+        // ♦ ── ── Chapter 3 ── ── ♦ //
+
+        // ── _____ ── //
+        // ── _____ ── //
+        // ── _____ ── //
+        // ── _____ ── //
+        // ── _____ ── //
+        // ── _____ ── //
+
+    </script>
+</body>
+</html>

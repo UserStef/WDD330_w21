@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 07 - Reading</title>
+    <link rel="icon" href="res/St-icon.png">
+    <link rel="stylesheet" href="../styles/mainstyle.css">
+    <!-- <link rel="stylesheet" href="styles/week-styles.css"> -->
+</head>
+<body>
+    <header class="navbar">
+    </header>
+    <div class="head">
+        <span class="title btml">Week 07 - Reading</span>
+        <span class="subtitle">Reading notes.</span>
+    </div>
+
+    <div class="week-contents btml">
+        Loading...
+    </div>
+    
+    <script src="../scripts/nav-build.js"></script>
+    <!-- <link rel="stylesheet" href="scripts/week-script.css"> -->
+
+    <script>
+    
+    // ── Call and Apply Methods ── //
+    function sayHello(greeting='Hello'){
+        return `${ greeting }, my name is ${ this.name }`;
+    }
+    sayHello.call(clark, 'How do you do');
+    // << 'How do you do, my name is Clark'
+    sayHello.call(bruce);
+    // << 'Hello, my name is Bruce'
+
+    // ── Memoization ── //
+    function square(x){
+        square.cache = square.cache || {};
+        if (!square.cache[x]) {
+            square.cache[x] = x*x;
+        }
+        return square.cache[x]
+    }
+    square(3);
+    // << 9
+    square(-11);
+    // << 121
+    square.cache;
+    // << {"3": 9, "-11": 121}
+
+    // ── Safe Use of Strict Mode ── //
+    (function() {
+        'use strict';
+    // All your code would go inside this function
+    })();
+
+
+    // ── Functions that Define and Rewrite Themselves ── //
+    function party(){
+        console.log('Wow this is amazing!');
+        party = function(){
+            console.log('Been there, got the T-Shirt');
+        }
+    }
+
+    function party(){
+        console.log('Wow this is amazing!');
+        party = function(){
+            console.log('Been there, got the T-Shirt');
+        }
+    }
+    const beachParty = party; // note that the party function has not been invoked
+    beachParty(); // the party() function has now been redefined, even though it hasn't been called explicitly
+    // << 'Wow this is amazing!'
+    party(); 
+    // << 'Been there, got the T-Shirt'
+    beachParty(); // but this function hasn't been redefined
+    // << 'Wow this is amazing!'
+    beachParty(); // no matter how many times this is called it will remain the same
+    // << 'Wow this is amazing!'
+
+
+
+    </script>
+</body>
+</html>

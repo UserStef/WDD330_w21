@@ -194,7 +194,7 @@ window.addEventListener("click", ev => {
         // console.log(ev.target);
         // console.log(ev.target.dataset.filter);
         current_filter = ev.target.dataset.filter;
-        console.log("filterTask() by : " + current_filter);
+        // console.log("filterTask() by : " + current_filter);
         filterTasks();
     }
     if(ev.target.dataset.toggleNav != null){

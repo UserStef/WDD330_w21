@@ -62,7 +62,7 @@ nav_wrap.addEventListener("click", toggleNav, true);
 
 // ───────────────  ───────────────  ─────────────── 
 
-let number_of_weeks = 7;
+let number_of_weeks = 8;
 
 let links = [
     {

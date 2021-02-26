@@ -15,7 +15,7 @@ let progress = {
     'Week 05': [2],
     'Week 06': [],
     'Week 07': [1,2],
-    'Week 08': []
+    'Week 08': [1]
 };
 
 const weekEntries = [

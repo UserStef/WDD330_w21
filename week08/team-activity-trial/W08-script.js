@@ -65,7 +65,22 @@ function updateData(){
         // console.log(`number of pages: ${numbOfPages}`);   
     }
 
+    // if(dataResult[currentPage] == null){
+    //     saveToLocalStorage();
+    // } else if(main.innerHTML == ""){
+    //     buildDOM();
+    // } else {
+    //     UpdateResults();
+    // }
+
     saveToLocalStorage();
+
+    // if(main.innerHTML == ""){
+    //     saveToLocalStorage();
+    //     // buildDOM();
+    // } else {
+    //     UpdateResults();
+    // }
 }
 
 // page, name, listIndex
@@ -202,7 +217,7 @@ function updateDetailsCard(listIndex){
     let colorList = [];
     colorList.push(cardDetails["skin_color"]);
     colorList.push(cardDetails["hair_color"]);
-    console.log('colorList: '+colorList.join(", "));
+    // console.log('colorList: '+colorList.join(", "));
 
     let colorsToAdd = [];
     colorList.forEach(input =>{
@@ -217,7 +232,7 @@ function updateDetailsCard(listIndex){
     });
     if(colorsToAdd.length == 0){colorsToAdd.push("gray");}
 
-    console.log('colorsToAdd: '+colorsToAdd.join(", "));
+    // console.log('colorsToAdd: '+colorsToAdd.join(", "));
     let nColors = colorsToAdd.length;
     let pickColor = 0;
     // newElement.style.backgroundColor = color;
@@ -268,10 +283,10 @@ function buildDOM(){
 
     let ulResult = document.createElement('div');
     ulResult.id = "ulResult";
-    ulResult.classList.toggle('hide2');
+    ulResult.classList.add('hide2');
     ulResult.classList.add("ulResult");
     setTimeout(() => { 
-        ulResult.classList.toggle('hide2');
+        ulResult.classList.remove('hide2');
     }, 500);
     resultsList.appendChild(ulResult);
     dataResult[currentPage].forEach(person => {
@@ -285,12 +300,14 @@ function buildDOM(){
         resultCard.dataset.page = currentPage;
         resultCard.addEventListener("click", (ev) => {
             // console.log(person);
-            console.log(ev.target.dataset.name);
-            console.log(ev.target.dataset.page);
-            console.log(ev.target.dataset.index);
+            // console.log(ev.target.dataset.name);
+            // console.log(ev.target.dataset.page);
+            // console.log(ev.target.dataset.index);
             // buildDetailsCard(ev.target.dataset.page, ev.target.dataset.name);
             // loadDetailsCard(ev.target.dataset.name, ev.target.dataset.page, ev.target.dataset.index);
-            updateDetailsCard(ev.target.dataset.index)
+            if(!ev.target.classList.contains('hideCard')){
+                updateDetailsCard(ev.target.dataset.index);
+            }
             // buildDetailsCard(ev.target.dataset.index);
         })
         ulResult.appendChild(resultCard);
@@ -300,17 +317,20 @@ function buildDOM(){
     //     // resultCard.classList.add("result-card");
     //     loadNames();
     // }, 100);
-    loadNames();
+    setTimeout(() => { 
+        loadNames();
+    }, 500);
+    // loadNames();
     
 
     let detailsSpace = document.createElement('div');
     detailsSpace.id = "detailsSpace";
     // detailsCard.classList.add("detailsSpace", "hidden");
-    detailsSpace.classList.toggle('hide2');
+    detailsSpace.classList.add('hide2');
     detailsSpace.classList.add("detailsSpace");
     // detailsSpace.classList.toggle('hide2');
     setTimeout(() => { 
-        detailsSpace.classList.toggle('hide2');
+        detailsSpace.classList.remove('hide2');
     }, 1200);
     // detailsSpace.innerHTML = "detailsSpace";
     resultsList.appendChild(detailsSpace);
@@ -356,8 +376,11 @@ function UpdateResults(){
         setTimeout(() => { 
             // -- card leaves...
             if(!card.classList.contains("card-leaving")){
-                card.classList.toggle("card-loaded"); 
-                card.classList.toggle("card-leaving");
+                card.classList.remove("card-loaded"); 
+                card.classList.add("card-leaving");
+            }
+            if(card.classList.contains("hideCard")){
+                card.classList.remove("hideCard");
             }
 
             setTimeout(() => { 
@@ -370,16 +393,20 @@ function UpdateResults(){
                     
                     // -- card clears 'leaving classes'...
                     if(card.classList.contains("card-leaving")){
-                        card.classList.toggle("hide2");
-                        card.classList.toggle("card-leaving");
+                        card.classList.add("hide2");
+                        card.classList.remove("card-leaving");
                     }
                     // -- card returns...
                     setTimeout(() => { 
                         if(card.classList.contains("hide2")){
-                            card.classList.toggle("hide2");
+                            card.classList.remove("hide2");
                         }
-                        card.classList.toggle("card-loaded"); 
+                        card.classList.add("card-loaded"); 
                     }, 100);
+                } else {
+                    if(!card.classList.contains("hideCard")){
+                        card.classList.add("hideCard");
+                    }
                 }
             }, 300);
         }, card_timeadd);
@@ -390,28 +417,28 @@ function UpdateResults(){
 }
 
 
-function updateDOM(){
-    console.log(" ─── Updating the DOM ─── ");
-    let pageNote = document.querySelector('.pageNote');
-    pageNote.innerHTML = `(page ${currentPage})`;
-    let ulResult = document.getElementById('ulResult');
+// function updateDOM(){
+//     console.log(" ─── Updating the DOM ─── ");
+//     let pageNote = document.querySelector('.pageNote');
+//     pageNote.innerHTML = `(page ${currentPage})`;
+//     let ulResult = document.getElementById('ulResult');
     
-    removeNames();
-    let timeend = (resultsPerPage)*100;
-    setTimeout(() => { /*...*/ 
-        // ulResult.innerHTML = ``;
-        dataResult[currentPage].forEach(person => {
-            resultCard_id = `name${dataResult[currentPage].indexOf(person)}`;
-            let resultCard = document.getElementById(resultCard_id);
-            resultCard.innerHTML = `${person.name}`;
-            resultCard.dataset.name = `${person.name}`;
-            resultCard.dataset.page = currentPage;
-        });
-        loadNames();
-    }, timeend);
-    console.log(" ─── DOM Updated! ─── ");
-    console.log(" ─── End of request and update ─── ");
-}
+//     removeNames();
+//     let timeend = (resultsPerPage)*100;
+//     setTimeout(() => { /*...*/ 
+//         // ulResult.innerHTML = ``;
+//         dataResult[currentPage].forEach(person => {
+//             resultCard_id = `name${dataResult[currentPage].indexOf(person)}`;
+//             let resultCard = document.getElementById(resultCard_id);
+//             resultCard.innerHTML = `${person.name}`;
+//             resultCard.dataset.name = `${person.name}`;
+//             resultCard.dataset.page = currentPage;
+//         });
+//         loadNames();
+//     }, timeend);
+//     console.log(" ─── DOM Updated! ─── ");
+//     console.log(" ─── End of request and update ─── ");
+// }
 
 function loadNames(){
     console.log(" ─── Load Names ─── ");
@@ -422,7 +449,7 @@ function loadNames(){
         cards.forEach(card =>{
             setTimeout(() => { 
                 if(card.classList.contains("card-leaving")){
-                    card.classList.toggle("card-leaving");
+                    card.classList.remove("card-leaving");
                 }
             }, timeadd);
             timeadd += 50;
@@ -434,22 +461,22 @@ function loadNames(){
     }, 100);
 }
 
-function removeNames(){
-    console.log(" ─── Remove Names ─── ");
-    // testA.classList.add("card-loaded");
-    let cards = document.querySelectorAll('.result-card');
-    let timeadd = 100;
-    // let timeend = (timeadd*cards.length)+500;
-    setTimeout(() => { 
-        cards.forEach(card =>{
-            setTimeout(() => { 
-                card.classList.toggle("card-loaded"); 
-                card.classList.add("card-leaving");
-            }, timeadd);
-            timeadd += 50;
-        })
-    }, 100);
-}
+// function removeNames(){
+//     console.log(" ─── Remove Names ─── ");
+//     // testA.classList.add("card-loaded");
+//     let cards = document.querySelectorAll('.result-card');
+//     let timeadd = 100;
+//     // let timeend = (timeadd*cards.length)+500;
+//     setTimeout(() => { 
+//         cards.forEach(card =>{
+//             setTimeout(() => { 
+//                 card.classList.toggle("card-loaded"); 
+//                 card.classList.add("card-leaving");
+//             }, timeadd);
+//             timeadd += 50;
+//         })
+//     }, 100);
+// }
 
 // ───────────────  ───────────────  ─────────────── //
 
@@ -508,8 +535,15 @@ function saveToLocalStorage(){
     console.log('Saved! → ');
     console.log(dataResult);
     // updateDOM();
-    buildDOM();
-    UpdateResults();
+
+    // console.log(main.innerHTML);
+    if(main.innerHTML == ""){
+        buildDOM();
+    } else {
+        UpdateResults();
+    }
+
+    // UpdateResults();
 }
 
 function updateFromLocalStorage(toPage){
@@ -518,7 +552,7 @@ function updateFromLocalStorage(toPage){
     if(dataResult[toPage] == null){
         // if the data does NOT include the current page, fetch it.
         fetchData(toPage);
-    }else {
+    } else {
         // if the data DOES include the current page, update the DOM.
         currentPage = toPage;
         // updateDOM();
@@ -552,6 +586,7 @@ function loadFromLocalStorage(){
             updateData();
             // saveToLocalStorage();
             // updateDOM();
+            // buildDOM();
         }
     } else {
         console.log(`No data in Local Storage.`);

@@ -254,6 +254,7 @@ function toggleDetails(){
 
 function buildDOM(){
     console.log(" ─── Building the DOM ─── ");
+    main.innerHTML = '';
     // main.innerHTML = `<div class="listTitle">Names: <div class="pageNote">(page ${currentPage})</div></div>`;
     
     let resultsTitle = document.createElement('div');
@@ -288,7 +289,8 @@ function buildDOM(){
             console.log(ev.target.dataset.page);
             console.log(ev.target.dataset.index);
             // buildDetailsCard(ev.target.dataset.page, ev.target.dataset.name);
-            loadDetailsCard(ev.target.dataset.name, ev.target.dataset.page, ev.target.dataset.index);
+            // loadDetailsCard(ev.target.dataset.name, ev.target.dataset.page, ev.target.dataset.index);
+            updateDetailsCard(ev.target.dataset.index)
             // buildDetailsCard(ev.target.dataset.index);
         })
         ulResult.appendChild(resultCard);

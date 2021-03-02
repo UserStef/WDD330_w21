@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drawing - Touch</title>
+    <link rel="icon" href="res/St-icon.png">
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <style>
+        canvas {
+            /* border: 1px solid black; */
+            /* height: 550px; width: 370px; */
+            /* margin: 16px;  */
+            background-color: rgba(255,255,255,0.89);
+        }
+    </style>
+</head>
+<body>
+    <!-- div#title -->
+    <header class="navbar hidden">
+    </header>
+    <div class="head hidden">
+        <span class="title btml">Drawing</span>
+        <span class="subtitle">Attempt to draw.</span>
+    </div>
+
+    <canvas id="canvas" height="550" width="370" style="border:solid black 1px;">
+        Your browser does not support canvas element.
+    </canvas>
+
+    <br>
+    Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+
+    <div style="font-size: 0.8em; color: grey;">Initially learned from&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event">MDN Web Docs</a>.</div>
+
+    <script src="touch-draw-script.js"></script>
+
+</body>
+</html>

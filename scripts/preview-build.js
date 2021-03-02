@@ -29,7 +29,7 @@ function makeWeekPreview(weekNumb, whereto){
 
     let previewCard = document.createElement("div");
     previewCard.id = `week${weekNumb}_card`;
-    previewCard.classList.add("map-nav-card");
+    previewCard.classList.add("nav-card");
 
     let weekLink = document.createElement("div");
     weekLink.classList.add("link-title");

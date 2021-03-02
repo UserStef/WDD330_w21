@@ -27,6 +27,14 @@
     font-size: 1.1rem;
 }
 
+.nav-card{
+    height: auto; width: 30vw;
+    margin: 8px; padding: 8px;
+    border: 2px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
+    text-align: center;
+}
+
 .midterm{
     height: auto; width: 90vw;
     padding: 8px;
@@ -34,16 +42,7 @@
     border-radius: 5px;
 }
 
-.map-nav-card{
-    /* height: auto; width: 90vw; */
-    height: auto; width: 60vw;
-    margin: 8px; padding: 8px;
-    border: 2px solid hsl(225, 50%, 24%, 89%);
-    border-radius: 5px;
-}
-
 .extra-nav-card{
-    /* height: auto; width: 90vw; */
     height: auto; width: 60vw;
     margin: 8px; padding: 8px;
     border: 0px solid hsl(225, 50%, 24%, 89%);
@@ -54,6 +53,15 @@
     /* background-color: rgba(16, 161, 197, 0.2); */
     /* color: rgba(233, 251, 255, 0.9); */
     font-size: 1em;
-
     text-decoration: underline;
+    text-align: center;
+}
+
+
+
+#playground{
+    height: auto; width: auto;
+    margin: 8px; padding: 8px;
+    border: 2px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
 }

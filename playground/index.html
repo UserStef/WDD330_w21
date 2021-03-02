@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Week 02</title>
+    <title>Playground</title>
+    <link rel="icon" href="../res/St-icon.png">
     <link rel="stylesheet" href="../styles/mainstyle.css">
     <!-- <link rel="stylesheet" href="../styles/sample-code-style.css"> -->
     <style>
@@ -65,6 +66,38 @@
             color: hsla(171, 90%, 45%, 90%);
             font-size: 1em;
         }
+
+        #playground-options{
+            height: auto; width: auto;
+            margin: 8px; padding: 8px;
+            border: 2px inset hsl(225, 50%, 24%, 89%);
+            border-radius: 5px;
+
+            background-color: rgba(20, 20, 20, 0.5);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .playground-card{
+            height: auto; width: 60vw;
+            margin: 8px; padding: 8px;
+            border: 0px solid hsl(225, 50%, 24%, 89%);
+            border-radius: 5px;
+            border-top: 2px solid rgba(16, 161, 197, 0.9);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+
+            background-image: linear-gradient(to top, rgba(16, 161, 197, 0.29) 0%,
+                                                      rgba(16, 161, 197, 0.12) 25%,
+                                                      rgba(16, 161, 197, 0.0) 54%,
+                                                      rgba(16, 161, 197, 0.0) 80%);
+            
+            color: rgba(24, 201, 245, 0.89);
+            text-shadow: 1px 1px 1px rgba(20, 20, 20, 0.89);
+            font-size: 1.5em;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +107,16 @@
     </div>
     
 
-    <div class="notes">
+    <div id="playground-options">
+        <a href="nav-toggle.html"><div class="playground-card">&#128682; Navigation Toggle</div></a>
+        <a href="fetch/index.html"><div class="playground-card">Fetch</div></a>
+        <a href="css-styles/index.html"><div class="playground-card">CSS Styles</div></a>
+        <a href="MDN-draw/index.html"><div class="playground-card">Draw - Start</div></a>
+        <!-- <div><a href="draw/test-draw.html">Draw</a></div> -->
+    </div>
+
+
+    <div class="notes hidden">
     Experiments
         <ul id="play-ul">
             <li><a href="../week02/" id="w2btn">Week 02 Button</a></li>

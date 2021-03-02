@@ -15,7 +15,8 @@ let progress = {
     'Week 05': [2],
     'Week 06': [],
     'Week 07': [1,2],
-    'Week 08': [1,3]
+    'Week 08': [0,1,2],
+    'Week 09': []
 };
 
 const weekEntries = [
@@ -25,7 +26,7 @@ const weekEntries = [
     },
     {
         link:"reading",
-        name:"Reading Notes"
+        name:"Reading..."
     },
     {
         link:"team-activity",
@@ -38,7 +39,7 @@ for(let i = 0; i<3; i++){
         let card = weekEntries[i];
         let card_div = document.createElement('div');
         // card_div.id = `week${weekNumb}_card`;
-        card_div.classList.add("map-nav-card");
+        card_div.classList.add("nav-card");
     
         let card_link = document.createElement("div");
         card_link.classList.add("link-title");

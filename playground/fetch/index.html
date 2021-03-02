@@ -40,14 +40,21 @@
             flex-direction: row;
 
             box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.89);
+            transition: all 0.5s ease-in-out;
         }
         .container-scroll{
             overflow: scroll;
+            transition: all 0.5s ease-in-out;
+
+            justify-content: flex-start;
+            flex-wrap: nowrap;
         }
         .container-wrap{
-            display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            transition: all 0.5s ease-in-out;
+
+            overflow: hidden;
         }
         .item-card{
             height: 80px; width: 124px;
@@ -60,6 +67,9 @@
             box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.29);
         }
 
+        .message-result{
+            font-size: 2rem;
+        }
 
 
         .invisible{
@@ -78,7 +88,7 @@
         <span class="subtitle">testing Fetch.</span>
     </div>
     
-    <div id="request-btn" class="container-btn">Request</div>
+    <div id="request-btn" class="container-btn">Display</div>
     <div id="request-display" class="container-view container-wrap">
 
     </div>
@@ -92,26 +102,36 @@
     
     <!-- <script src="../scripts/nav-build.js"></script> -->
     <script>
+        let jResult = {};
+        let dataReady = false;
+
         let requestDisplay = document.getElementById("request-display");
         let requestBtn = document.getElementById("request-btn");
+
         requestBtn.addEventListener('click', (ev) =>{
             // border_styles_DOM.classList.toggle('container-wrap');
             // border_styles_DOM.classList.toggle('container-scroll');
-
+            if(dataReady){
+                requestDisplay.innerHTML = `<div class="message-result">${jResult.message}</div>`;
+            } else{
+                requestDisplay.innerHTML = `⏳ not ready... \n\n\t\t ...try again later. ⌛`;
+                console.log("⏳ not ready... \n\n\t\t ...try again later. ⌛");
+            }
         });
-        // function fetchData(){
-        //     console.log(" ─── fetch Data ─── ");
-        //     urlToGet = 'https://swapi.dev/api/people/'
-        //     if (page > 1){ urlToGet += `?page=${page}`;}
-        //     console.log(` ♦ fetching ♦ for: ${urlToGet}`);
-        //     fetch(urlToGet)
-        //     .then(result => result.json())
-        //     .then(jsonResult => {
-        //         console.log(jsonResult);
-        //         jResult = jsonResult;
-        //         updateData();
-        //     })
-        // }
+
+        function fetchData(){
+            console.log(" ─── fetch Data ─── ");
+            urlToGet = 'https://raw.githubusercontent.com/UserStef/WDD330_w21/main/playground/fetch/test.json'            
+            console.log(` ♦ fetching ♦ from: ${urlToGet}`);
+            fetch(urlToGet)
+            .then(result => result.json())
+            .then(jsonResult => {
+                console.log(jsonResult);
+                jResult = jsonResult;
+                setTimeout(() => { dataReady = true; }, 2000);
+            })
+        }
+        fetchData();
 
     </script>
 </body>

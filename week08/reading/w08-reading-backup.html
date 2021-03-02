@@ -186,6 +186,9 @@
             justify-content: center;
         }
         .screen-area{
+            /* height: auto; width: 300px;
+            min-height: 400px; */
+
             background-color: rgba(255, 255, 255, 1);
             border: 2px outset hsl(225, 50%, 20%, 89%);
             overflow: scroll;
@@ -201,11 +204,13 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            /* background-color: hsl(225, 50%, 20%, 54%); */
             background-image: linear-gradient(to bottom, hsl(225, 50%, 12%, 89%) 0%,
                                                         hsl(225, 50%, 21%, 89%) 15%,
                                                         hsl(225, 89%, 21%, 89%) 50%,
                                                         hsl(225, 50%, 21%, 89%) 85%,
                                                         hsl(225, 50%, 34%, 89%) 100%);
+            /* border: 1px inset hsl(225, 50%, 20%, 89%); */
             box-shadow: inset 0px 0px 0px 2px hsl(225, 50%, 20%, 89%);
         }
 
@@ -216,6 +221,10 @@
             height: 50px; width: 50px;
             position: relative;
             top: 50px; left: 50px;
+            /* transition: all 0.5s ease-out; */
+
+            /* transform: translateX(0%); */
+            /* animation-name: moveRight; */
         }
         .target-box2{
             height: 50px; width: 50px;
@@ -225,6 +234,12 @@
             justify-content: center;
             text-align: center;
             background-color: hsla(225, 50%, 54%, 89%);
+            /* background-image: linear-gradient(to bottom, hsl(225, 50%, 12%, 89%) 0%,
+                                                        hsl(225, 50%, 21%, 89%) 15%,
+                                                        hsl(225, 89%, 21%, 89%) 50%,
+                                                        hsl(225, 50%, 21%, 89%) 85%,
+                                                        hsl(225, 50%, 34%, 89%) 100%); */
+            /* border: 1px inset hsl(225, 50%, 20%, 89%); */
             box-shadow: inset 0px 0px 0px 2px hsl(225, 50%, 20%, 89%);
         }
         .wheel-animtion{
@@ -381,6 +396,38 @@
                 <div class="btn-click" data-origin="26">&nbsp;</div>
             </div>
         </div>
+
+        <!-- <div class="shelf">
+            <div id="up-left" class="btn-control" data-move="48">↖
+                <div class="btn-click" data-move="48">&nbsp;</div>
+            </div>
+            <div id="up" class="btn-control" data-move="8">↑
+                <div class="btn-click" data-move="8">&nbsp;</div>
+            </div>
+            <div id="up-right" class="btn-control" data-move="68">↗
+                <div class="btn-click" data-move="68">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="left" class="btn-control" data-move="4">←
+                <div class="btn-click" data-move="4">&nbsp;</div>
+            </div>
+            <input id="input-moveBy" type="number" class="inputBox" value="50" step="10">
+            <div id="right" class="btn-control" data-move="6">→
+                <div class="btn-click" data-move="6">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="down-left" class="btn-control" data-move="24">↙
+                <div class="btn-click" data-move="24">&nbsp;</div>
+            </div>
+            <div id="down" class="btn-control" data-move="2">↓
+                <div class="btn-click" data-move="2">&nbsp;</div>
+            </div>
+            <div id="down-right" class="btn-control" data-move="26">↘
+                <div class="btn-click" data-move="26">&nbsp;</div>
+            </div>
+        </div> -->
         <div class="shelf">
             <div id="z8426" class="btn-control" data-rotate="z8426">
                 <div class="size-up z8426">&#8634;</div>
@@ -435,13 +482,92 @@
             Origin&nbsp;X:&nbsp;<input id="input-originX" type="number" class="inputBox" value="50" step="25">%&nbsp;|&nbsp;
             Y:&nbsp;<input id="input-originY" type="number" class="inputBox" value="50" step="25">%
         </div>
-
+        <!-- <div class="shelf">
+            <div id="origin-48" class="btn-control origin-btn">
+                <div class="origin-target tar48">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="48">&nbsp;</div>
+            </div>
+            <div id="origin-8" class="btn-control origin-btn">
+                <div class="origin-target tar8">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="8">&nbsp;</div>
+            </div>
+            <div id="origin-68" class="btn-control origin-btn">
+                <div class="origin-target tar68">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="68">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="origin-4" class="btn-control origin-btn">
+                <div class="origin-target tar4">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="4">&nbsp;</div>
+            </div>
+            <div id="origin-5" class="btn-control origin-btn">
+                <div class="origin-target tar5">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="5">&nbsp;</div>
+            </div>
+            <div id="origin-6" class="btn-control origin-btn">
+                <div class="origin-target tar6">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="6">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="origin-24" class="btn-control origin-btn">
+                <div class="origin-target tar24">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="24">&nbsp;</div>
+            </div>
+            <div id="origin-2" class="btn-control origin-btn">
+                <div class="origin-target tar2">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="2">&nbsp;</div>
+            </div>
+            <div id="origin-26" class="btn-control origin-btn">
+                <div class="origin-target tar26">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="26">&nbsp;</div>
+            </div>
+        </div> -->
         <div class="shelf">
             <div id="reset" class="btn-control2">
                 Reset
                 <div class="btn-click" data-reset="true">&nbsp;</div>
             </div>
         </div>
+        <!-- <div class="shelf">
+            <div id="skewX" class="btn-control">
+                <p><sup>↼</sup><sub>⇁</sub></p>
+                <div class="btn-click" data-skew="skewX">&nbsp;</div>
+            </div>
+            <div id="skew-X" class="btn-control">
+                <p><sub>↽</sub><sup>⇀</sup></p>
+                <div class="btn-click" data-skew="skew-X">&nbsp;</div>
+            </div>
+            <input id="input-skewBy" type="number" class="inputBox" value="10" step="5">
+            <div id="skewY" class="btn-control">
+                <p><sup>↿</sup><sub>⇂</sub></p>
+                <div class="btn-click" data-skew="skewY">&nbsp;</div>
+            </div>
+            <div id="skew-Y" class="btn-control">
+                <p><sub>⇃</sub><sup>↾</sup></p>
+                <div class="btn-click" data-skew="skew-Y">&nbsp;</div>
+            </div>
+        </div> -->
+        <!-- <div class="shelf">
+            <div class="btn-control">
+                <p>⇋</p>
+                <div class="btn-click" data-skew="skewX">&nbsp;</div>
+            </div>
+            <div class="btn-control">
+                <p>⇌</p>
+                <div class="btn-click" data-skew="skew-X">&nbsp;</div>
+            </div>
+            <input id="input-skewBy" type="number" class="inputBox" value="10" step="5">
+            <div class="btn-control">
+                <p>⥮</p>
+                <div class="btn-click" data-skew="skewY">&nbsp;</div>
+            </div>
+            <div class="btn-control">
+                <p>⥯</p>
+                <div class="btn-click" data-skew="skew-Y">&nbsp;</div>
+            </div>
+        </div> -->
     </div>
 
     <div class="screen-container">
@@ -462,6 +588,7 @@
     </div>
 
     <!-- <script src="../scripts/nav-build.js"></script> -->
+    <!-- <link rel="stylesheet" href="scripts/week-script.css"> -->
     <script>
         let areaLimit = {"X": 300, "Y": 200};
         let area = document.getElementById('area');
@@ -590,7 +717,11 @@
             if(boxLoc["X"] > limitX){boxLoc["X"] = limitX};
             if(boxLoc["Y"] > limitY){boxLoc["Y"] = limitY};
 
+            // moveBox.style = `transform: translate(${boxLoc["X"]}px, ${boxLoc["Y"]}px);
             moveBox.style.transform = `translate(${boxLoc["X"]}px, ${boxLoc["Y"]}px)`;
+
+            // if(boxLoc["deg"] < 0){boxLoc["deg"] += 360}
+            // if(boxLoc["deg"] > 360){boxLoc["deg"] -= 360}
 
             if(boxLoc["scale"] < 0.21){boxLoc["scale"] = 0.2}
             if(boxLoc["scale"] > 2){boxLoc["scale"] = 2}
@@ -602,6 +733,9 @@
 
             insideBox.style.transform = `rotate(${boxLoc["deg"]}deg) scale(${boxLoc["scale"]}) skew(${boxLoc["skewX"]}deg, ${boxLoc["skewY"]}deg)`;
 
+            // targetBox.style.transform = `rotate(${boxLoc["deg"]}deg) translate(${boxLoc["X"]}px, ${boxLoc["Y"]}px)`;
+
+            // console.log(boxLoc);
             console.log(`boxLoc:{
             moveBy: ${boxLoc["moveBy"]}, X: ${boxLoc["X"]}, Y: ${boxLoc["Y"]}
             rotateBy: ${boxLoc["rotateBy"]}, deg: ${boxLoc["deg"]}, 
@@ -609,6 +743,14 @@
             skewBy: ${boxLoc["skewBy"]}, skewX: ${boxLoc["skewX"]}, skewY: ${boxLoc["skewY"]}\n}`);
         }
         updateTarget();
+
+        // let skewX = document.getElementById("skewX");
+        // let skew_X = document.getElementById("skew-X");
+
+        // skew_X.addEventListener('click', (ev) => {
+        //     boxLoc["skewX"] -= boxLoc["skew"];
+        //     updateTarget();
+        // });
 
 
         let animateBtn = document.getElementById("play-animation");

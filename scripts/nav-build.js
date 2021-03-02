@@ -72,6 +72,10 @@ let links = [
     }
 ];
 
+let specific_btns = [
+    `<li><button class="homebtn mhbtn-off">&#127968;</button></li>`,
+    `<a href="../index.html"><div id="playground2">&#128682;</div></a>`];
+
 if(document.title == "WDD330 - Home"){
     links[0].url = "index.html";
     for(let i = 1; i<number_of_weeks+1; i++){

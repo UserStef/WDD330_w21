@@ -98,6 +98,16 @@
             font-size: 1.5em;
             text-align: center;
         }
+        .exit{
+            position: absolute;
+            top: 24px; right: 16px;
+            padding: 4px 8px;
+            font-size: 2em;
+            text-align: center;
+            border: 1px solid hsl(225, 54%, 4%, 54%);
+            border-radius: 4px;
+            /* opacity: 0.5; */
+        }
     </style>
 </head>
 <body>
@@ -105,10 +115,11 @@
         <span class="title">Playground</span>
         <span class="subtitle">for testing web things</span>
     </div>
+    <a href="../index.html"><div id="back-to-home" class="exit">&#128682;</div></a>
     
 
     <div id="playground-options">
-        <a href="nav-toggle.html"><div class="playground-card">&#128682; Navigation Toggle</div></a>
+        <a href="nav-toggle.html"><div class="playground-card">Navigation Toggle</div></a>
         <a href="fetch/index.html"><div class="playground-card">Fetch</div></a>
         <a href="css-styles/index.html"><div class="playground-card">CSS Styles</div></a>
         <a href="MDN-draw/index.html"><div class="playground-card">Draw - Start</div></a>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playground - Fetch</title>
+    <link rel="icon" href="res/St-icon.png">
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <link rel="stylesheet" href="fetch-style.css">
+    <style>
+        .container-btn{
+            height: auto; width: auto;
+            margin: 8px 4vw; padding: 8px;
+
+            border: 0px solid rgba(16, 161, 197, 0.7);
+            border-top: 0px solid rgba(16, 161, 197, 0.7);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.7);
+            border-radius: 5px;
+            text-align: center;
+
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 1px 0px rgba(20, 20, 20, 0.54);
+            
+            background-image: linear-gradient(to top, rgba(16, 161, 197, 0.2) 0%,
+                                                      rgba(16, 161, 197, 0.1) 25%,
+                                                      rgba(16, 161, 197, 0.0) 80%);
+            /* box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.54); */
+        }
+        .container-view{
+            height: auto; width: 90vw;
+            min-height: 100px;
+            margin: 8px 4vw; 
+            padding: 8px 1vw;
+            border: 0px solid white;
+            border-radius: 5px;
+
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.89);
+        }
+        .container-scroll{
+            overflow: scroll;
+        }
+        .container-wrap{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .item-card{
+            height: 80px; width: 124px;
+            margin: 4px; padding: 4px;
+            border: 0px solid white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.29);
+        }
+
+
+
+        .invisible{
+            background-color: rgba(0,0,0,0);
+            border-color: rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <span class="title btml">Playground</span>
+        <span class="subtitle">testing Fetch.</span>
+    </div>
+    
+    <div id="request-btn" class="container-btn">Request</div>
+    <div id="request-display" class="container-view container-wrap">
+
+    </div>
+
+    <div class="container-view hidden">
+        <ul id="play-ul">
+            <li><a href="../week02/" id="w2btn">Week 02 Button</a></li>
+            <li><a href="../week03/" id="w3btn">Week 03</a></li>
+        </ul>
+    </div>
+    
+    <!-- <script src="../scripts/nav-build.js"></script> -->
+    <script>
+        let requestDisplay = document.getElementById("request-display");
+        let requestBtn = document.getElementById("request-btn");
+        requestBtn.addEventListener('click', (ev) =>{
+            // border_styles_DOM.classList.toggle('container-wrap');
+            // border_styles_DOM.classList.toggle('container-scroll');
+
+        });
+        // function fetchData(){
+        //     console.log(" ─── fetch Data ─── ");
+        //     urlToGet = 'https://swapi.dev/api/people/'
+        //     if (page > 1){ urlToGet += `?page=${page}`;}
+        //     console.log(` ♦ fetching ♦ for: ${urlToGet}`);
+        //     fetch(urlToGet)
+        //     .then(result => result.json())
+        //     .then(jsonResult => {
+        //         console.log(jsonResult);
+        //         jResult = jsonResult;
+        //         updateData();
+        //     })
+        // }
+
+    </script>
+</body>
+</html>

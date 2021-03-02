@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 08</title>
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <!-- <link rel="stylesheet" href="styles/week-styles.css"> -->
+    <style>
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+        }
+        .controlbar{
+            display: flex;
+            flex-direction: column;
+            /* flex-wrap: wrap; */
+            align-items: center;
+            justify-content: center;
+            margin: 8px 0px;
+        }
+        .shelf{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        .btn-control2{
+            height: 20px; min-width: 20px;
+            margin: 4px; padding: 6px;
+
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            border-radius: 5px;
+            border: 0px solid hsl(225, 50%, 24%, 89%);
+            border-top: 2px solid rgba(16, 161, 197, 0.9);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+
+            background-color: rgba(15, 42, 54, 0.54);
+            color: rgba(233, 251, 255, 0.9);
+            font-size: 1.2em;
+        }
+        .btn-control{
+            /* height: auto; width: 60vw; */
+            /* min-height: 20px; min-width: 20px; */
+            height: 20px; width: 28px;
+            margin: 4px; padding: 6px;
+
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            border-radius: 5px;
+            border: 0px solid hsl(225, 50%, 24%, 89%);
+            border-top: 2px solid rgba(16, 161, 197, 0.9);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+
+            background-color: rgba(15, 42, 54, 0.54);
+            color: rgba(233, 251, 255, 0.9);
+            font-size: 1.2em;
+
+            /* text-decoration: underline; */
+        }
+        .size-up{
+            transform: scale(1.2);
+        }
+        .btn-click{
+            height: 100%; width: 100%;
+            position: absolute;
+            top: 0px; left: 0px;
+            border-radius: 5px;
+            box-shadow: inset 0px 0px 0px 1px rgba(255, 0, 120, 0.89);
+        }
+        .inputBox{
+            /* width: 54px; */
+            width: 28px;
+            margin: 4px; padding: 4px;
+            font-size: 1em;
+            text-align: center;
+        }
+        .skew-btn{
+            width: 28px;
+        }
+        .skew7x{
+            transform: translate(5px, -5px);
+        }
+        .skew3x{
+            transform: translate(-5px, 5px);
+        }
+        .skew9x{
+            transform: translate(-5px, -5px);
+        }
+        .skew1x{
+            transform: translate(5px, 5px);
+        }
+        .skew7y{
+            transform: translate(-1px, 0px);
+        }
+        .skew3y{
+            transform: translate(1px, 4px);
+        }
+        .skew9y{
+            transform: translate(1px, 0px);
+        }
+        .skew1y{
+            transform: translate(-1px, 4px);
+        }
+        #skewX{
+            transform: skew(10deg, 0deg);
+        }
+        #skew-X{
+            transform: skew(-10deg, 0deg);
+        }
+        #skewY{
+            transform: skew(0deg, 10deg);
+        }
+        #skew-Y{
+            transform: skew(0deg, -10deg);
+        }
+        .z8426{
+            transform: rotate(90deg) scale(1.1);
+        }
+        .z8624{
+            transform: rotate(-90deg) scale(1.1);
+        }
+        .origin-btn{
+            min-width: 28px;
+            position: relative;
+            top: 0px; left: 0px;
+            padding: 6px;
+        }
+        .origin-box{
+            height: 100%; width: 100%;
+            position: absolute;
+            top: 0px; left: 0px;
+            transform: scale(0.8);
+        }
+        .origin-target{
+            height: 100%; width: 100%;
+            position: absolute;
+            top: 0px; left: 0px;
+        }
+        .tar48{
+            transform: translate(-10px, -6px) scale(1);
+        }
+        .tar8{
+            transform: translate(0px, -6px) scale(1);
+        }
+        .tar68{
+            transform: translate(10px, -6px) scale(1);
+        }
+        .tar4{
+            transform: translate(-10px, 2px) scale(1);
+        }
+        .tar5{
+            transform: translate(0px, 2px) scale(1);
+        }
+        .tar6{
+            transform: translate(10px, 2px) scale(1);
+        }
+        .tar24{
+            transform: translate(-10px, 10px) scale(1);
+        }
+        .tar2{
+            transform: translate(0px, 10px) scale(1);
+        }
+        .tar26{
+            transform: translate(10px, 10px) scale(1);
+        }
+
+
+        .screen-container{
+            height: auto; width: 100vw;
+            margin: 0px; padding: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .screen-area{
+            /* height: auto; width: 300px;
+            min-height: 400px; */
+
+            background-color: rgba(255, 255, 255, 1);
+            border: 2px outset hsl(225, 50%, 20%, 89%);
+            overflow: scroll;
+        }
+        #moveBox{
+            height: 50px; width: 50px;
+            margin: 0px; padding: 0px;
+        }
+        .target-box{
+            height: 50px; width: 50px;
+            margin: 0px; padding: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            /* background-color: hsl(225, 50%, 20%, 54%); */
+            background-image: linear-gradient(to bottom, hsl(225, 50%, 12%, 89%) 0%,
+                                                        hsl(225, 50%, 21%, 89%) 15%,
+                                                        hsl(225, 89%, 21%, 89%) 50%,
+                                                        hsl(225, 50%, 21%, 89%) 85%,
+                                                        hsl(225, 50%, 34%, 89%) 100%);
+            /* border: 1px inset hsl(225, 50%, 20%, 89%); */
+            box-shadow: inset 0px 0px 0px 2px hsl(225, 50%, 20%, 89%);
+        }
+        .hidden{
+            display: none;
+        }
+        .hide2{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+    </header>
+    <div class="head">
+        <span class="title btml">Week 08</span>
+        <span class="subtitle">Reading Notes</span>
+    </div>
+
+    <!-- <div class="week-contents btml">
+        Loading...
+    </div> -->
+
+    <div id="control" class="controlbar">
+        <div class="shelf">
+            <div id="up-left" class="btn-control" data-move="48">↖
+                <div class="btn-click" data-move="48">&nbsp;</div>
+            </div>
+            <div id="up" class="btn-control" data-move="8">↑
+                <div class="btn-click" data-move="8">&nbsp;</div>
+            </div>
+            <div id="up-right" class="btn-control" data-move="68">↗
+                <div class="btn-click" data-move="68">&nbsp;</div>
+            </div>
+            <input type="number" class="inputBox hide2" value="0">
+            <div id="origin-48" class="btn-control origin-btn">
+                <div class="origin-target tar48">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="48">&nbsp;</div>
+            </div>
+            <div id="origin-8" class="btn-control origin-btn">
+                <div class="origin-target tar8">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="8">&nbsp;</div>
+            </div>
+            <div id="origin-68" class="btn-control origin-btn">
+                <div class="origin-target tar68">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="68">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="left" class="btn-control" data-move="4">←
+                <div class="btn-click" data-move="4">&nbsp;</div>
+            </div>
+            <input id="input-moveBy" type="number" class="inputBox" value="50" step="10">
+            <div id="right" class="btn-control" data-move="6">→
+                <div class="btn-click" data-move="6">&nbsp;</div>
+            </div>
+            <input type="number" class="inputBox hide2" value="0">
+            <div id="origin-4" class="btn-control origin-btn">
+                <div class="origin-target tar4">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="4">&nbsp;</div>
+            </div>
+            <div id="origin-5" class="btn-control origin-btn">
+                <div class="origin-target tar5">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="5">&nbsp;</div>
+            </div>
+            <div id="origin-6" class="btn-control origin-btn">
+                <div class="origin-target tar6">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="6">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="down-left" class="btn-control" data-move="24">↙
+                <div class="btn-click" data-move="24">&nbsp;</div>
+            </div>
+            <div id="down" class="btn-control" data-move="2">↓
+                <div class="btn-click" data-move="2">&nbsp;</div>
+            </div>
+            <div id="down-right" class="btn-control" data-move="26">↘
+                <div class="btn-click" data-move="26">&nbsp;</div>
+            </div>
+            <input type="number" class="inputBox hide2" value="0">
+            <div id="origin-24" class="btn-control origin-btn">
+                <div class="origin-target tar24">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="24">&nbsp;</div>
+            </div>
+            <div id="origin-2" class="btn-control origin-btn">
+                <div class="origin-target tar2">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="2">&nbsp;</div>
+            </div>
+            <div id="origin-26" class="btn-control origin-btn">
+                <div class="origin-target tar26">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="26">&nbsp;</div>
+            </div>
+        </div>
+
+        <!-- <div class="shelf">
+            <div id="up-left" class="btn-control" data-move="48">↖
+                <div class="btn-click" data-move="48">&nbsp;</div>
+            </div>
+            <div id="up" class="btn-control" data-move="8">↑
+                <div class="btn-click" data-move="8">&nbsp;</div>
+            </div>
+            <div id="up-right" class="btn-control" data-move="68">↗
+                <div class="btn-click" data-move="68">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="left" class="btn-control" data-move="4">←
+                <div class="btn-click" data-move="4">&nbsp;</div>
+            </div>
+            <input id="input-moveBy" type="number" class="inputBox" value="50" step="10">
+            <div id="right" class="btn-control" data-move="6">→
+                <div class="btn-click" data-move="6">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="down-left" class="btn-control" data-move="24">↙
+                <div class="btn-click" data-move="24">&nbsp;</div>
+            </div>
+            <div id="down" class="btn-control" data-move="2">↓
+                <div class="btn-click" data-move="2">&nbsp;</div>
+            </div>
+            <div id="down-right" class="btn-control" data-move="26">↘
+                <div class="btn-click" data-move="26">&nbsp;</div>
+            </div>
+        </div> -->
+        <div class="shelf">
+            <div id="z8426" class="btn-control" data-rotate="z8426">
+                <div class="size-up z8426">&#8634;</div>
+                <div class="btn-click" data-rotate="z8426">&nbsp;</div>
+            </div>
+            <div id="z842" class="btn-control" data-rotate="z842">
+                <div class="size-up">&#10553;</div>
+                <div class="btn-click" data-rotate="z842">&nbsp;</div>
+            </div>
+            <input id="input-rotateBy" type="number" class="inputBox" value="45" step="15">
+            <div id="z862" class="btn-control" data-rotate="z862">
+                <div class="size-up">&#10552;</div>
+                <div class="btn-click" data-rotate="z862">&nbsp;</div>
+            </div>
+            <div id="z8624" class="btn-control" data-rotate="z8624">
+                <div class="size-up z8624">&#8635;</div>
+                <div class="btn-click" data-rotate="z8624">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="shrink" class="btn-control" data-scale="shrink">
+                <div class="size-up">-</div>
+                <div class="btn-click" data-scale="shrink">&nbsp;</div>
+            </div>
+            <input id="input-scaleBy" type="number" class="inputBox" value="0.2" step="0.2">
+            <div id="grow" class="btn-control" data-scale="grow">
+                <div class="size-up">+</div>
+                <div class="btn-click" data-scale="grow">&nbsp;</div>
+            </div>
+        </div>
+
+        <div class="shelf">
+            <div id="skewX" class="btn-control skew-btn">
+                <div class="skew7x">↼</div><div class="skew3x">⇁</div>
+                <div class="btn-click" data-skew="skewX">&nbsp;</div>
+            </div>
+            <div id="skew-X" class="btn-control skew-btn">
+                <div class="skew1x">↽</div><div class="skew9x">⇀</div>
+                <div class="btn-click" data-skew="skew-X">&nbsp;</div>
+            </div>
+            <input id="input-skewBy" type="number" class="inputBox" value="10" step="5">
+            <div id="skewY" class="btn-control skew-btn">
+                <div class="skew7y">↿</div><div class="skew3y">⇂</div>
+                <div class="btn-click" data-skew="skewY">&nbsp;</div>
+            </div>
+            <div id="skew-Y" class="btn-control skew-btn">
+                <div class="skew1y">⇃</div><div class="skew9y">↾</div>
+                <div class="btn-click" data-skew="skew-Y">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf hidden">
+            Origin&nbsp;X:&nbsp;<input id="input-originX" type="number" class="inputBox" value="50" step="25">%&nbsp;|&nbsp;
+            Y:&nbsp;<input id="input-originY" type="number" class="inputBox" value="50" step="25">%
+        </div>
+        <!-- <div class="shelf">
+            <div id="origin-48" class="btn-control origin-btn">
+                <div class="origin-target tar48">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="48">&nbsp;</div>
+            </div>
+            <div id="origin-8" class="btn-control origin-btn">
+                <div class="origin-target tar8">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="8">&nbsp;</div>
+            </div>
+            <div id="origin-68" class="btn-control origin-btn">
+                <div class="origin-target tar68">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="68">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="origin-4" class="btn-control origin-btn">
+                <div class="origin-target tar4">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="4">&nbsp;</div>
+            </div>
+            <div id="origin-5" class="btn-control origin-btn">
+                <div class="origin-target tar5">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="5">&nbsp;</div>
+            </div>
+            <div id="origin-6" class="btn-control origin-btn">
+                <div class="origin-target tar6">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="6">&nbsp;</div>
+            </div>
+        </div>
+        <div class="shelf">
+            <div id="origin-24" class="btn-control origin-btn">
+                <div class="origin-target tar24">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="24">&nbsp;</div>
+            </div>
+            <div id="origin-2" class="btn-control origin-btn">
+                <div class="origin-target tar2">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="2">&nbsp;</div>
+            </div>
+            <div id="origin-26" class="btn-control origin-btn">
+                <div class="origin-target tar26">⌖</div><div class="origin-box">[&nbsp;&nbsp;&nbsp;]</div>
+                <div class="btn-click" data-origin="26">&nbsp;</div>
+            </div>
+        </div> -->
+        <div class="shelf">
+            <div id="reset" class="btn-control2">
+                Reset
+                <div class="btn-click" data-reset="true">&nbsp;</div>
+            </div>
+        </div>
+        <!-- <div class="shelf">
+            <div id="skewX" class="btn-control">
+                <p><sup>↼</sup><sub>⇁</sub></p>
+                <div class="btn-click" data-skew="skewX">&nbsp;</div>
+            </div>
+            <div id="skew-X" class="btn-control">
+                <p><sub>↽</sub><sup>⇀</sup></p>
+                <div class="btn-click" data-skew="skew-X">&nbsp;</div>
+            </div>
+            <input id="input-skewBy" type="number" class="inputBox" value="10" step="5">
+            <div id="skewY" class="btn-control">
+                <p><sup>↿</sup><sub>⇂</sub></p>
+                <div class="btn-click" data-skew="skewY">&nbsp;</div>
+            </div>
+            <div id="skew-Y" class="btn-control">
+                <p><sub>⇃</sub><sup>↾</sup></p>
+                <div class="btn-click" data-skew="skew-Y">&nbsp;</div>
+            </div>
+        </div> -->
+        <!-- <div class="shelf">
+            <div class="btn-control">
+                <p>⇋</p>
+                <div class="btn-click" data-skew="skewX">&nbsp;</div>
+            </div>
+            <div class="btn-control">
+                <p>⇌</p>
+                <div class="btn-click" data-skew="skew-X">&nbsp;</div>
+            </div>
+            <input id="input-skewBy" type="number" class="inputBox" value="10" step="5">
+            <div class="btn-control">
+                <p>⥮</p>
+                <div class="btn-click" data-skew="skewY">&nbsp;</div>
+            </div>
+            <div class="btn-control">
+                <p>⥯</p>
+                <div class="btn-click" data-skew="skew-Y">&nbsp;</div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="screen-container">
+        <div id="area" class="screen-area">
+            <div id="moveBox">
+                <div id="insideBox" class="target-box">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <!-- <script src="../scripts/nav-build.js"></script> -->
+    <!-- <link rel="stylesheet" href="scripts/week-script.css"> -->
+    <script>
+        let areaLimit = {"X": 300, "Y": 200};
+        let area = document.getElementById('area');
+        area.style.height = `${areaLimit['Y']}px`;
+        area.style.width = `${areaLimit['X']}px`;
+
+        let moveBox = document.getElementById("moveBox");
+        moveBox.style.transition = `all 0.5s ease-out`;
+        let insideBox = document.getElementById("insideBox");
+        insideBox.style.transition = `all 0.5s ease-out`;
+
+        let boxLoc = {
+            "moveBy":50, "X":50, "Y":50, 
+            "rotateBy":45, "deg":0, 
+            "scaleBy":0.2, "scale": 1,
+            "skewBy":10, "skewX":0, "skewY":0, 
+            "originX": 50, "originY": 50,
+            "end": true}
+
+        window.addEventListener('click', (ev) =>{
+            let tbtn = ev.target;
+            if(tbtn.dataset.move != null){
+                boxLoc["moveBy"] = 1*document.getElementById("input-moveBy").value;
+                // console.log(boxLoc);
+                if(tbtn.dataset.move.includes("8")){
+                    boxLoc["Y"] -= boxLoc["moveBy"];
+                }
+                if(tbtn.dataset.move.includes("2")){
+                    boxLoc["Y"] += boxLoc["moveBy"];
+                }
+                if(tbtn.dataset.move.includes("6")){
+                    boxLoc["X"] += boxLoc["moveBy"];
+                }
+                if(tbtn.dataset.move.includes("4")){
+                    boxLoc["X"] -= boxLoc["moveBy"];
+                }
+                updateTarget();
+            }
+            if(tbtn.dataset.rotate != null){
+                boxLoc["rotateBy"] = 1*document.getElementById("input-rotateBy").value;
+                if(tbtn.dataset.rotate == "z862"){
+                    boxLoc["deg"] += boxLoc["rotateBy"];
+                }
+                if(tbtn.dataset.rotate == "z842"){
+                    boxLoc["deg"] -= boxLoc["rotateBy"];
+                }
+                if(tbtn.dataset.rotate == "z8624"){
+                    boxLoc["deg"] += boxLoc["rotateBy"]*2;
+                }
+                if(tbtn.dataset.rotate == "z8426"){
+                    boxLoc["deg"] -= boxLoc["rotateBy"]*2;
+                }
+                updateTarget();
+            }
+            if(tbtn.dataset.scale != null){
+                boxLoc["scaleBy"] = 1*document.getElementById("input-scaleBy").value;
+                if(tbtn.dataset.scale == "grow"){
+                    boxLoc["scale"] += boxLoc["scaleBy"];
+                }
+                if(tbtn.dataset.scale == "shrink"){
+                    boxLoc["scale"] -= boxLoc["scaleBy"];
+                }
+                updateTarget();
+            }
+            if(tbtn.dataset.skew != null){
+                boxLoc["skewBy"] = 1*document.getElementById("input-skewBy").value;
+                if(tbtn.dataset.skew == "skew-Y"){
+                    boxLoc["skewY"] -= boxLoc["skewBy"];
+                }
+                if(tbtn.dataset.skew == "skewY"){
+                    boxLoc["skewY"] += boxLoc["skewBy"];
+                }
+                if(tbtn.dataset.skew == "skewX"){
+                    boxLoc["skewX"] += boxLoc["skewBy"];
+                }
+                if(tbtn.dataset.skew == "skew-X"){
+                    boxLoc["skewX"] -= boxLoc["skewBy"];
+                }
+                updateTarget();
+            }
+            if(tbtn.dataset.origin != null){
+                boxLoc["originX"] = 50;
+                boxLoc["originY"] = 50;
+                if(tbtn.dataset.origin.includes("2")){
+                    boxLoc["originY"] = 100;
+                }
+                if(tbtn.dataset.origin.includes("4")){
+                    boxLoc["originX"] = 0;
+                }
+                if(tbtn.dataset.origin.includes("6")){
+                    boxLoc["originX"] = 100;
+                }
+                if(tbtn.dataset.origin.includes("8")){
+                    boxLoc["originY"] = 0;
+                }
+                document.getElementById("input-originX").value = boxLoc["originX"];
+                document.getElementById("input-originY").value = boxLoc["originY"];
+                updateTarget();
+            }
+            if(tbtn.dataset.reset != null){
+                boxLoc = {
+                    "moveBy":50, "X":50, "Y":50, 
+                    "rotateBy":45, "deg":0, 
+                    "scaleBy":0.2, "scale": 1,
+                    "skewBy":10, "skewX":0, "skewY":0, 
+                    "originX": 50, "originY": 50,
+                    "end": true}
+                updateTarget();
+            }
+            // updateTarget();
+        })
+        function updateTarget(){
+            // console.log(boxLoc);
+            boxLoc["originX"] = 1*document.getElementById("input-originX").value;
+            boxLoc["originY"] = 1*document.getElementById("input-originY").value;
+
+            insideBox.style.transformOrigin = `${boxLoc["originX"]}% ${boxLoc["originY"]}%`;
+
+            let limitX = areaLimit['X'] - 50;
+            let limitY = areaLimit['Y'] - 50;
+
+            // -- min translate.
+            if(boxLoc["X"] < 0){boxLoc["X"] = 0};
+            if(boxLoc["Y"] < 0){boxLoc["Y"] = 0};
+            // -- max translate.
+            if(boxLoc["X"] > limitX){boxLoc["X"] = limitX};
+            if(boxLoc["Y"] > limitY){boxLoc["Y"] = limitY};
+
+            // moveBox.style = `transform: translate(${boxLoc["X"]}px, ${boxLoc["Y"]}px);
+            moveBox.style.transform = `translate(${boxLoc["X"]}px, ${boxLoc["Y"]}px)`;
+
+            // if(boxLoc["deg"] < 0){boxLoc["deg"] += 360}
+            // if(boxLoc["deg"] > 360){boxLoc["deg"] -= 360}
+
+            if(boxLoc["scale"] < 0.21){boxLoc["scale"] = 0.2}
+            if(boxLoc["scale"] > 2){boxLoc["scale"] = 2}
+
+            if(boxLoc["skewX"] > 50){boxLoc["skewX"] = 50}
+            if(boxLoc["skewX"] < -50){boxLoc["skewX"] = -50}
+            if(boxLoc["skewY"] > 50){boxLoc["skewY"] = 50}
+            if(boxLoc["skewY"] < -50){boxLoc["skewY"] = -50}
+
+            insideBox.style.transform = `rotate(${boxLoc["deg"]}deg) scale(${boxLoc["scale"]}) skew(${boxLoc["skewX"]}deg, ${boxLoc["skewY"]}deg)`;
+
+            // targetBox.style.transform = `rotate(${boxLoc["deg"]}deg) translate(${boxLoc["X"]}px, ${boxLoc["Y"]}px)`;
+
+            // console.log(boxLoc);
+            console.log(`boxLoc:{
+            moveBy: ${boxLoc["moveBy"]}, X: ${boxLoc["X"]}, Y: ${boxLoc["Y"]}
+            rotateBy: ${boxLoc["rotateBy"]}, deg: ${boxLoc["deg"]}, 
+            scaleBy: ${boxLoc["scaleBy"]}, scale: ${boxLoc["scale"]}
+            skewBy: ${boxLoc["skewBy"]}, skewX: ${boxLoc["skewX"]}, skewY: ${boxLoc["skewY"]}\n}`);
+        }
+        updateTarget();
+
+        // let skewX = document.getElementById("skewX");
+        // let skew_X = document.getElementById("skew-X");
+
+        // skew_X.addEventListener('click', (ev) => {
+        //     boxLoc["skewX"] -= boxLoc["skew"];
+        //     updateTarget();
+        // });
+
+
+    </script>
+</body>
+</html>

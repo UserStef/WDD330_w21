@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 09</title>
+    <link rel="icon" href="../../res/St-icon.png">
+    <!-- <link rel="stylesheet" href="../styles/mainstyle.css"> -->
+    <!-- <link rel="stylesheet" href="styles/week-styles.css"> -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <header class="navbar">
+    </header>
+    <div class="head">
+        <span class="title btml">Week 09</span>
+        <span class="subtitle">Team Activity</span>
+    </div>
 
     <div class="keys">
-        <div data-key="65" class="key">
+        <!-- <div data-key="65" class="key">
             <kbd>A</kbd>
             <span class="sound">clap</span>
         </div>
@@ -44,7 +54,7 @@
         <div data-key="76" class="key">
             <kbd>L</kbd>
             <span class="sound">tink</span>
-        </div>
+        </div> -->
     </div>
 
     <audio data-key="65" src="sounds/clap.wav"></audio>
@@ -56,62 +66,34 @@
     <audio data-key="74" src="sounds/snare.wav"></audio>
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
-
-    <!-- <audio id="audio65" data-key="65" src="sounds/clap.wav"></audio> -->
-    <!-- <script>
-        let audio_options = [];
-
-        // audioElement.play();
+    
+    <script>
+        let keyArea = document.querySelector('.keys');
         let audioElements = document.querySelectorAll('audio');
-        let allDiv = document.querySelectorAll('div');
-        console.log(audioElements);
-        console.dir(audioElements);
-
-        let audio = {};
-        audioElements.forEach(item => {
-            let itemID = +item.dataset.key;
-            audio_options.push(itemID);
-            audio[itemID] = item;
+        let keyOptions = [];
+        audioElements.forEach(audio => {keyOptions.push(+audio.dataset.key);});
+        
+        audioElements.forEach(audio => {
+            let sound = audio.src.split('/')[audio.src.split('/').length-1].split('.')[0];
+            keyArea.innerHTML += `<div data-key="${audio.dataset.key}" class="key">
+                    <kbd>${String.fromCharCode(audio.dataset.key)}</kbd>
+                    <span class="sound">${sound}</span>
+                </div>`;
         });
+    </script>
+    <script>
+        // let audioElements = document.querySelectorAll('audio');
+        let keyElements = document.querySelectorAll('.key');
+        // console.log(audioElements);
+        // console.log(keyElements);
+
+        // let keyOptions = [];
+        // keyElements.forEach(key => {keyOptions.push(+key.dataset.key);});
+        // console.log(keyOptions);
 
         function playkey(e){
             let keyNumb = e.toUpperCase().charCodeAt();
             // console.log(`keyNumb: ${keyNumb}`);
-            if(audio_options.includes(keyNumb)){
-                console.log(keyNumb);
-                audio[keyNumb].currentTime = 0;
-                audio[keyNumb].play();
-                allDiv.forEach(elem => {
-                    if(elem.dataset.key == keyNumb){
-                        elem.classList.add('playing');
-                        setTimeout(() => { elem.classList.remove('playing') }, 1000);
-                    }
-                })
-            }
-        }
-
-        document.addEventListener('keydown', (ev) => {playkey(ev.key)});
-
-        document.addEventListener('transitionend', () => {
-            console.log('Transition ended');
-        });
-
- 
-    </script> -->
-    <script>
-        let audioElements = document.querySelectorAll('audio');
-        let keyElements = document.querySelectorAll('.key');
-
-        console.log(audioElements);
-        console.log(keyElements);
-
-        let keyOptions = [];
-        keyElements.forEach(key => {keyOptions.push(+key.dataset.key);});
-        console.log(keyOptions);
-
-        function playkey(e){
-            let keyNumb = e.toUpperCase().charCodeAt();
-            console.log(`keyNumb: ${keyNumb}`);
             if(keyOptions.includes(keyNumb)){
 
                 audioElements.forEach(audio => {
@@ -132,9 +114,9 @@
         }
         document.addEventListener('keydown', (ev) => {playkey(ev.key)});
         
+
+        // ─── Version from reading the instructor's code. ─── //
         function playkey2(e){ 
-            // console.log(e); 
-            // console.log(`e.keyCode: ${e.keyCode}`);
 
             if(keyOptions.includes(e.keyCode)){
                 let audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
@@ -144,7 +126,6 @@
                 audio.play();
 
                 key.classList.add('playing');
-                // setTimeout(() => { key.classList.remove('playing') }, 100);
             }
         }
         // document.addEventListener('keydown', playkey2);
@@ -155,5 +136,6 @@
         }
         // document.querySelectorAll('.key').forEach(key => {key.addEventListener('transitionend', removeTransition);});
     </script>
+
 </body>
 </html>

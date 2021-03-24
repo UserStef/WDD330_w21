@@ -9,14 +9,17 @@ let week_preview = document.querySelector('#week_preview');
 let progress = {
     'Week 00': [],
     'Week 01': [],
-    'Week 02': [],
-    'Week 03': [],
+    'Week 02': [0,1,2],
+    'Week 03': [0,2],
     'Week 04': [],
     'Week 05': [2],
     'Week 06': [],
     'Week 07': [1,2],
     'Week 08': [0,1,2],
-    'Week 09': []
+    'Week 09': [0,1,2],
+    'Week 10': [2],
+    'Week 11': [],
+    'Week 12': []
 };
 
 const weekEntries = [

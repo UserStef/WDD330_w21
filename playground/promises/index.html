@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playground - Promises</title>
+    <link rel="icon" href="../../res/St-icon.png">
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container-btn{
+            height: auto; width: auto;
+            margin: 8px 4vw; padding: 8px;
+
+            border: 0px solid rgba(16, 161, 197, 0.7);
+            border-top: 0px solid rgba(16, 161, 197, 0.7);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.7);
+            border-radius: 5px;
+            text-align: center;
+
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 1px 0px rgba(20, 20, 20, 0.54);
+            
+            background-image: linear-gradient(to top, rgba(16, 161, 197, 0.2) 0%,
+                                                      rgba(16, 161, 197, 0.1) 25%,
+                                                      rgba(16, 161, 197, 0.0) 80%);
+            /* box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.54); */
+        }
+        .container-view{
+            height: auto; width: 90vw;
+            min-height: 100px;
+            margin: 8px 4vw; 
+            padding: 8px 1vw;
+            border: 0px solid white;
+            border-radius: 5px;
+
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.89);
+            transition: all 0.5s ease-in-out;
+        }
+        .container-scroll{
+            overflow: scroll;
+            transition: all 0.5s ease-in-out;
+
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+        .container-wrap{
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: all 0.5s ease-in-out;
+
+            overflow: hidden;
+        }
+        .item-card{
+            height: 80px; width: 124px;
+            margin: 4px; padding: 4px;
+            border: 0px solid white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.29);
+        }
+
+        .message-result{
+            font-size: 2rem;
+        }
+
+
+        .invisible{
+            background-color: rgba(0,0,0,0);
+            border-color: rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <span class="title btml">Promises</span>
+        <span class="subtitle">Playground testing.</span>
+    </div>
+    
+    <div id="request-btn" class="container-btn">Display</div>
+    <div id="request-display" class="container-view container-wrap">
+
+    </div>
+
+    <div class="container-view hidden">
+        <ul id="play-ul">
+            <li><a href="../week02/" id="w2btn">Week 02 Button</a></li>
+            <li><a href="../week03/" id="w3btn">Week 03</a></li>
+        </ul>
+    </div>
+    
+    <!-- <script src="../scripts/nav-build.js"></script> -->
+    <script>
+        console.log(` ─── Start of Script ─── `);
+        let jResult = {};
+        let dataReady = false;
+
+        let requestDisplay = document.getElementById("request-display");
+        let requestBtn = document.getElementById("request-btn");
+
+
+        const dice = {
+            sides: 6,
+            roll() {
+                return Math.floor(this.sides * Math.random()) + 1;
+            }
+        }
+
+        const promise = new Promise( (resolve,reject) => {
+            const n = dice.roll();
+            setTimeout(() => {
+                (n > 1) ? resolve(n) : reject(n);
+            }, 100);
+            // setTimeout(() => {
+            //     (n > 1) ? resolve(n) : reject(n);
+            // }, n*1000);
+        });
+
+        function good(n){
+            console.log(`good: ${n}`);
+        }
+        function nat1(n){
+            console.log(`nat1: ${n}`);
+        }
+
+        // promise(good,nat1);
+        // promise.then(good(n),nat1(n));
+        // promise.then(good(n)).then(nat1(n));
+        // promise.then(result => good).then(result => nat1);
+        // promise.then(result => good).catch(result => nat1);
+        // promise.then(good(result),nat1(result));
+        promise.then(good).catch(nat1);
+        
+
+
+        // requestBtn.addEventListener('click', (ev) =>{
+        //     if(dataReady){
+        //         requestDisplay.innerHTML = `<div class="message-result">${jResult.message}</div>`;
+        //     } else{
+        //         requestDisplay.innerHTML = `⏳ not ready... \n\n\t\t ...try again later. ⌛`;
+        //         console.log("⏳ not ready... \n\n\t\t ...try again later. ⌛");
+        //     }
+        // });
+
+        // function fetchData(){
+        //     console.log(" ─── fetch Data ─── ");
+        //     urlToGet = 'https://raw.githubusercontent.com/UserStef/WDD330_w21/main/playground/fetch/test.json'            
+        //     console.log(` ♦ fetching ♦ from: ${urlToGet}`);
+        //     fetch(urlToGet)
+        //     .then(result => result.json())
+        //     .then(jsonResult => {
+        //         console.log(jsonResult);
+        //         jResult = jsonResult;
+        //         setTimeout(() => { dataReady = true; }, 2000);
+        //     })
+        // }
+        // fetchData();
+        console.log(` ─── End of Script ─── `);
+    </script>
+</body>
+</html>

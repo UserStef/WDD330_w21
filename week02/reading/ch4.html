@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Week 02</title>
-    <link rel="stylesheet" href="../../styles/mainstyle.css">
-    <link rel="stylesheet" href="reading-style.css">
+    <link rel="stylesheet" href="../../styles/myStyles.css">
 </head>
 <body>
     <header class="navbar">
     </header>
     <div class="head">
         <span class="title btml">Week 02</span>
-        <!-- <span class="subtitle">Reading notes from Chapter 04</span> -->
-        <span class="subtitle"><a href="Ch3.html" class="arrow-link-2">&LeftTriangle;</a>&nbsp;Reading notes from Chapter 04</span>
+        <span class="subtitle"></span>
     </div>
 
     <div class="week-contents btml">
@@ -23,18 +21,40 @@
 
     <div id="actions" class="container btml">
     </div>
-    
-    <!-- <script src="../scripts/nav-build.js"></script> -->
 
     <script>
+        // ♦ ─────────────── Page StepUp ─────────────── ♦ //
+        const pages = [2,3,4];
+        const current_chapter = 4;
+        let current_page_index = -1;
+        let subtitleElement = document.querySelector('.subtitle');
+        function buildSubtitle(){
+            current_page_index = pages.indexOf(current_chapter);
+            let chapterTxt = ""+current_chapter;
+            if(chapterTxt<10) {chapterTxt = "0"+chapterTxt}
+            let subtitle_literal = "";
+            if(current_page_index > 0){
+                subtitle_literal += `<a href="ch${pages[current_page_index-1]}.html" class="arrow-link-2">&LeftTriangle;</a>&nbsp;`
+            }
+            subtitle_literal += `Reading notes from Chapter ${chapterTxt}`
+            if(current_page_index < pages.length-1){
+                subtitle_literal += `&nbsp;<a href="ch${pages[current_page_index+1]}.html" class="arrow-link-1">&RightTriangle;</a>`
+            }
+            subtitleElement.innerHTML = subtitle_literal;
+        }
+        buildSubtitle();
+        // ♦ ─────────────── ─────────────── ─────────────── ♦ //
 
+        // ♦ ─────────────── Notes StepUp ─────────────── ♦ //
         // -- Reading StepUp -- //
         let scriptLog = {};
         let btn = {};
         let btn_build = {};
         let actions = document.getElementById('actions');
+        // ♦ ─────────────── ─────────────── ─────────────── ♦ //
 
-        // ♦ ── ── Chapter 4 ── ── ♦ //
+
+        // ♦ ─────────────── Building the Buttons ─────────────── ♦ //
 
         const helloMessage = 'Hello Master ;)';
         const byeMessage = 'Goodnight Master &#127747;';
@@ -62,26 +82,39 @@
         hello();
 
 
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
-        // ── __________ ── //
 
 
-        // ♦ ── ── Building the Buttons ── ── ♦ //
 
-        // ── Template ── //
-        btn_build["template"] = {"tag":"div",
-        "innerHTML":"template",
-        "classList":['mbtn2-s','template-btn', 'hidden']};
-        scriptLog["template"] = function(ev){
+        // ♦ ─────────────── Building the Buttons ─────────────── ♦ //
+        // // ── Template ── //
+        // btn_build["template"] = {"tag":"div",
+        // "innerHTML":"template",
+        // "classList":['mbtn2-s','template-btn', 'hidden']};
+        // scriptLog["template"] = function(ev){
+        //     console.log(`// ── Template ── //`);
+        //     // -- code goes here
+        //     let sectionLog = `// ── Template ── //`;
+        //     sectionLog += `\n 3+5`;
+        //     sectionLog += `\n  ≫ ${3+5}`;
+        //     console.log(sectionLog);
+        // };
+
+        // ── Template 2 ── //
+        btn_build["Template"] = {"tag":"div",
+        "innerHTML":"Template",
+        "classList":['mbtn2-s','log-btn', 'faded'],
+        "log":""};
+        scriptLog["Template"] = function(ev){
             console.log(`// ── Template ── //`);
             // -- code goes here
+            let toLog = [`parseInt('st',36)`];
+            let sectionLog = ``;
+            toLog.forEach(log => {
+                sectionLog += ` ${log}`;
+                sectionLog += `\n  ≫ ${eval(log)}\n`;
+            });
+            btn_build["Template"]["log"] = sectionLog;
+            console.log(btn_build["Template"]["log"]);
         };
 
         // ── Button Push Animation ── //
@@ -109,6 +142,7 @@
             btn[btnkey].addEventListener('click', scriptLog[btnkey]);
             btn[btnkey].addEventListener('click', clickBtn);
         })
+        // ♦ ─────────────── ─────────────── ─────────────── ♦ //
     
     </script>
 

@@ -107,6 +107,16 @@
                     if(key.dataset.key == keyNumb){
                         key.classList.add('playing');
                         setTimeout(() => { key.classList.remove('playing') }, 100);
+                        if(key.dataset.y == undefined || key.dataset.y == 0){
+                            key.dataset.y = 10;
+                            key.style.transform = `translateY(${key.dataset.y}px)`;
+                        } else if (key.dataset.y > 89){
+                            key.dataset.y = 0;
+                            key.style.transform = `translateY(${key.dataset.y}px)`;
+                        } else {
+                            key.dataset.y = 10 + (key.dataset.y*1);
+                            key.style.transform = `translateY(${key.dataset.y}px)`;
+                        }
                     }
                 });
 

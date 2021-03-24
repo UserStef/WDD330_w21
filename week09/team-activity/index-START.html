@@ -7,6 +7,8 @@
 </head>
 <body>
 
+    <!-- <div id="test" class="test" style="border: 1px solid magenta; position: relative; top: 0px; padding: 20px;">Test</div>
+    <div id="test" class="test2" style="border: 1px solid cyan; padding: 20px;">Test</div> -->
 
     <div class="keys">
         <div data-key="65" class="key">
@@ -56,6 +58,8 @@
     <audio data-key="74" src="sounds/snare.wav"></audio>
     <audio data-key="75" src="sounds/tom.wav"></audio>
     <audio data-key="76" src="sounds/tink.wav"></audio>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
     <!-- <audio id="audio65" data-key="65" src="sounds/clap.wav"></audio> -->
     <!-- <script>
@@ -125,6 +129,33 @@
                     if(key.dataset.key == keyNumb){
                         key.classList.add('playing');
                         setTimeout(() => { key.classList.remove('playing') }, 100);
+                        // console.log(`key.dataset.y: ${key.dataset.y}`);
+                        // key.style.transition = "all 0.1s ease-in";
+                        if(key.dataset.y == undefined || key.dataset.y == 0){
+                            key.dataset.y = 10;
+                            key.style.transform = `translateY(${key.dataset.y}px)`;
+                            // console.log(`key.dataset.y (Null): ${key.dataset.y}`);
+                        } else if (key.dataset.y > 80){
+                            key.dataset.y = 0;
+                            key.style.transform = `translateY(${key.dataset.y}px)`;
+                            // console.log(`key.dataset.y (>100): ${key.dataset.y}`);
+                        } else {
+                            key.dataset.y = 10 + (key.dataset.y*1);
+                            key.style.transform = `translateY(${key.dataset.y}px)`;
+                            // console.log(`key.dataset.y (else): ${key.dataset.y}`);
+                        }
+
+
+                        // $(".test").animate({ 
+                        //     top: "+=50" 
+                        // });
+                        // $(".test2").animate({ 
+                        //     top: "+=50"
+                        // });
+                        // $(".keys").animate({ 
+                        //     top: "+=50" 
+                        // });
+
                     }
                 });
 

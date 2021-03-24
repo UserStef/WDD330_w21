@@ -4,7 +4,8 @@ let btn = {};
 let btn_build = {};
 let actions = document.getElementById('actions');
 
-// ♦ ── ── Chapter 2 ── ── ♦ //
+
+// ♦ ─────────────── Chapter 2 ─────────────── ♦ //
 
 // ── Comments ── //
 
@@ -511,6 +512,10 @@ scriptLog["Booleans"] = function(ev){
 // ── Equality ── //
 // ── Inequality ── //
 // ── Greater Than and Less Than ── //
+
+
+
+
 
 
 // ♦ ── ── Building the Buttons ── ── ♦ //

@@ -1,0 +1,7 @@
+
+
+`npm run start-auth`
+This will start up our authentication server.
+It will be listening at `http://127.0.0.1:3000/`
+
+`ctrl-c` will terminate the program when you are ready.

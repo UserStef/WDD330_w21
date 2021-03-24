@@ -1,17 +1,33 @@
+// localStorage.removeItem("preferences");
 
 console.log(" -- Start of Navigation Build Script -- ");
+let preferences = {};
 
 let head = document.querySelector('header');
 
 // ───────────────  ───────────────  ─────────────── 
 
 let week_numb = 0;
-let nav_form = "wrap";
-if(document.title != "WDD330 - Home"){
-    week_numb = +document.title.split(" ")[1];
-} else {
-    week_numb = 9;
+let nav_form = "scroll";
+// nav_form = "scroll | wrap";
+
+function updatePreferences(){
+    localStorage.setItem("preferences", JSON.stringify(preferences));
+    console.log(preferences);
 }
+if (localStorage.getItem('preferences')){
+    preferences = JSON.parse(localStorage.getItem('preferences'));
+    console.log(preferences);
+    nav_form = preferences["nav_form"];
+} else {
+    preferences = {
+        "nav_form":"scroll",
+        "brightness":"night"
+    }
+    updatePreferences();
+}
+
+
 
 // ───────────────  ───────────────  ─────────────── 
 
@@ -26,18 +42,25 @@ let nav_wrap = document.createElement('div');
 nav_scroll.id = "nav_scroll";
 nav_wrap.id = "nav_wrap";
 nav_scroll.classList.add("navswitch-emoji", "centerAll");
-nav_wrap.classList.add("navswitch-emoji", "centerAll", "opac");
+nav_wrap.classList.add("navswitch-emoji", "centerAll");
+
+if(nav_form == "scroll"){
+    nav_wrap.classList.add("opac");
+} else {
+    nav_scroll.classList.add("opac");
+}
 
 nav_scroll.innerHTML = "&#128220;";
 nav_wrap.innerHTML = "&#127791;";
 
 navswitch_btn.appendChild(nav_scroll);
 navswitch_btn.appendChild(nav_wrap);
-if(week_numb > 5){
-    head.appendChild(navswitch_btn);
-    nav_form = "scroll";
-}
+// if(week_numb > 5){
+//     head.appendChild(navswitch_btn);
+//     nav_form = "scroll";
+// }
 
+head.appendChild(navswitch_btn);
 
 
 // -- Add the list of links.
@@ -56,13 +79,20 @@ function toggleNav(ev){
     let olnav = document.querySelector("#olnav");
     olnav.classList.toggle("olnav-scroll");
     olnav.classList.toggle("olnav-wrap");
+
+    if(preferences["nav_form"] == "scroll"){
+        preferences["nav_form"] = "wrap";
+    } else {
+        preferences["nav_form"] = "scroll";
+    }
+    updatePreferences();
 }
 nav_scroll.addEventListener("click", toggleNav, true);
 nav_wrap.addEventListener("click", toggleNav, true);
 
 // ───────────────  ───────────────  ─────────────── 
 
-let number_of_weeks = 9;
+let number_of_weeks = 12;
 
 let links = [
     {

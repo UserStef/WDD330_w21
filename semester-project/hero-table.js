@@ -118,6 +118,13 @@ heroList.forEach(h =>{
     hero[h.index] = h;
 });
 
+let heroSort = [];
+heroList.forEach(h =>{
+    // let nh = h;
+    // nh[awst] = 77;
+    heroSort.push(h);
+});
+
 /* ─────────────── CTA: Building Interface ─────────────── */
 
 const colnames = [
@@ -132,12 +139,12 @@ const col_icons = [
     "atk", "hp", "def"
 ];
 
-let col_start = [
+let col_start1 = [
     "index",
     "atk", "hp", "def", 
     "dmg", "sum"
 ];
-let col_start2 = [
+let col_start = [
     "index", "name",  
     "atk", "hp", "def", "critrate", "critdmg", "reload", 
     "dmg", "sum"
@@ -181,9 +188,11 @@ let heroTable = document.getElementById('heroTable');
 heroTable.classList.add('htable');
 
 let thead = document.createElement('thead');
+thead.classList.add('sticky-headers');
 heroTable.appendChild(thead);
 let tbody = document.createElement('tbody');
 tbody.id = "tbody";
+tbody.classList.add('scroll-tbody');
 heroTable.appendChild(tbody);
 
 let column_names = Object.keys(heroList[0]);
@@ -261,7 +270,8 @@ heroList.forEach(h =>{
             // td.innerHTML = `<img src="res/cta-hero-icon/z_empty.png" alt="${h[col]}" class="heroimg">`;
             // td_div.innerHTML = `<img src="res/cta-hero-icon/${h.name}.png" alt="${h[col]}" class="heroimg_zoomed heroimg_hide">`;
             hero_img = document.createElement('img');
-            hero_img.classList.add("heroimg_zoomed","heroimg_hide");
+            hero_img.classList.add("heroimg","heroimg_hide");
+            // hero_img.classList.add("heroimg_zoomed","heroimg_hide");
             hero_img.src = `res/cta-hero-icon/${h.name}.png`;
             hero_img.alt = h[col];
             hero_img.id = `img-${h.index}`;
@@ -295,6 +305,56 @@ heroList.forEach(h =>{
     • calcAwSt()
     • selectFormation()
 */ 
+
+// tid: table identifier
+
+function makeTable(myColumns, myRows, tid, myClasses={}){
+    // -- Table -- //
+    let myTable = document.createElement('table');
+    myTable.classList.add('class1', 'class2');
+
+    // -- Header -- //
+    let thead = document.createElement('thead');
+    thead.classList.add('sticky-headers');
+
+    let thead_row = document.createElement('tr');
+    myColumns.forEach(col => {
+        let th_cell = document.createElement('th');
+        th_cell.classList.add(`col-${col}`, '');
+
+        let hdiv = document.createElement('div');
+        hdiv.innerHTML = `${col}`;
+        hdiv.classList.add('tcell', 'table-header');
+
+        th_cell.appendChild(hdiv);
+        thead_row.appendChild(th_cell);
+    });
+    thead.appendChild(thead_row);
+
+    // -- Rows -- //
+    let tbody = document.createElement('tbody');
+    tbody.classList.add('scroll-tbody');
+
+    myRows.forEach(row => {
+        let trow = document.createElement('tr');
+        myColumn.forEach(col =>{
+            let td_cell = document.createElement('td');
+            td_cell.classList.add(`${tid}-col-${col}`, `${tid}-row-${row}`, 'td_cell');
+            
+            let td_cell_div = document.createElement('div');
+            td_cell_div.classList.add('td_div','td_data');
+            td_cell_div.innerHTML = row[col];
+            
+            td_cell.appendChild(td_cell_div);
+            trow.appendChild(td_cell);
+        });
+        tbody.appendChild(trow);
+    });
+
+    myTable.appendChild(thead);
+    myTable.appendChild(tbody);
+
+}
 
 
 function toggleColumns(column_to_toggle){
@@ -332,7 +392,7 @@ function toggleColBy(query_to_find, class_to_toggle){
 
 function buildFormationTable(){
     let formationTable = document.getElementById('formationTable');
-    formationTable.classList.add('htable', 'hidden');
+    formationTable.classList.add('ftable', 'hidden');
     
     let fhead = document.createElement('thead');
     formationTable.appendChild(fhead);
@@ -528,6 +588,55 @@ function updateSumRow(){
     });
 }
 
+function sortHeroesBy(){
+    // var heroSort = [];
+    // heroSort = heroSort.concat(heroArray);
+
+    // switch(att){
+    //     case "id":
+    //         heroSort.sort(function(a, b){return a.herosort - b.herosort});
+    //         heroSort.sort(function(a, b){return a.elem.localeCompare(b.elem)});
+    //         break;
+    //     case "name":
+    //         heroSort.sort(function(a, b){return a.heroname.localeCompare(b.heroname)});
+    //         break;
+    //     case "atk":
+    //         heroSort.sort(function(a, b){return a.atk - b.atk});
+    //         break;
+    //     case "hp":
+    //         heroSort.sort(function(a, b){return a.hp - b.hp});
+    //         break;
+    //     case "def":
+    //         heroSort.sort(function(a, b){return a.def - b.def});
+    //         break;
+    //     case "critrate":
+    //         heroSort.sort(function(a, b){return a.critrate - b.critrate});
+    //         break;
+    //     case "critdmg":
+    //         heroSort.sort(function(a, b){return a.critdmg - b.critdmg});
+    //         break;
+    //     case "reload":
+    //         heroSort.sort(function(a, b){return a.reload - b.reload});
+    //         break;
+    //     case "dmg":
+    //         heroSort.sort(function(a, b){
+    //             return (a.atk*a.reload*((a.critrate*a.critdmg)+1)) - (b.atk*b.reload*((b.critrate*b.critdmg)+1))
+    //         });
+    //         break;
+    //     case "sum":
+    //         heroSort.sort(function(a, b){
+    //             var aDmg = (a.atk*a.reload*((a.critrate*a.critdmg)+1));
+    //             var bDmg = (b.atk*b.reload*((b.critrate*b.critdmg)+1));
+    //             return (aDmg+(a.hp/10)+(a.def*2)) - (bDmg+(b.hp/10)+(b.def*2))
+    //         });
+    //         break;
+    //     default:
+    //         heroSort.sort(function(a, b){return a[att] - b[att]});
+    //         break;
+    // }
+    // Repopulate(heroSort, att);
+}
+
 /* ─────────────── CTA: event mess ─────────────── */
 
 document.addEventListener('click', (ev)=>{
@@ -547,7 +656,7 @@ document.addEventListener('click', (ev)=>{
 
 
 
-/* ─────────────── CTA: calling things─────────────── */
+/* ─────────────── CTA: calling things ─────────────── */
 
 buildFormationTable();
 buildSumRow();

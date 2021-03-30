@@ -155,6 +155,36 @@ let sumStats = [
     "atk", "hp", "def",  
     "dmg", "sum"
 ];
+// -- column background 2:
+const col_back = [
+    "atk", "hp", "def", "critrate", "critdmg", "reload", 
+    "range", "move", "resist", "aoe"
+];
+
+// -- to allow a different color background for dmg and sum.
+let col_special = [
+    "index",
+    "dmg", "sum"
+];
+
+// -- to better track the column of the 3 main attributes.
+let col_row_emoji = {
+    "atk":"⚔️", "hp":"❤️", "def":"🛡️"
+}
+// -- to know which columns are text
+const col_text = [
+    "id", "index", "name", "elem", "class", "rarity", "gender", 
+    "buffaffected", "bufftarget"
+];
+
+// -- columns that have a btn style for their headers.
+let sort_ready = ["atk", "hp", "def", "dmg", "sum"];
+
+// -- columns that have emojis.
+const col_icons = [
+    "awaken", "star",
+    "atk", "hp", "def"
+];
 
 // ───────────────  ───────────────  ─────────────── //
 
@@ -173,6 +203,9 @@ let sumStats = [
 function MakeTable(parentId, columns, tid){
     let htable = document.getElementById(parentId);
     htable.classList.add('htable');
+    if(htable.classList.contains('hidden') && tid == formationTableID && formationIDs.length > 0){
+        htable.classList.remove('hidden');
+    }
 
     let thead = document.createElement('thead');
     thead.classList.add('sticky-headers');
@@ -194,13 +227,15 @@ function MakeTable(parentId, columns, tid){
             th_div.innerText = col;
             th_div.classList.add(`sortbtn`);
 
-            // // -- to add icons ↓
-            // if(col_icons.includes(col)){
-            //     th_div.innerHTML = `${col}<img src="res/other-icons/${col}.png" alt="${col}" height="28" width="28" data-sort="${col}">`;
-            // }
-
+            // -- to add icons ↓
+            if(col_icons.includes(col)){
+                th_div.innerHTML = `${col}<img src="${resPath}/other-icons/${col}.png" alt="${col}" height="28" width="28" data-sort="${col}">`;
+            }
+    
             // -- to add a specific style ↓
-            th_div.classList.add(`sortid`);
+            if(sort_ready.includes(col)){
+                th_div.classList.add(`sort${col}`);
+            } else { th_div.classList.add(`sortid`); }
 
         th.appendChild(th_div);
         hrow.appendChild(th);
@@ -209,14 +244,20 @@ function MakeTable(parentId, columns, tid){
 }
 
 function MakeRows(tid){
-    let tbody = document.getElementById(`${tid}-tbody`);
+    // let tbody = document.getElementById(`${tid}-tbody`);
     heroList.forEach(h =>{
-        tbody.appendChild(MakeRow(tid, h.id));
+        MakeRow(h.id);
     });
 }
 
 // • Returns the dom element of a row.
-function MakeRow(tid, heroid, columns = col_start){
+function MakeRow(heroid, columns = col_start){
+    let tid = heroTableID;
+    if(formationIDs.includes(heroid)){
+        tid = formationTableID;
+    }
+    let tbody = document.getElementById(`${tid}-tbody`);
+
     let row = document.createElement('tr');
     let h = hero[heroid];
     // row.id = h.index;
@@ -230,6 +271,21 @@ function MakeRow(tid, heroid, columns = col_start){
         td.classList.add(`col-${col}`,`row-${h.id}`);
         // td.innerText = h[col];
         td.dataset.col = col;
+
+        // -- ↓ This adds a special style.
+        // -- ↓ for: (dmg, sum);
+        if(col_special.includes(col)){
+            td.classList.add(`row-bg-${col}`);
+        }
+
+        // -- ↓ This adds the background class.
+        if(col_back.includes(col)){
+            // -- background 2 is single color.
+            td.classList.add(`row-bg2-${h.elem}`);
+        } else {
+            // -- background matches element color.
+            td.classList.add(`row-bg-${h.elem}`);
+        }
 
         // -- This is the div
         let td_div = document.createElement('div');
@@ -250,10 +306,13 @@ function MakeRow(tid, heroid, columns = col_start){
             hero_img.src = `${resPath}/cta-hero-icon/${h.name}.png`;
             hero_img.alt = h[col];
             hero_img.id = `img-${h.id}`;
-            hero_img.dataset.heroLocation = `tbody`;
+            hero_img.dataset.heroLocation = `${tid}-tbody`;
             hero_img.dataset.heroIndex = h.index;
             hero_img.dataset.heroId = h.id;
             td_div.appendChild(hero_img);
+            td_div.classList.add('centerAll');
+        } else if(Object.keys(col_row_emoji).includes(col)){
+            td_div.innerText = col_row_emoji[col] + stat;
         } else if(col == "dmg" || col == "sum"){
             td_div.innerText = Math.round(stat,2);
         } else {
@@ -263,7 +322,7 @@ function MakeRow(tid, heroid, columns = col_start){
         td.appendChild(td_div);
         row.appendChild(td);
     });
-    return row;
+    tbody.appendChild(row);
 }
 
 function buildSumRow(columns = col_start, tid){
@@ -287,17 +346,17 @@ function buildSumRow(columns = col_start, tid){
         td.classList.add(`fcol-${col}`,`frow-sum`);
         td.dataset.col = col;
 
-        // // -- ↓ This adds a special style.
-        // if(col_special.includes(col)){
-        //     td.classList.add(`row-bg-${col}`);
-        // }
+        // -- ↓ This adds a special style.
+        if(col_special.includes(col)){
+            td.classList.add(`row-bg-${col}`);
+        }
 
-        // // -- ↓ This adds the background class.
-        // if(col_back.includes(col)){
-        //     td.classList.add(`row-bg2-sum`);
-        // } else {
-        //     td.classList.add(`row-bg-sum`);
-        // }
+        // -- ↓ This adds the background class.
+        if(col_back.includes(col)){
+            td.classList.add(`row-bg2-sum`);
+        } else {
+            td.classList.add(`row-bg-sum`);
+        }
 
         // -- This is the div
         let td_div = document.createElement('div');
@@ -324,20 +383,16 @@ function buildSumRow(columns = col_start, tid){
             hero_img.alt = "sum of formation";
             hero_img.id = `img-sum`;
             td_div.appendChild(hero_img);
+        } else if(Object.keys(col_row_emoji).includes(col)){
+            td_div.innerText = col_row_emoji[col] + stat;
         } else {
             td_div.innerText = stat;
         }
-        
-        // else if(Object.keys(col_row_emoji).includes(col)){
-        //     td_div.innerText = col_row_emoji[col] + stat;
-        // } else {
-        //     td_div.innerText = stat;
-        // }
 
         // -- ↓ This centers the text.
-        // if(col_back.includes(col)){
-        //     td_div.classList.add(`text-center`);
-        // }
+        if(col_back.includes(col)){
+            td_div.classList.add(`text-center`);
+        }
 
         td.appendChild(td_div);
         frow.appendChild(td);
@@ -352,6 +407,12 @@ function updateSumRow(){
     // 'range': 0, 'move': 0, 'resist': 0, 'aoe': 0, 'dmg': 0, 'sum': 0}
     let sum = {'atk': 0, 'hp': 0, 'def': 0, 'dmg': 0, 'sum': 0}
     let keysToAdd = Object.keys(sum);
+    colnames.forEach(col => {
+        sum[col] = 0;
+        if(col_text.includes(col)){
+            sum[col] = "";
+        }
+    });
     console.log(formationIDs);
     formationIDs.forEach(heroid => {
         // console.log(`updateSumRow() → forEach(heroid) → heroid: ${heroid}`);
@@ -381,12 +442,11 @@ function updateSumRow(){
             stat = stat.toLocaleString(undefined,{ minimumFractionDigits: 2 });
         }
 
-        // if(Object.keys(col_row_emoji).includes(col)){
-        //     divAtt.innerText = col_row_emoji[col] + stat;
-        // } else {
-        //     divAtt.innerText = stat;
-        // }
-        divAtt.innerText = stat;
+        if(Object.keys(col_row_emoji).includes(col)){
+            divAtt.innerText = col_row_emoji[col] + stat;
+        } else {
+            divAtt.innerText = stat;
+        }
     });
 }
 
@@ -411,7 +471,7 @@ function toggleHero(heroID){
         fbody.appendChild(hero_row);
         hero_row.classList.remove = "row-in-tbody";
         hero_row.classList.add = "row-in-fbody";
-        hero_img.dataset.heroLocation = "fbody";
+        hero_img.dataset.heroLocation = `${formationTableID}-tbody`;
         if(!formationIDs.includes(heroID)){
             formationIDs.push(heroID);
         }
@@ -420,7 +480,7 @@ function toggleHero(heroID){
         tbody.appendChild(hero_row);
         hero_row.classList.add = "row-in-tbody";
         hero_row.classList.remove = "row-in-fbody";
-        hero_img.dataset.heroLocation = "tbody";
+        hero_img.dataset.heroLocation = `${heroTableID}-tbody`;
         formationIDs.splice(formationIDs.indexOf(heroID),1);
     }
     formationCount = fbody.children.length - 1;
@@ -474,9 +534,9 @@ MakeRows(heroTableID);
 buildSumRow(col_start, formationTableID);
 updateSumRow();
 
-formationIDs.forEach(h =>{
-    toggleHero(h);
-})
+// formationIDs.forEach(h =>{
+//     toggleHero(h);
+// })
 
 toggleColBy(".heroimg_hide", "heroimg_hide");
 

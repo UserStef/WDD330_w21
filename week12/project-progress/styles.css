@@ -52,6 +52,21 @@ body{
     font-family: "Oxygen", sans-serif;
 }
 
+::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(200, 0, 0, 0.0);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 180, 180, 0.0);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.7);;
+}
+
 a:link, a:visited, a:hover, a:active{
     text-decoration: none;
 }
@@ -63,18 +78,18 @@ a:link, a:visited, a:hover, a:active{
     overflow: scroll;
 }
 .htable{
-    height: 81vh; width: 98vw;
-    margin: 1vh 1vw; padding: 0vh 0vw;
+    /* height: 81vh; width: 96vw;
+    margin: 1vh 1vw; padding: 0vh 0vw; */
     
-    /* display: flex; */
+    /* display: flex;
     display: table-cell;
     flex-direction: column;
-    overflow: scroll;
+    overflow: scroll; */
     
     /* position: relative; */
     /* top: 0; */
 
-    border: 1px solid black;
+    border: 1px solid white;
     border-spacing: 0px;
     color: white;
 }
@@ -83,20 +98,12 @@ a:link, a:visited, a:hover, a:active{
     overflow: scroll;
 }
 .sticky-headers{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    position: sticky;
-    top: 0;
-}
-.hT-hrow{
     /* display: flex; */
     /* justify-content: center; */
     /* align-items: center; */
     /* flex-direction: row; */
-    /* position: sticky; */
-    /* top: 0; */
+    /* position: sticky;
+    top: 0; */
 }
 .hT-th{
     /* background-color: black; */
@@ -126,14 +133,14 @@ a:link, a:visited, a:hover, a:active{
 }
 
 .sortbtn{
-    height: 32px; width: auto;
+    height: 32px; width: 12vw;
     margin: 2px;
-    padding: 0px 4px;
+    padding: 0px 2px;
     cursor: pointer;
     user-select: none;
     /* border: 1px solid black; */
     /* border-radius: 5px; */
-    /* box-shadow: 2px 2px 2px magenta; */
+    box-shadow: 2px 2px 2px magenta;
     color: white;
     display: flex;
     justify-content: center;
@@ -192,30 +199,30 @@ a:link, a:visited, a:hover, a:active{
 /* ─────────────── Hero Table: Row Style ─────────────── */
 
 .heroimg{
-    height: 38px; width: 38px;
+    height: 28px; width: 28px;
     opacity: 1;
     transition: all 0.2s ease-in-out;
 }
-.heroimg_zoomed{
+/* .heroimg_zoomed{
     height: 48px; width: 48px;
     opacity: 1;
     transition: all 0.2s ease-in-out;
-}
+} */
 .heroimg_hide{
     opacity: 0;
 }
 
-.text-center{
+/* .text-center{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.h_Dark{color: var(--heroDark2);}
+/* .h_Dark{color: var(--heroDark2);}
 .h_Fire{color: var(--heroFire2);}
 .h_Light{color: var(--heroLight2);}
 .h_Plant{color: var(--heroPlant2);}
-.h_Water{color: var(--heroWater2);}
+.h_Water{color: var(--heroWater2);} */
 
 .row-bg-Dark{
     background-image: linear-gradient(to bottom, var(--heroDark), var(--heroDark2));
@@ -241,12 +248,9 @@ a:link, a:visited, a:hover, a:active{
 .row-bg-index{
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     height: 38px; 
-    /* height: 48px;  */
     width: auto;
     margin: 0px; 
-    /* padding: 0px; */
 }
 
 .row-bg-dmg{
@@ -260,9 +264,4 @@ a:link, a:visited, a:hover, a:active{
 .row-bg2-sum{
     text-align: center;
     background-color: #222; 
-    /* background-image: linear-gradient(to bottom right, #222, #333); */
 }
-
-/* .col-name{
-    width: 100px;
-} */

@@ -47,7 +47,7 @@ const heroList = [
     {'id': 'LiGoKn', 'index': 'L10', 'name': 'Gold Knight', 'elem': 'Light', 'class': 'Knight', 'rarity': 'Rare', 'gender': 'Male', 'atk': 40, 'hp': 480, 'def': 15, 'critrate': 0.1, 'critdmg': 1, 'reload': 1, 'range': 150, 'move': 140, 'resist': 0.12, 'aoe': 0, 'dmg': 44, 'sum': 118, 'buffaffected': 'Light', 'buffamount': 0.25, 'bufftarget': 'Move'},
     {'id': 'LiHeBo', 'index': 'L04', 'name': 'Healer Bot', 'elem': 'Light', 'class': 'Support', 'rarity': 'Common', 'gender': 'Male', 'atk': 10, 'hp': 300, 'def': 2, 'critrate': 0.1, 'critdmg': 1, 'reload': 1, 'range': 490, 'move': 140, 'resist': 0.25, 'aoe': 0, 'dmg': 11, 'sum': 44, 'buffaffected': '-none-', 'buffamount': 0, 'bufftarget': '-none-'},
     {'id': 'LiHi', 'index': 'L20', 'name': 'Hikari', 'elem': 'Light', 'class': 'Samurai', 'rarity': 'Epic', 'gender': 'Male', 'atk': 40, 'hp': 525, 'def': 6, 'critrate': 0.25, 'critdmg': 2, 'reload': 1, 'range': 150, 'move': 170, 'resist': 0.12, 'aoe': 0, 'dmg': 60, 'sum': 104.5, 'buffaffected': 'AllTeam', 'buffamount': 0.3, 'bufftarget': 'Move'},
-    {'id': 'LiJoOfAr', 'index': 'L07', 'name': 'Joan Of Arc', 'elem': 'Light', 'class': 'Lancer', 'rarity': 'Rare', 'gender': 'Female', 'atk': 28, 'hp': 500, 'def': 12, 'critrate': 0.1, 'critdmg': 1, 'reload': 0.67, 'range': 220, 'move': 140, 'resist': 0.12, 'aoe': 0, 'dmg': 20.636, 'sum': 102, 'buffaffected': 'Light', 'buffamount': 4, 'bufftarget': 'Def'},
+    {'id': 'LiJoOfAr', 'index': 'L07', 'name': 'Joan of Arc', 'elem': 'Light', 'class': 'Lancer', 'rarity': 'Rare', 'gender': 'Female', 'atk': 28, 'hp': 500, 'def': 12, 'critrate': 0.1, 'critdmg': 1, 'reload': 0.67, 'range': 220, 'move': 140, 'resist': 0.12, 'aoe': 0, 'dmg': 20.636, 'sum': 102, 'buffaffected': 'Light', 'buffamount': 4, 'bufftarget': 'Def'},
     {'id': 'LiKr', 'index': 'L06', 'name': 'Krunk', 'elem': 'Light', 'class': 'Gunner', 'rarity': 'Rare', 'gender': 'Male', 'atk': 28, 'hp': 600, 'def': 14, 'critrate': 0.1, 'critdmg': 1, 'reload': 0.83, 'range': 410, 'move': 140, 'resist': 0.1, 'aoe': 0, 'dmg': 25.564, 'sum': 116, 'buffaffected': 'Light', 'buffamount': 4, 'bufftarget': 'Atk'},
     {'id': 'LiLiKn', 'index': 'L01', 'name': 'Light Knight', 'elem': 'Light', 'class': 'Rogue', 'rarity': 'Common', 'gender': 'Male', 'atk': 25, 'hp': 350, 'def': 15, 'critrate': 0.2, 'critdmg': 1, 'reload': 1, 'range': 120, 'move': 220, 'resist': 0.12, 'aoe': 0, 'dmg': 30, 'sum': 90, 'buffaffected': '-none-', 'buffamount': 0, 'bufftarget': '-none-'},
     {'id': 'LiMe', 'index': 'L12', 'name': 'Merlinus', 'elem': 'Light', 'class': 'Support', 'rarity': 'Rare', 'gender': 'Male', 'atk': 14, 'hp': 270, 'def': 12, 'critrate': 0.1, 'critdmg': 1, 'reload': 0.67, 'range': 550, 'move': 100, 'resist': 0.29, 'aoe': 0, 'dmg': 10.318, 'sum': 65, 'buffaffected': 'Light', 'buffamount': 5, 'bufftarget': 'HP'},
@@ -466,7 +466,7 @@ function toggleHero(heroID){
     // console.log(formationCount);
 
     // -- if clicked is in 'tbody', and there are less then 11 in 'fbody';
-    if(hero_img.dataset.heroLocation == "tbody" && formationCount < 11){
+    if(hero_img.dataset.heroLocation == `${heroTableID}-tbody` && formationCount < 11){
         // -- Add to formation.
         fbody.appendChild(hero_row);
         hero_row.classList.remove = "row-in-tbody";
@@ -505,15 +505,13 @@ function saveFormation(){
 /* ─────────────── Events ─────────────── */
 
 document.addEventListener('click', (ev)=>{
-    if (event.target.dataset.heroLocation != null){
-        console.log("Calling: toggleHero() > " + event.target.dataset.heroLocation);
-        toggleHero(event.target.dataset.heroId);
+    if (ev.target.dataset.heroLocation != null){
+        console.log("Calling: toggleHero() > " + ev.target.dataset.heroLocation);
+        toggleHero(ev.target.dataset.heroId);
         updateSumRow();
         saveFormation();
     }
 });
-
-
 
 
 /* ─────────────── Calling Functions ─────────────── */

@@ -2,6 +2,17 @@
 
 console.log(" -- Start of Navigation Build Script -- ");
 let preferences = {};
+// ───────────────  ───────────────  ─────────────── 
+let thisUrl = document.location.href;
+let pathStart = "";
+if(thisUrl.includes("WDD330_w21")){
+    pathStart = thisUrl.split("WDD330_w21")[0] + "WDD330_w21";
+} else {
+    pathStart = thisUrl.split("portfolio")[0] + "portfolio";
+}
+console.log(`pathStart = '${pathStart}'`)
+
+// ───────────────  ───────────────  ─────────────── 
 
 let head = document.querySelector('header');
 
@@ -10,6 +21,7 @@ let head = document.querySelector('header');
 let week_numb = 0;
 let nav_form = "scroll";
 // nav_form = "scroll | wrap";
+let scrollLeft = 0;
 
 function updatePreferences(){
     localStorage.setItem("preferences", JSON.stringify(preferences));
@@ -18,7 +30,8 @@ function updatePreferences(){
 if (localStorage.getItem('preferences')){
     preferences = JSON.parse(localStorage.getItem('preferences'));
     console.log(preferences);
-    nav_form = preferences["nav_form"];
+    nav_form = preferences['nav_form'];
+    scrollLeft = preferences['scrollLeft'];
 } else {
     preferences = {
         "nav_form":"scroll",
@@ -97,7 +110,7 @@ let number_of_weeks = 12;
 let links = [
     {
         label: "&#127968;",
-        url: "../index.html",
+        url: `${pathStart}/index.html`,
         classlist: ["homebtn"]
     }
 ];
@@ -106,20 +119,28 @@ let specific_btns = [
     `<li><button class="homebtn mhbtn-off">&#127968;</button></li>`,
     `<a href="../index.html"><div id="playground2">&#128682;</div></a>`];
 
-if(document.title == "WDD330 - Home"){
-    links[0].url = "index.html";
-    for(let i = 1; i<number_of_weeks+1; i++){
-        weekNumb = i;
-        if (i<10){weekNumb = "0"+i;}
-        links.push({label: "Week "+weekNumb, url: "week"+weekNumb+"/index.html", classlist: ["mbtn", "mbtn-on"]});
-    }
-} else {
-    for(let i = 1; i<number_of_weeks+1; i++){
-        weekNumb = i;
-        if (i<10){weekNumb = "0"+i;}
-        links.push({label: "Week "+weekNumb, url: "../week"+weekNumb+"/index.html", classlist: ["mbtn", "mbtn-on"]});
-    }
+// if(document.title == "WDD330 - Home"){
+//     links[0].url = "index.html";
+//     for(let i = 1; i<number_of_weeks+1; i++){
+//         weekNumb = i;
+//         if (i<10){weekNumb = "0"+i;}
+//         links.push({label: "Week "+weekNumb, url: "week"+weekNumb+"/index.html", classlist: ["mbtn", "mbtn-on"]});
+//     }
+// } else {
+//     for(let i = 1; i<number_of_weeks+1; i++){
+//         weekNumb = i;
+//         if (i<10){weekNumb = "0"+i;}
+//         links.push({label: "Week "+weekNumb, url: "../week"+weekNumb+"/index.html", classlist: ["mbtn", "mbtn-on"]});
+//     }
+// }
+// links[0].url = "index.html";
+for(let i = 1; i<number_of_weeks+1; i++){
+    weekNumb = i;
+    if (i<10){weekNumb = "0"+i;}
+    links.push({label: "Week "+weekNumb, url: `${pathStart}/week${weekNumb}/index.html`, classlist: ["mbtn", "mbtn-on"]});
 }
+
+// pathStart
 
 links.map(link => {
     let classes = link.classlist.join(" ");
@@ -134,3 +155,12 @@ links.map(link => {
         `<li><button class="${link.classlist[0]} mbtn-off">${link.label}</button></li>`;
     }
 });
+
+if(scrollLeft > 0){
+    document.getElementById('olnav').scrollLeft = scrollLeft;
+}
+
+ol.addEventListener("touchend", (ev) => {
+    preferences['scrollLeft'] = document.getElementById('olnav').scrollLeft;
+    updatePreferences();
+})

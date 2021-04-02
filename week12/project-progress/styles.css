@@ -265,3 +265,8 @@ a:link, a:visited, a:hover, a:active{
     text-align: center;
     background-color: #222; 
 }
+
+.td-class{
+    display: flex;
+    flex-direction: row;
+}

@@ -164,3 +164,5 @@ ol.addEventListener("touchend", (ev) => {
     preferences['scrollLeft'] = document.getElementById('olnav').scrollLeft;
     updatePreferences();
 })
+
+console.log(" -- End of Navigation Build Script -- ");

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tic Tac Toe</title>
+    <style>
+      p{
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        margin: 0px;
+        font-size: 100px;
+        
+      }
+      p:nth-child(3n) {
+        border-right: none;
+      }
+      p:nth-child(3n) {
+        border-right: none;
+      }
+
+      body{
+        display: grid;
+        grid-template-rows: 100px 100px 100px;
+        grid-template-columns: 100px 100px 100px;
+      }
+      button{
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+  <!-- 1. Build a 3X3 board in HTML and CSS. -->
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+  <p data-board=true></p>
+
+  <!-- 2. Attach a touchend listener to the board. -->
+  <!-- 3. Add a reset button.-->
+  <button id= "reset">Reset</button>
+  <script>
+    const board = document.querySelector('p');
+    let player1 = 'X';
+    let player2 = '0';
+    let player = player1;
+    window.addEventListener("touchend", (ev) => {
+        console.dir(ev.target);
+        if(ev.target.dataset.board){
+          if(ev.target.innerText == ""){
+            ev.target.innerText = player;
+            if(player == player1){
+              player = player2;
+            }
+            else{
+             player = player1;
+            }
+          }
+      }
+      if(ev.target.id == "reset"){
+           location.reload();
+        }
+    })
+    
+  </script>
+  
+  <!-- Stretch Challenges -->
+  <!-- 1. Turn outside borders off -->
+  <!-- 2. Determine if game is a tie -->
+  <!-- 3. Determine who won if winner exists -->
+  </body>
+</html>

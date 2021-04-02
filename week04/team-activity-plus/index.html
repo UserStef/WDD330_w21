@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Week 04 - Team Activity++</title>
+    <link rel="icon" href="../../res/St-icon.png">
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <style>
+        .cell {
+            height: 50px;
+            width: 50px;
+            margin: 8px;
+            padding: 20px;
+            font-size: 2em;
+            background-color: rgba(20, 20, 20, 0.5);
+            /* align-items: center; */
+            text-align: center;
+            /* justify-content: center; */
+        }
+
+        tr:nth-child(2) td {
+            border-top: 2px solid red;
+            border-bottom: 2px solid red;
+        }
+
+        td:nth-child(2) {
+            border-right: 2px solid red;
+            border-left: 2px solid red;
+        }
+        #reset{
+            background-color: rgba(20, 20, 20, 0.0);
+            background-image: linear-gradient(to bottom, rgba(100, 150, 180, 0.5) 0%, 
+                                                         rgba(60, 120, 140, 0.0) 45%,
+                                                         rgba(20, 20, 20, 0.0) 50%,
+                                                         rgba(20, 40, 50, 0.0) 65%,
+                                                         rgba(20, 40, 50, 0.5) 100%);
+            /* border: 2px solid rgba(20, 20, 20, 0.5); */
+            border: 1px double rgba(200, 220, 240, 0.5);
+            border-radius: 8px;
+            font-size: 1.2rem;
+            color: white;
+            margin: 16px 8px;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+    </header>
+    <div class="head">
+        <span class="title">Week 04</span>
+        <span class="subtitle">Team Activity</span>
+    </div>
+
+    
+    <div id="feedback" class="notes centerAll">
+        Loading...
+    </div>
+    <div class="centerAll">
+    <table>
+        <tr>
+            <td>
+                <div id="c7" class="cell" data-board="true"></div>
+            </td>
+            <td>
+                <div id="c8" class="cell" data-board="true"></div>
+            </td>
+            <td>
+                <div id="c9" class="cell" data-board="true"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="c4" class="cell" data-board="true"></div>
+            </td>
+            <td>
+                <div id="c5" class="cell" data-board="true"></div>
+            </td>
+            <td>
+                <div id="c6" class="cell" data-board="true"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="c1" class="cell" data-board="true"></div>
+            </td>
+            <td>
+                <div id="c2" class="cell" data-board="true"></div>
+            </td>
+            <td>
+                <div id="c3" class="cell" data-board="true"></div>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div class="centerAll"><button id="reset">Reset</button></div>
+
+    <script src="../../scripts/nav-build.js"></script>
+    <script src="../../scripts/weekSideNav.js"></script>
+    <script>
+        console.log(" -- Start of Week 04: Team Activity Script -- ");
+        let player = 'X';
+        let playerSets = {
+            "DvsS": ["🍩", "🥗"],
+            "XvsO": ["❌", "⭕"],
+            "NvsY": ["🙅", "🙆"]
+        }
+        let playerSelection = 'DvsS';
+        player = playerSets[playerSelection][0];
+
+        // let spaceRegex = /\s/ig;
+        // .replaceAll(spaceRegex, "");
+
+        // let tableElem = document.querySelector('table');
+        // tableElem
+        // console.log()
+
+        // feedback
+        var feedbackBox = document.getElementById('feedback');
+        feedbackBox.innerText = "Tap to play!";
+
+        function VictoryCheck(){
+            var testA = document.querySelectorAll('tr');
+            var testB = [];
+            testA.forEach(row => {
+                let rowElems = row.querySelectorAll('td');
+                let rowList = [];
+                rowElems.forEach(box => {
+                    let boxtext = 0;
+                    if (!box.innerText == "") {
+                        boxtext = box.innerText.replaceAll(playerSets[playerSelection][0], 1).replaceAll(playerSets[playerSelection][1], -1);
+                    }
+                    rowList.push(boxtext);
+                });
+                testB.push(rowList);
+            });
+
+            var testD = {}
+            for (let i = 0; i < 3; i++) {
+                testD[`tr-${i}`] = {};
+                for (let j = 0; j < 3; j++) {
+                    testD[`tr-${i}`][`td-${j}`] = 0;
+                }
+                testD[`tr-${i}`][`ts-4`] = 0;
+            }
+            testD[`ts-4`] = {};
+            for (let j = 0; j < 3; j++) {
+                testD[`ts-4`][`td-${j}`] = 0;
+            }
+            testD[`ts-4`][`ts-4`] = "#";
+            let testVX = 0;
+            let testVO = 0;
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    testD[`tr-${i}`][`td-${j}`] = 1 * testB[i][j];
+                    testD[`ts-4`][`td-${j}`] += 1 * testB[i][j];
+                    testD[`tr-${i}`][`ts-4`] += 1 * testB[i][j];
+                    if (testVX < testD[`ts-4`][`td-${j}`]) { testVX = testD[`ts-4`][`td-${j}`] };
+                    if (testVX < testD[`tr-${i}`][`ts-4`]) { testVX = testD[`tr-${i}`][`ts-4`] };
+                    if (testVO > testD[`ts-4`][`td-${j}`]) { testVO = testD[`ts-4`][`td-${j}`] };
+                    if (testVO > testD[`tr-${i}`][`ts-4`]) { testVO = testD[`tr-${i}`][`ts-4`] };
+                    if (testVX == 3) { return playerSets[playerSelection][0] }
+                    if (testVO == -3) { return playerSets[playerSelection][1] }
+                }
+            }
+            return -1;
+        }
+        function VictoryBlock(){
+            var testA = document.querySelectorAll('td');
+            testA.forEach(elem => {
+                if(elem.innerText == ""){
+                    elem.children[0].innerText = "─";
+                }
+            })
+        }
+        function VictoryClear(){
+            var testA = document.querySelectorAll('td');
+            testA.forEach(elem => {
+                if(elem.innerText != ""){
+                    elem.children[0].innerText = "";
+                }
+            })
+        }
+
+
+        window.addEventListener('touchend', (ev) => {
+            // console.dir(ev.target);
+            if (ev.target.dataset.board && ev.target.innerText == "") {
+                ev.target.innerText = player;
+                if (player == playerSets[playerSelection][0]) {
+                    player = playerSets[playerSelection][1];
+                } else player = playerSets[playerSelection][0];
+                var victoryResult = VictoryCheck();
+                console.log(`victoryResult: ${victoryResult}`);
+                if(victoryResult != -1){ 
+                    let vMsg = ` ❌ Victory by ${victoryResult} player. ⭕ \n tap on 'Reset' to start again.`;
+                    console.log(vMsg); 
+                    feedbackBox.innerText = vMsg;
+                    VictoryBlock(); 
+                }
+            }
+            if (ev.target.id == "reset") {
+                // location.reload();
+                VictoryClear();
+                feedbackBox.innerText = "Tap to play!";
+            }
+        })
+        console.log(" -- End of Week 04: Team Activity Script -- ");
+    </script>
+
+</body>
+
+</html>

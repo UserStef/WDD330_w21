@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Week02 - Team Activity</title>
-
+    <link rel="icon" href="../../res/St-icon.png">
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
     <style>
         body{
             margin: 0px;
@@ -17,15 +18,20 @@
             flex-direction: column;
             margin: 12px;
             border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+            border-top: 2px solid rgba(16, 161, 197, 0.9);
         }
         .title{
-            margin: 8px 8px 4px 8px;
+            margin: 8px 8px 4px 8px; padding: 0px;
             font-size: 3em;
             border-bottom: 0px inset hsl(225, 50%, 24%, 89%);
+            justify-content: flex-start;
+            color: rgba(233, 251, 255, 0.9);
         }
         .subtitle{            
             margin: 4px 8px;
             font-size: 2em;
+            justify-content: flex-start;
+            color: rgba(233, 251, 255, 0.9);
         }
         .inputs{
             margin: 12px 24px;
@@ -73,12 +79,14 @@
     </style>
 </head>
 <body>
-    <header>
+    <header class="navbar">
+    </header>
+    <div>
         <div class="head">
             <span class="title">Week 02</span>
             <span class="subtitle">Team Activity</span>
         </div>
-    </header>
+    </div>
     <main>
         <section>
             <div class="inputs">
@@ -98,7 +106,8 @@
             </div>
         </section>
     </main>
-    
+
+    <script src="../../scripts/nav-build.js"></script>
     <script>
         function ToggleBtn(){
             document.querySelectorAll('.mybtn').forEach(elem =>{

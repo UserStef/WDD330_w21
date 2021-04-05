@@ -18,7 +18,7 @@ if(thisUrl.includes("WDD330_w21")){
 }
 // pathStart → 'https://userstef.github.io/WDD330_w21'
 console.log(`pathStart = '${pathStart}'`);
-let pathWeek = pathStart + "/" + (title.replace(" ", ""));
+let pathWeek = pathStart + "/" + (title.replace(" ", "").toLowerCase());
 console.log(`pathWeek = '${pathWeek}'`);
 
 let weekNumb = parseInt(title.split(" ")[1],10);

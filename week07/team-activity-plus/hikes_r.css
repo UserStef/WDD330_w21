@@ -78,7 +78,7 @@ p{
     margin: 0px;
     margin-bottom: 8px;
 }
-button{
+button.returnSign{
     margin: 4px 4px 6px 4px;
     padding: 0px 4px;
     background-image: linear-gradient(rgba(110, 75, 35, 0.9), rgba(72, 45, 20, 0.9));

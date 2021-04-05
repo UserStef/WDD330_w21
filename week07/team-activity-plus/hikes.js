@@ -100,7 +100,7 @@ export default class Hikes {
         backButton.addEventListener('touchend', () => {
             this.showHikeList();
         });
-        backButton.classList.add('hidden');
+        backButton.classList.add('returnSign','hidden');
         this.parentElement.before(backButton);
         return backButton;
     }

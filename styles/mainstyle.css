@@ -23,14 +23,31 @@ body{
     background: rgba(255, 255, 255, 0.7);;
 }
 
+/* ──── ↓ Default Tags ↓ ──── */
+
 a:link, a:visited{
     text-decoration: none;
     color: rgba(16, 161, 197, 0.9);
+}
+a:link{
+    text-decoration: none;
+    /* color: rgba(156, 11, 197, 0.9); */
+    color: rgba(25, 180, 220, 0.9);
+}
+a:visited{
+    text-decoration: none;
+    /* color: rgba(16, 181, 107, 0.9); */
+    color: rgba(16, 161, 197, 0.7);
 }
 h1{
     margin-block-start: 0.67em;
     margin-block-end: 0.33em;
 }
+p{
+    margin: 0px;
+}
+
+/* ──── ↿ Default Tags ↾ ──── */
 
 /* ──── ↓ Head Styles/Classes ↓ ──── */
 
@@ -123,6 +140,7 @@ li{
     
     /* flex-wrap: wrap; */
     /* overflow: scroll; */
+    /* background: rgba(0,5,20,0.89); */
 }
 .olnav-scroll{    
     /* flex-wrap: wrap; */

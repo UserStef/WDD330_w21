@@ -8,8 +8,8 @@ window.addEventListener('load', () => {
 import Comments from './comments.js';
 const myComments = new Comments('commentList');
 window.addEventListener('click', ev =>{
-    event.preventDefault();
     if(ev.target.dataset.btn != null){
+        event.preventDefault();
         let content = document.getElementById('newcomment').value;
         console.log(content);
         myComments.AddNewComment(ev.target.dataset.btn, content);
@@ -17,6 +17,7 @@ window.addEventListener('click', ev =>{
         document.getElementById('newcomment').value = '';
     }
     if(ev.target.dataset.showComments != null){
+        event.preventDefault();
         document.getElementById('commentSection').classList.toggle('hidden');
         
         console.log(ev.target.dataset.showComments);

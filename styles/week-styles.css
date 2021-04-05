@@ -1,0 +1,322 @@
+
+
+
+.preview{
+    height: auto; width: auto;
+    margin: 0px; padding: 12px;
+    margin-bottom: 20px;
+    /* background-color: rgba(255,255,255,0); */
+    /* box-shadow: inset 0px 0px 50px 10px rgba(0, 250, 255, 0.89); */
+    display: flex;
+    flex-direction: column;
+
+}
+
+.week-nav-card{
+    height: auto; width: 60vw;
+    margin: 8px; padding: 8px;
+    border: 0px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
+    border-top: 2px solid rgba(16, 161, 197, 0.9);
+    border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+    font-size: 1em;
+    text-decoration: underline;
+    text-align: center;
+}
+.week-nav-card-plus{
+    height: auto; width: 60vw;
+    margin: 8px; padding: 8px;
+    border: 0px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
+    border-top: 2px solid rgba(16, 161, 197, 0.9);
+    border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+    text-align: center;
+}
+
+.link-title{
+    font-size: 1.5rem;
+}
+
+/* not-visited-link */
+.not-visited-link{
+    margin: 8px; padding: 8px;
+    font-size: 72px;
+    background: linear-gradient(-45deg, #333 -20%,#eee -10%,#333 0%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation-name: shinnyText2;
+    animation-duration: 4500ms;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-delay: 3000ms;
+}
+@keyframes shinnyText2 { 
+    from { background: linear-gradient(135deg, #333 -20%,#eee -10%,#333 0%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    1% { background: linear-gradient(135deg, #333 -20%,#eee -10%,#333 0%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    2% { background: linear-gradient(135deg, #333 -15%,#eee -5%,#333 5%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    3% { background: linear-gradient(135deg, #333 -10%,#eee 0%,#333 10%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    4% { background: linear-gradient(135deg, #333 -5%,#eee 5%,#333 15%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    5% { background: linear-gradient(135deg, #333 0%,#eee 10%,#333 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    6% { background: linear-gradient(135deg, #333 5%,#eee 15%,#333 25%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    7% { background: linear-gradient(135deg, #333 10%,#eee 20%,#333 30%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    8% { background: linear-gradient(135deg, #333 15%,#eee 25%,#333 35%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    9% { background: linear-gradient(135deg, #333 20%,#eee 30%,#333 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    10% { background: linear-gradient(135deg, #333 25%,#eee 35%,#333 45%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    11% { background: linear-gradient(135deg, #333 30%,#eee 40%,#333 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    12% { background: linear-gradient(135deg, #333 35%,#eee 45%,#333 55%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    13% { background: linear-gradient(135deg, #333 40%,#eee 50%,#333 60%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    14% { background: linear-gradient(135deg, #333 45%,#eee 55%,#333 65%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    15% { background: linear-gradient(135deg, #333 50%,#eee 60%,#333 70%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    16% { background: linear-gradient(135deg, #333 55%,#eee 65%,#333 75%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    17% { background: linear-gradient(135deg, #333 60%,#eee 70%,#333 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    18% { background: linear-gradient(135deg, #333 65%,#eee 75%,#333 85%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    19% { background: linear-gradient(135deg, #333 70%,#eee 80%,#333 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    20% { background: linear-gradient(135deg, #333 75%,#eee 85%,#333 95%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    21% { background: linear-gradient(135deg, #333 80%,#eee 90%,#333 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    22% { background: linear-gradient(135deg, #333 85%,#eee 95%,#333 105%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    23% { background: linear-gradient(135deg, #333 90%,#eee 100%,#333 110%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    24% { background: linear-gradient(135deg, #333 95%,#eee 105%,#333 115%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    25% { background: linear-gradient(135deg, #333 100%,#eee 110%,#333 120%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    to { background: linear-gradient(135deg, #333 100%,#eee 110%,#333 120%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+}
+@keyframes shinnyText { 
+    from {
+        background: -webkit-linear-gradient(#eee,#333,#333,#333,#333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    25% {
+        background: -webkit-linear-gradient(#333,#eee,#333,#333,#333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    50% {
+        background: -webkit-linear-gradient(#333,#333,#eee,#333,#333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    75% {
+        background: -webkit-linear-gradient(#333,#333,#333,#eee,#333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    to {
+        background: -webkit-linear-gradient(#333,#333,#333,#333,#eee);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+/* .basicbtn{
+    height: auto; width: 60vw;
+    margin: 8px; padding: 8px;
+    font-size: 1em;
+    text-transform: none;
+    background-image: linear-gradient(rgb(239, 239, 239), rgb(219, 219, 219));
+    border: 1px solid rgb(59, 59, 59);
+    border-radius: 5px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+} */
+.basicbtn{
+    height: auto; width: 60vw;
+    margin: 8px; padding: 8px;
+    font-size: 1em;
+    text-transform: none;
+    background-image: linear-gradient(rgb(239, 239, 239), rgb(219, 219, 219));
+    border: 3px outset rgb(150, 150, 150);
+    border-radius: 0px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.basiclink:link, .basiclink:visited{
+    color: rgb(12, 12, 12);
+}
+
+.w2btn{
+    border-top: 4px outset rgba(16, 161, 197, 0.9);
+    border-bottom: 4px outset rgba(16, 161, 197, 0.9);
+    border-radius: 10px;
+    background-color: rgba(16, 161, 197, 0.2);
+}
+
+.w3btn{
+    border: 4px ridge rgba(255, 255, 255, 0.9);
+}
+.w3link:link, .w3link:visited{
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 1px rgba(16, 16, 16, 0.2);
+}
+
+.w4btn{
+    border-top: 4px outset rgba(169, 16, 19, 0.9);
+    border-bottom: 4px outset rgba(169, 16, 19, 0.9);
+    border-radius: 10px;
+    background-color: rgba(16, 16, 19, 0.2);
+}
+
+.w5btn{
+    border-top: 4px outset rgba(60,200,20, 0.9);
+    border-bottom: 4px outset rgba(50,160,10, 0.9);
+    border-radius: 10px;
+    background-color: rgba(60,200,20,0.6);
+}
+.w5link:link, .w5link:visited{
+    color: rgba(220, 255, 210, 0.9);
+}
+
+.midterm{
+    height: auto; width: 90vw;
+    padding: 8px;
+    border: 2px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
+}
+
+.w7btn-plus{
+    border-top: 4px outset rgba(16, 161, 197, 0.9);
+    border-bottom: 4px outset rgba(16, 161, 197, 0.9);
+    border-radius: 10px;
+    /* background-image: linear-gradient(
+        rgba(0,20,50,0.4),rgba(10,80,120,0.15),
+        rgba(80,200,50,0.0),rgba(10,150,10,0.5)); */
+    background-image: linear-gradient(
+        rgba(60, 120, 170, 0.9),rgba(30,80,120,0.35),
+        rgba(80,200,50,0.0),rgba(10,150,10,0.5));
+}
+.w7link:link, .w7link:visited{
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 1px rgba(16, 16, 16, 0.2);
+}
+
+.w8btn{
+    border-top: 4px outset rgba(16, 161, 197, 0.9);
+    border-bottom: 4px outset rgba(16, 161, 197, 0.9);
+    border-radius: 10px;
+    /* background-image: linear-gradient(
+        rgba(10, 20, 40, 0.5),rgba(10, 20, 40,0.35),
+        rgba(10, 20, 40,0.0),rgba(10, 20, 40,0.5)); */
+    /* background-image: linear-gradient(rgb(239, 239, 239), rgb(219, 219, 219)); */
+}
+.w8btn-plus{
+    border-top: 4px outset rgba(16, 161, 197, 0.9);
+    border-bottom: 4px outset rgba(16, 161, 197, 0.9);
+    border-radius: 10px;
+    background-image: linear-gradient(
+        rgba(10, 20, 40, 0.5),rgba(10, 20, 40,0.35),
+        rgba(10, 20, 40,0.0),rgba(10, 20, 40,0.5));
+}
+.w8link:link, .w8link:visited{
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 1px rgba(16, 16, 16, 0.2);
+}
+
+.w9btn{
+    border-top: 4px outset rgba(16, 161, 197, 0.9);
+    border-bottom: 4px outset rgba(16, 161, 197, 0.9);
+    border-radius: 10px;
+    background-color: rgba(20, 20, 20, 0.5);
+}
+
+
+
+
+/* Reading Styles */
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px;
+    overflow: scroll;
+}
+.action-btn{
+    margin: 8px; padding: 8px;
+    border: 4px double white;
+    font-size: 1.2em;
+}
+.log-btn{
+    margin: 8px; padding: 8px;
+    border: 4px ridge white;
+    /* transform: translate(0px, 0px) scale(1); */
+    font-size: 1.2em;
+}
+.template-btn{
+    margin: 8px; padding: 8px;
+    border: 4px dotted white;
+}
+.faded{
+    opacity: 0.5;
+}
+
+
+
+
+
+
+
+/* .not-visited-link */
+/* a:link p{
+    background: linear-gradient(-45deg, #333 -20%,#eee -10%,#333 0%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation-name: shinnyText2;
+    animation-duration: 4500ms;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-delay: 3000ms;
+}
+@keyframes shinnyText2 { 
+    from { background: linear-gradient(135deg, #333 -20%,#eee -10%,#333 0%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    1% { background: linear-gradient(135deg, #333 -20%,#eee -10%,#333 0%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    2% { background: linear-gradient(135deg, #333 -15%,#eee -5%,#333 5%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    3% { background: linear-gradient(135deg, #333 -10%,#eee 0%,#333 10%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    4% { background: linear-gradient(135deg, #333 -5%,#eee 5%,#333 15%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    5% { background: linear-gradient(135deg, #333 0%,#eee 10%,#333 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    6% { background: linear-gradient(135deg, #333 5%,#eee 15%,#333 25%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    7% { background: linear-gradient(135deg, #333 10%,#eee 20%,#333 30%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    8% { background: linear-gradient(135deg, #333 15%,#eee 25%,#333 35%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    9% { background: linear-gradient(135deg, #333 20%,#eee 30%,#333 40%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    10% { background: linear-gradient(135deg, #333 25%,#eee 35%,#333 45%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    11% { background: linear-gradient(135deg, #333 30%,#eee 40%,#333 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    12% { background: linear-gradient(135deg, #333 35%,#eee 45%,#333 55%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    13% { background: linear-gradient(135deg, #333 40%,#eee 50%,#333 60%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    14% { background: linear-gradient(135deg, #333 45%,#eee 55%,#333 65%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    15% { background: linear-gradient(135deg, #333 50%,#eee 60%,#333 70%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    16% { background: linear-gradient(135deg, #333 55%,#eee 65%,#333 75%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    17% { background: linear-gradient(135deg, #333 60%,#eee 70%,#333 80%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    18% { background: linear-gradient(135deg, #333 65%,#eee 75%,#333 85%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    19% { background: linear-gradient(135deg, #333 70%,#eee 80%,#333 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    20% { background: linear-gradient(135deg, #333 75%,#eee 85%,#333 95%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    21% { background: linear-gradient(135deg, #333 80%,#eee 90%,#333 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    22% { background: linear-gradient(135deg, #333 85%,#eee 95%,#333 105%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    23% { background: linear-gradient(135deg, #333 90%,#eee 100%,#333 110%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    24% { background: linear-gradient(135deg, #333 95%,#eee 105%,#333 115%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    25% { background: linear-gradient(135deg, #333 100%,#eee 110%,#333 120%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    to { background: linear-gradient(135deg, #333 100%,#eee 110%,#333 120%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+}
+a:visited p{
+    background: linear-gradient(-45deg, #3330 -20%,#eee0 -10%,#3330 0%);
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: rgba(16, 161, 197, 0.9);
+
+    animation-name: shinnyText-off;
+    animation-duration: 4500ms;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-delay: 3000ms;
+}
+@keyframes shinnyText-off { 
+    from { background: linear-gradient(-45deg, #3330 -20%,#eee0 -10%,#3330 0%); -webkit-background-clip: none; -webkit-text-fill-color: rgba(16, 161, 197, 0.9); }
+    to { background: linear-gradient(-45deg, #3330 -20%,#eee0 -10%,#3330 0%); -webkit-background-clip: none; -webkit-text-fill-color: rgba(16, 161, 197, 0.9); }
+} */
+
+
+.hidden{
+    display: none;
+}

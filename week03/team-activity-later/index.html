@@ -7,6 +7,7 @@
     <title>Week 03 - Team Activity</title>
     <link rel="icon" href="../../res/St-icon.png">
     <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <link rel="stylesheet" href="../../styles/week-styles.css">
 </head>
 <body>
     <header class="navbar">
@@ -18,10 +19,33 @@
 
     <div class="notes">
         <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
+        <p><em>or... click on the different options below.</em> 👇</p>
+    </div>
+
+    <div id="actions" class="container btml">
+    </div>
+
+    <div class="container centerAll">
+        <div id="displayLog" class="console">
+        </div>
     </div>
     
     <script src="../../scripts/nav-build.js"></script>
+    <!-- <script src="../../scripts/weekPreview-build.js"></script> -->
     <script>
+        // let consoleOutput = document.getElementById('consoleOutput');
+        // const displayLog = document.getElementById('displayLog');
+
+        // ♦ ─────────────── Notes StepUp ─────────────── ♦ //
+        // -- Reading StepUp -- //
+        let scriptLog = {};
+        let btn = {};
+        let btn_build = {};
+        let actions = document.getElementById('actions');
+        let displayLog = document.getElementById('displayLog');
+        // ♦ ─────────────── ─────────────── ─────────────── ♦ //
+
+
         // Get your shorts on - this is an array workout!
         // ## Array Cardio Day 1
 
@@ -94,6 +118,18 @@
         console.log(inventors1500);
         console.table(filter_inventors);
 
+        // ── filter() ── //
+        btn_build["filter"] = {"tag":"div",
+        "innerHTML":"1. filter()",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["filter"] = function(ev){
+            // console.log(ev.target);
+            console.log(`// ── 1. filter() ── //`);
+            let inventors1500 = inventors.map(elem => { if(1500 < elem.year && elem.year < 1600){return elem} });
+            let filter_inventors = [];
+            inventors.forEach(elem => { if(1500 < elem.year && elem.year < 1600){filter_inventors.push(elem)} });
+            logToTheDOM(filter_inventors);
+        };
 
 
         // Array.prototype.map()
@@ -101,10 +137,32 @@
         let map_inventors = inventors.map(elem => { return {first: elem.first, last: elem.last} });
         console.table(map_inventors);
 
+        // ── map() ── //
+        btn_build["map"] = {"tag":"div",
+        "innerHTML":"2. map()",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["map"] = function(ev){
+            // console.log(ev.target);
+            console.log(`// ── 2. map() ── //`);
+            let map_inventors = inventors.map(elem => { return {first: elem.first, last: elem.last} });
+            logToTheDOM(map_inventors);
+        };
+
         // Array.prototype.sort()
         // 3. Sort the inventors by birthdate, oldest to youngest
         let sort_inventors = inventors.sort((a,b) => { return b.year - a.year; });
         console.table(sort_inventors);
+
+        // ── sort() ── //
+        btn_build["sort"] = {"tag":"div",
+        "innerHTML":"3. sort()",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["sort"] = function(ev){
+            // console.log(ev.target);
+            console.log(`// ── 3. sort() ── //`);
+            let sort_inventors = inventors.sort((a,b) => { return b.year - a.year; });
+            logToTheDOM(sort_inventors);
+        };
 
         // Array.prototype.reduce()
         // 4. How many years did all the inventors live?
@@ -116,9 +174,22 @@
 
         let life_span_inventors = inventors.map(elem => { return elem.passed - elem.year });
         console.log(life_span_inventors);
-        
-        
 
+        // ── reduce() ── //
+        btn_build["reduce"] = {"tag":"div",
+        "innerHTML":"4. reduce()",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["reduce"] = function(ev){
+            // console.log(ev.target);
+            console.log(`// ── 4. reduce() ── //`);
+            let reduce_inventors = inventors.reduce((accumulator, currentValue, currentIndex, array) => {
+                return accumulator + (currentValue.passed - currentValue.year);
+            }, 0)
+            logToTheDOM(reduce_inventors);
+        };
+        
+        
+        // console.log('/♦/ 5. Sort the inventors by years lived');
         // 5. Sort the inventors by years lived
         let sort_life_span_inventors = life_span_inventors.sort(function(a,b) { return a - b; });
         console.log(sort_life_span_inventors);
@@ -128,6 +199,18 @@
 
         let years_lived = life_span.map(elem => {elem["life_s"] = elem.passed - elem.year; return elem});
         console.table(life_span);
+
+        // ── 5. Sort the inventors by years lived ── //
+        btn_build["5. Sort the inventors by years lived"] = {"tag":"div",
+        "innerHTML":"5. Sort the inventors by years lived",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["5. Sort the inventors by years lived"] = function(ev){
+            // console.log(ev.target);
+            console.log(`// ── 5. Sort the inventors by years lived ── //`);
+            let sort_life_span_inventors = life_span_inventors.sort(function(a,b) { return a - b; });
+            let years_lived = life_span.map(elem => {elem["life_s"] = elem.passed - elem.year; return elem});
+            logToTheDOM(life_span);
+        };
 
         // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
         // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -142,6 +225,16 @@
         // Sort the people alphabetically by last name
         let alphaSort_lastName = people.sort((a,b) => {return a-b});
         console.log(alphaSort_lastName.join('\n'));
+
+        // ── 7. sort Exercise ── //
+        btn_build["7. sort Exercise"] = {"tag":"div",
+        "innerHTML":"7. sort Exercise",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["7. sort Exercise"] = function(ev){
+            console.log(`// ── 7. sort Exercise ── //`);
+            let alphaSort_lastName = people.sort((a,b) => {return a-b});
+            logToTheDOM(alphaSort_lastName.join('\n'));
+        };
 
         // 8. Reduce Exercise
         // Sum up the instances of each of these
@@ -170,6 +263,92 @@
             }
         });
         console.log(data_count);
+
+        // ── 8. Reduce Exercise ── //
+        btn_build["8. Reduce Exercise"] = {"tag":"div",
+        "innerHTML":"8. Reduce Exercise",
+        "classList":['mbtn2-s','log-btn']};
+        scriptLog["8. Reduce Exercise"] = function(ev){
+            console.log(`// ── 8. Reduce Exercise ── //`);
+            data_count = {};
+            data.forEach(elem => {
+                if(!Object.keys(data_count).includes(elem)){
+                    data_count[elem] = 1;
+                } else {
+                    data_count[elem] += 1;
+                }
+            });
+            let data_word_count = [];
+            Object.keys(data_count).forEach(c => {data_word_count.push(`${c}: ${data_count[c]}`)});
+            logToTheDOM(data_word_count);
+        };
+
+
+
+        // ♦ ── ── Building the Buttons ── ── ♦ //
+
+        // ── Template ── //
+        btn_build["template"] = {"tag":"div",
+        "innerHTML":"template",
+        "classList":['mbtn2-s','template-btn', 'hidden']};
+        scriptLog["template"] = function(ev){
+            console.log(ev.target);
+            // -- code goes here
+        };
+
+        // ── Button Push Animation ── //
+        function clickBtn(ev){
+            // -- This helps to make the btn look like it was pushed.
+            ev.target.classList.add("mbtn2-s-click");
+            setTimeout(() => { ev.target.classList.remove("mbtn2-s-click"); }, 200);
+        };
+
+        // ── Making Buttons ── //
+        // -- Create element.
+        // -- Add the class styles.
+        // -- Add to the DOM.
+        // -- Add events.
+        let btnkeys = Object.keys(btn_build);
+        btnkeys.forEach(btnkey =>{
+            btn[btnkey] = document.createElement('div');
+            btn_build[btnkey]["classList"].forEach(class_style =>{
+                btn[btnkey].classList.add(class_style);
+            })
+            btn[btnkey].innerHTML = btn_build[btnkey]["innerHTML"];
+            
+            actions.appendChild(btn[btnkey]);
+
+            btn[btnkey].addEventListener('click', scriptLog[btnkey]);
+            btn[btnkey].addEventListener('click', clickBtn);
+        })
+
+        function logToTheDOM(log){
+            console.log(log);
+            console.log(typeof log);
+            displayLog.innerHTML = '';
+            if(typeof log[0] == 'object'){
+                // displayLog.innerHTML = "<p>"+JSON.stringify(log).split(',').join('</p><p>')+"</p>";
+                // displayLog.innerHTML = "<p>"+JSON.stringify(log).split('{').join('</p><p>{</p><p>&nbsp;&nbsp;&nbsp;&nbsp;').split(',').join(',</p><p>&nbsp;&nbsp;&nbsp;&nbsp;').split('}').join('</p><p>}')+"</p>";
+                log.forEach(line =>{
+                    displayLog.innerHTML += `<p>`;
+                        let lines = [];
+                    Object.keys(line).forEach(k => {
+                        lines.push(`${line[k]}`);
+                    });
+                    displayLog.innerHTML += lines.join(" | ");
+                    displayLog.innerHTML += `</p>`;
+                });
+            } else if(typeof log == 'string'){
+                logs = log.split('\n');
+                logs.forEach(line => {
+                    displayLog.innerHTML += `<p>${line}</p>`;
+                });
+            } else {
+                displayLog.innerHTML += `<p>${log}</p>`;
+            }
+        }
+
+        // ♦ ─────────────── ─────────────── ─────────────── ♦ //
         
     </script>
 </body>

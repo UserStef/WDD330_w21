@@ -1,0 +1,38 @@
+
+#basicbtn{
+    padding: 4px 12px;
+    font-size: 1em;
+}
+
+.w2btn{
+    min-width: 50px;
+    margin: 4px;
+    padding: 8px;
+    /* border: solid rgba(16, 161, 197, 0.9) 1px; */
+    /* border: solid 0px; */
+    border-top: solid rgba(16, 161, 197, 0.9) 1px;
+    border-bottom: solid rgba(16, 161, 197, 0.9) 1px;
+    border-radius: 5px;
+    background-color: rgba(16, 161, 197, 0.2);
+    color: rgba(233, 251, 255, 0.9);
+    font-size: 1em;
+}
+
+.wbtn{
+    border-top: 2px solid rgba(16, 161, 197, 0.9);
+    border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+    background-color: rgba(16, 161, 197, 0.2);
+    color: rgba(233, 251, 255, 0.9);
+}
+
+/* .extra-nav-card{
+    height: auto; width: 60vw;
+    margin: 8px; padding: 8px;
+    border: 0px solid hsl(225, 50%, 24%, 89%);
+    border-radius: 5px;
+    border-top: 2px solid rgba(16, 161, 197, 0.9);
+    border-bottom: 2px solid rgba(16, 161, 197, 0.9);
+    font-size: 1em;
+    text-decoration: underline;
+    text-align: center;
+} */

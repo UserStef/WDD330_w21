@@ -157,6 +157,10 @@
     border-radius: 10px;
     background-color: rgba(16, 16, 19, 0.2);
 }
+.w4link:link, .w4link:visited{
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 1px rgba(16, 16, 16, 0.2);
+}
 
 .w5btn{
     border-top: 4px outset rgba(60,200,20, 0.9);

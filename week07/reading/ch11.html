@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Week 02 - Reading</title>
+    <title>Week 07 - Reading</title>
     <link rel="icon" href="../../res/St-icon.png">
     <link rel="stylesheet" href="../../styles/mainstyle.css">
     <link rel="stylesheet" href="../../styles/week-styles.css">
@@ -14,7 +14,7 @@
     <header class="navbar">
     </header>
     <div class="head">
-        <span class="title btml">Week 02</span>
+        <span class="title btml">Week 07</span>
         <span class="subtitle"></span>
     </div>
 
@@ -27,11 +27,11 @@
     
     <script src="../../scripts/nav-build.js"></script>
     <!-- <script src="../../scripts/weekPreview-build.js"></script> -->
+    <script src="../../scripts/forNotes.js"></script>
     <script>
         // ♦ ─────────────── Page StepUp ─────────────── ♦ //
-        // const pages = [2,3,4];
-        const pages = [2,3];
-        const current_chapter = 3;
+        const pages = [11];
+        const current_chapter = 11;
         let current_page_index = -1;
         let subtitleElement = document.querySelector('.subtitle');
         function buildSubtitle(){
@@ -62,155 +62,174 @@
         // ♦ ─────────────── ─────────────── ─────────────── ♦ //
 
 
-        // ♦ ─────────────── Chapter 3 ─────────────── ♦ //
+        // ♦ ─────────────── Chapter 11 ─────────────── ♦ //
 
-        // ─── Arrays ─── //
-        btn_build["Arrays"] = {"tag":"div",
-        "innerHTML":"Arrays",
+        // ── Call and Apply Methods ── //
+        console.log("// ── Call and Apply Methods ── //");
+        function sayHello(greeting='Hello'){
+            return `${ greeting }, my name is ${ this.name }`;
+        }
+        console.log(sayHello.call("clark", 'How do you do'));
+        // << 'How do you do, my name is Clark'
+        console.log(sayHello.call("bruce"));
+        // << 'Hello, my name is Bruce'
+
+        // ─── Methods ─── //
+        btn_build["Methods"] = {"tag":"div",
+        "innerHTML":"Methods",
         "classList":['mbtn2-s','log-btn'],
         "log":""};
     
-        scriptLog["Arrays"] = function(ev){
-            console.log(`// ── Arrays ── //`);
+        scriptLog["Methods"] = function(ev){
+            console.log(`// ── Methods ── //`);
             // -- code goes here
+            function sayHello(greeting='Hello'){
+                return `${ greeting }, my name is ${ this.name }`;
+            }
             let toLog = [
-                `const myArray = [];`,
-                `const myArray = new Array();`
+                `
+function sayHello(greeting='Hello'){
+&nbsp;&nbsp;&nbsp;&nbsp;return \`\${ greeting }, my name is \${ this.name }\`;
+}`,
+                `console.log(sayHello.call("clark", 'How do you do'));`,
+                `>> ${sayHello.call("clark", 'How do you do')}`,
+                `console.log(sayHello.call("bruce"));`,
+                `>> ${sayHello.call("bruce")}`,
+                `\n`,
+                `>> not working as I expected.`
             ];
             let sectionLog = ``;
             toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
+                sectionLog += ` ${log}\n`;
+                // sectionLog += `\n  ≫ ${eval(log)}\n`;
             });
-            btn_build["Arrays"]["log"] = sectionLog;
-            console.log(btn_build["Arrays"]["log"]);
+            btn_build["Methods"]["log"] = sectionLog;
+            console.log(btn_build["Methods"]["log"]);
             logToTheDOM(sectionLog);
+            note("not working as I expected.");
         };
 
-        // ─── Set ─── //
-        btn_build["Set"] = {"tag":"div",
-        "innerHTML":"Set",
+
+
+        // ── Memoization ── //
+        console.log("// ── Memoization ── //");
+        function square(x){
+            square.cache = square.cache || {};
+            if (!square.cache[x]) {
+                square.cache[x] = x*x;
+            }
+            return square.cache[x]
+        }
+        console.log(square(3));
+        // << 9
+        console.log(square(-11));
+        // << 121
+        console.log(square.cache);
+        // << {"3": 9, "-11": 121}
+
+        note("seems to work fine.");
+
+        // ─── Memoization ─── //
+        btn_build["Memoization"] = {"tag":"div",
+        "innerHTML":"Memoization",
         "classList":['mbtn2-s','log-btn'],
         "log":""};
     
-        scriptLog["Set"] = function(ev){
-            console.log(`// ── Set ── //`);
+        scriptLog["Memoization"] = function(ev){
+            console.log(`// ── Memoization ── //`);
             // -- code goes here
-            let toLog = [];
+            function square(x){
+                square.cache = square.cache || {};
+                if (!square.cache[x]) {
+                    square.cache[x] = x*x;
+                }
+                return square.cache[x]
+            }
+            let toLog = [
+                `
+function square(x){
+&nbsp;&nbsp;&nbsp;&nbsp;square.cache = square.cache || {};
+&nbsp;&nbsp;&nbsp;&nbsp;if (!square.cache[x]) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;square.cache[x] = x*x;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;return square.cache[x]
+}`,
+                `console.log(square(3));`,
+                `>> ${square(3)};`,
+                `console.log(square(-11));`,
+                `>> ${square(-11)};`,
+                `console.log(square.cache);`,
+                `>> ${JSON.stringify(square.cache)};`
+            ];
             let sectionLog = ``;
             toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
+                sectionLog += ` ${log}\n`;
+                // sectionLog += `\n  ≫ ${eval(log)}\n`;
             });
-            btn_build["Set"]["log"] = sectionLog;
-            console.log(btn_build["Set"]["log"]);
+            btn_build["Memoization"]["log"] = sectionLog;
+            console.log(btn_build["Memoization"]["log"]);
             logToTheDOM(sectionLog);
         };
+        note("seems to work fine.");
 
+        // ── Safe Use of Strict Mode ── //
+        console.log("// ── Safe Use of Strict Mode ── //");
+        (function() {
+            'use strict';
+            // All your code would go inside this function
+        })();
 
-        // ─── Converting Sets to Arrays ─── //
-        btn_build["Converting Sets to Arrays"] = {"tag":"div",
-        "innerHTML":"Converting Sets to Arrays",
-        "classList":['mbtn2-s','log-btn'],
-        "log":""};
+        note(["I don't know what to do with this.","maybe later I'll review this better."]);
+
+        // ─── Arrays ─── //
+        btn_build["Strict Mode"] = {"tag":"div",
+                "innerHTML":"Strict Mode",
+                "classList":['mbtn2-s','log-btn'],
+                "log":""};
     
-        scriptLog["Converting Sets to Arrays"] = function(ev){
-            console.log(`// ── Converting Sets to Arrays ── //`);
+        scriptLog["Strict Mode"] = function(ev){
+            console.log(`// ── Strict Mode ── //`);
             // -- code goes here
-            let toLog = [];
+            let toLog = [
+                `>> I don't know what to do with this.`,
+                `>> maybe later I'll review this better.`
+            ];
             let sectionLog = ``;
             toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
+                sectionLog += ` ${log}\n`;
+                // sectionLog += `\n  ≫ ${eval(log)}\n`;
             });
-            btn_build["Converting Sets to Arrays"]["log"] = sectionLog;
-            console.log(btn_build["Converting Sets to Arrays"]["log"]);
+            btn_build["Strict Mode"]["log"] = sectionLog;
+            console.log(btn_build["Strict Mode"]["log"]);
             logToTheDOM(sectionLog);
         };
 
+        // ── Functions that Define and Rewrite Themselves ── //
+        console.log("// ── Functions that Define and Rewrite Themselves ── //");
+        function party(){
+            console.log('Wow this is amazing!');
+            party = function(){
+                console.log('Been there, got the T-Shirt');
+            }
+        }
 
-        // ─── Maps ─── //
-        btn_build["Maps"] = {"tag":"div",
-        "innerHTML":"Maps",
-        "classList":['mbtn2-s','log-btn'],
-        "log":""};
-    
-        scriptLog["Maps"] = function(ev){
-            console.log(`// ── Maps ── //`);
-            // -- code goes here
-            let toLog = [];
-            let sectionLog = ``;
-            toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
-            });
-            btn_build["Maps"]["log"] = sectionLog;
-            console.log(btn_build["Maps"]["log"]);
-            logToTheDOM(sectionLog);
-        };
+        function party(){
+            console.log('Wow this is amazing!');
+            party = function(){
+                console.log('Been there, got the T-Shirt');
+            }
+        }
+        const beachParty = party; // note that the party function has not been invoked
+        console.log(beachParty()); // the party() function has now been redefined, even though it hasn't been called explicitly
+        // << 'Wow this is amazing!'
+        console.log(party()); 
+        // << 'Been there, got the T-Shirt'
+        console.log(beachParty()); // but this function hasn't been redefined
+        // << 'Wow this is amazing!'
+        console.log(beachParty()); // no matter how many times this is called it will remain the same
+        // << 'Wow this is amazing!'
 
-
-        // ─── Converting Maps to Arrays ─── //
-        btn_build["Converting Maps to Arrays"] = {"tag":"div",
-        "innerHTML":"Converting Maps to Arrays",
-        "classList":['mbtn2-s','log-btn'],
-        "log":""};
-    
-        scriptLog["Converting Maps to Arrays"] = function(ev){
-            console.log(`// ── Converting Maps to Arrays ── //`);
-            // -- code goes here
-            let toLog = [];
-            let sectionLog = ``;
-            toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
-            });
-            btn_build["Converting Maps to Arrays"]["log"] = sectionLog;
-            console.log(btn_build["Converting Maps to Arrays"]["log"]);
-            logToTheDOM(sectionLog);
-        };
-
-
-        // ─── Logic ─── //
-        btn_build["Logic"] = {"tag":"div",
-        "innerHTML":"Logic",
-        "classList":['mbtn2-s','log-btn'],
-        "log":""};
-    
-        scriptLog["Logic"] = function(ev){
-            console.log(`// ── Logic ── //`);
-            // -- code goes here
-            let toLog = [];
-            let sectionLog = ``;
-            toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
-            });
-            btn_build["Logic"]["log"] = sectionLog;
-            console.log(btn_build["Logic"]["log"]);
-            logToTheDOM(sectionLog);
-        };
-
-
-        // ─── Loops ─── //
-        btn_build["Loops"] = {"tag":"div",
-        "innerHTML":"Loops",
-        "classList":['mbtn2-s','log-btn'],
-        "log":""};
-    
-        scriptLog["Loops"] = function(ev){
-            console.log(`// ── Loops ── //`);
-            // -- code goes here
-            let toLog = [];
-            let sectionLog = ``;
-            toLog.forEach(log => {
-                sectionLog += ` ${log}`;
-                sectionLog += `\n  ≫ ${eval(log)}\n`;
-            });
-            btn_build["Loops"]["log"] = sectionLog;
-            console.log(btn_build["Loops"]["log"]);
-            logToTheDOM(sectionLog);
-        };
+        note("I'm not sure in what could I use this yet.");
         
 
 

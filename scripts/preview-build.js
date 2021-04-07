@@ -54,7 +54,7 @@ function makeWeekPreview(i, whereto){
 function makeActivityPreview(i, whereto){
     let weekNumb = i;
     if (weekNumb<10){weekNumb = "0"+weekNumb;}
-    console.log(`makeActivityPreview(${i},${whereto})`);
+    // console.log(`makeActivityPreview(${i},${whereto})`);
 
     let previewCard = document.createElement("div");
     previewCard.id = `activity${weekNumb}_card`;

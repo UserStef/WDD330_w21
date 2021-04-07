@@ -38,7 +38,7 @@
 }
 
 /* not-visited-link */
-.not-visited-link{
+/* .not-visited-link{
     margin: 8px; padding: 8px;
     font-size: 72px;
     background: linear-gradient(-45deg, #333 -20%,#eee -10%,#333 0%);
@@ -106,7 +106,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-}
+} */
 
 /* .basicbtn{
     height: auto; width: 60vw;

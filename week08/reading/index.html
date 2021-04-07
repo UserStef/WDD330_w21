@@ -486,7 +486,7 @@
             "originX": 50, "originY": 50,
             "end": true}
 
-        window.addEventListener('click', (ev) =>{
+        window.addEventListener('touchend', (ev) =>{
             let tbtn = ev.target;
             if(tbtn.dataset.move != null){
                 boxLoc["moveBy"] = 1*document.getElementById("input-moveBy").value;

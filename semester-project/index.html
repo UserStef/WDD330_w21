@@ -7,69 +7,27 @@
     <title>Block 2 Challenge - CTA</title>
     <link rel="icon" href="../res/St-icon.png">
     <link rel="stylesheet" href="../styles/mainstyle.css">
-    <link rel="stylesheet" href="cta-style.css">
+    <link rel="stylesheet" href="cta-style2.css">
     <style>
-        .testView{
-            margin: 0vh 1vw; padding: 0vh 0vw;
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .testA{
-            height: 17vh; width: 98vw;
-            background-color: rgba(255,0,255,0.2);
-            box-shadow: inset 0px 0px 0px 1px rgba(0,180,255,0.9);
-            top: 0vh; left: 0px;
-        }
-        .testB{
-            height: 83vh; width: 98vw;
-            background-color: rgba(0,255,255,0.2);
-            box-shadow: inset 0px 0px 0px 1px rgba(255,0,180,0.9);
-            top: 17vh; left: 0px;
-        }
-        .testLabel{
-            margin: 0px; padding: 4px 8px;
-            color: white;
-            background: black;
-            border-radius: 0px;
-            border: 2px solid white;
-            border-left: 2px solid white; 
-            border-right: 2px solid white;
-            font-size: 1.2rem;
-            transition: all .2s ease-in-out;
-        }
-        .testLabel:hover{
-            margin: 0px; padding: 4px 8px;
-            color: white;
-            background: black;
-            border-radius: 5px;
-            border: 2px solid white;
-            border-left: 0px; border-right: 0px;
-            font-size: 1.2rem;
-            transition: all .2s ease-in-out;
-        }
         .hidden{
             display: none;
         }
     </style>
 </head>
 <body>
-    <!-- <div class="testView testA">&nbsp;<div class="testLabel">Head</div>&nbsp;</div> -->
-    <!-- <div class="testView testB">&nbsp;<div class="testLabel">Body</div>&nbsp;</div> -->
     <header class="navbar">
     </header>
     <div class="head">
         <span class="title btml">Block 2 Challenge</span>
-        <span class="subtitle">&nbsp;</span>
+        <span class="subtitle"><a href="../index.html">Progress: Functions.</a></span>
     </div>
 
     <div class="container btml">
-        <table id="formationTable" ></table>
-        <table id="heroTable" ></table>
+        <table id="formationTable" class="hidden"></table>
+        <table id="heroTable"></table>
     </div>
     
     <script src="../scripts/nav-build.js"></script>
-    <script src="hero-table.js"></script>
+    <script src="heroTable2.js"></script>
 </body>
 </html>

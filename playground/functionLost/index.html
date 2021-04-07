@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playground - CSS Styles</title>
+    <link rel="icon" href="../../res/St-icon.png">
+    <link rel="stylesheet" href="../../styles/mainstyle.css">
+    <!-- <link rel="stylesheet" href="fetch-style.css"> -->
+    <style>
+        .toggle-btn{
+            height: auto; width: auto;
+            margin: 8px 4vw; padding: 8px;
+            /* margin-bottom: 8px; */
+
+            border: 0px solid rgba(16, 161, 197, 0.7);
+            border-top: 0px solid rgba(16, 161, 197, 0.7);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.7);
+            border-radius: 5px;
+            text-align: center;
+
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 1px 0px rgba(20, 20, 20, 0.54);
+            
+            /* background-color: rgba(16, 161, 197, 0.2); */
+            background-image: linear-gradient(to top, rgba(16, 161, 197, 0.2) 0%,
+                                                      rgba(16, 161, 197, 0.1) 25%,
+                                                      rgba(16, 161, 197, 0.0) 80%);
+            /* box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.54); */
+        }
+
+        .container-view{
+            height: auto; width: 92vw;
+            min-height: 40px;
+            margin: 8px 4vw; 
+            /* padding: 8px 1vw; */
+            padding: 8px 0vw;
+            border: 0px solid white;
+            border-radius: 5px;
+
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.89);
+            transition: all 0.5s ease-in-out;
+        }
+        .container-scroll{
+            height: 96px;
+
+            overflow: scroll;
+            transition: all 0.5s ease-in-out;
+
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+        }
+        .container-wrap{
+            height: 480px;
+
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: all 0.5s ease-in-out;
+
+            overflow: hidden;
+        }
+
+        .style-card{
+            height: 80px; width: 124px;
+            margin: 4px; padding: 4px;
+            border: 0px solid white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.29);
+        }
+        .border-base{
+            min-height: 20px; min-width: 80px;
+            margin: 8px; padding: 8px;
+            border: 10px solid white;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .border-none{
+            border-style: none;
+        }
+        .border-hidden{
+            border-style: hidden;
+        }
+
+        .border-dotted{
+            border-style: dotted;
+        }
+        .border-dashed{
+            border-style: dashed;
+        }
+
+        .border-solid{
+            border-style: solid;
+        }
+        .border-double{
+            border-style: double;
+        }
+
+        .border-groove{
+            border-style: groove;
+        }
+        .border-ridge{
+            border-style: ridge;
+        }
+
+        .border-inset{
+            border-style: inset;
+        }
+        .border-outset{
+            border-style: outset;
+        }
+
+        .invisible{
+            background-color: rgba(0,0,0,0);
+            border-color: rgba(0,0,0,0);
+            color: rgba(0,0,0,0);
+        }
+        .displayBox{
+            height: auto; width: 40vw;
+            min-height: 40px;
+            margin: 8px 2vw; 
+            padding: 8px 1vw;
+            border: 0px solid white;
+            border-radius: 5px;
+
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.89);
+            transition: all 0.5s ease-in-out;
+        }
+        .testBtn{
+            height: auto; width: 40vw;
+            margin: 8px 2vw; 
+            padding: 8px 1vw;
+            /* margin-bottom: 8px; */
+
+            /* border: 0px solid rgba(16, 161, 197, 0.7);
+            border-top: 0px solid rgba(16, 161, 197, 0.7);
+            border-bottom: 2px solid rgba(16, 161, 197, 0.7); */
+            border-radius: 5px;
+            text-align: center;
+
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 1px 0px rgba(20, 20, 20, 0.54);
+            
+            /* background-color: rgba(16, 161, 197, 0.2); */
+            /* background-image: linear-gradient(to top, rgba(16, 161, 197, 0.2) 0%,
+                                                      rgba(16, 161, 197, 0.1) 25%,
+                                                      rgba(16, 161, 197, 0.0) 80%); */
+            /* box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.54); */
+        }
+        .btn-blue{
+            border: 0px solid rgba(12, 121, 212, 0.7);
+            border-top: 0px solid rgba(12, 121, 212, 0.7);
+            border-bottom: 2px solid rgba(12, 121, 212, 0.7);
+            background-image: linear-gradient(to top, rgba(12, 121, 212, 0.4) 0%,
+                                                      rgba(12, 121, 212, 0.2) 25%,
+                                                      rgba(12, 121, 212, 0.2) 80%);
+        }
+        .btn-red{
+            border: 0px solid rgba(216, 16, 19, 0.7);
+            border-top: 0px solid rgba(216, 16, 19, 0.7);
+            border-bottom: 2px solid rgba(216, 16, 19, 0.7);
+            background-image: linear-gradient(to top, rgba(216, 16, 19, 0.4) 0%,
+                                                      rgba(216, 16, 19, 0.2) 25%,
+                                                      rgba(216, 16, 19, 0.2) 80%);
+        }
+
+        .display-blue{
+            background-image: linear-gradient(to top, rgba(12, 121, 212, 0.4) 0%,
+                                                      rgba(12, 121, 212, 0.2) 25%,
+                                                      rgba(12, 121, 212, 0.2) 80%);
+        }
+        .display-red{
+            background-image: linear-gradient(to top, rgba(216, 16, 19, 0.4) 0%,
+                                                      rgba(216, 16, 19, 0.2) 25%,
+                                                      rgba(216, 16, 19, 0.2) 80%);
+        }
+
+
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="../../index.html" style="font-size: 2rem; position: absolute; top:0px; right:4px; padding: 2px 2px; text-shadow: 2px 2px 2px rgba(20,20,20,0.9); text-decoration: none;">&#128682;</a>
+        <a href="../index.html" style="font-size: 2rem; position: relative; top:0px; left:0px; padding: 2px 2px; text-shadow: 2px 2px 2px rgba(20,20,20,0.9); text-decoration: none;">🔙</a>
+    </div>
+    <div class="head">
+        <span class="title btml">Playground</span>
+        <span class="subtitle">testing how functions load</span>
+    </div>
+    
+    <!-- <div id="border-toggle" class="toggle-btn">Border Styles</div>
+    <div id="border-styles" class="container-view container-wrap"></div> -->
+
+    <div class="container-view">
+        <div id="display1" class="displayBox"></div>
+        <div id="display2" class="displayBox"></div>
+    </div>
+    <div class="container-view">
+        <div id="btn1" class="testBtn btn-blue">testA</div>
+        <div id="btn2" class="testBtn btn-red">testB</div>
+    </div>
+
+
+    <!-- <div id="test-styles" class="container-view"></div> -->
+    
+    <!-- <script src="../scripts/nav-build.js"></script> -->
+
+    <script>
+        let border_styles = ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"];
+        // let alph_border_styles = ["dashed", "dotted", "double", "groove", "hidden", "inset", "none", "outset", "ridge", "solid"];
+
+        // let border_styles_DOM = document.getElementById("border-styles");
+        // border_styles.forEach(style => {
+        //     // border_styles_DOM.innerHTML += `<div class="border-base border-${style}">${style}</div>`;
+        //     border_styles_DOM.innerHTML += `<div class="style-card"><div class="border-base border-${style}">${style}</div></div>`;
+        // });
+        
+        // border-toggle
+        // let border_toggle = document.getElementById("border-toggle");
+        // border_toggle.addEventListener('click', (ev) =>{
+        //     border_styles_DOM.classList.toggle('container-wrap');
+        //     border_styles_DOM.classList.toggle('container-scroll');
+        // });
+
+        document.getElementById("btn1").addEventListener('click', (ev) =>{
+            console.log(`→ #display1 → classList.add('display-blue');`);
+            document.getElementById("display1").classList.toggle('display-blue');
+        });
+
+        function addColorRed(){
+            console.log(`→ addColorRed()`);
+            document.getElementById("display2").classList.toggle('display-red');
+        }
+        document.getElementById("btn2").addEventListener('click', addColorRed);
+
+    </script>
+</body>
+</html>

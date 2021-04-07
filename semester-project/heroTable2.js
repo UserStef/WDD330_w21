@@ -784,8 +784,9 @@ function bLog(x, y) {
 
 function shortNumb(n) {
     let numberOfDecimals = 1;
+    let x = n;
     if(n<1000){return [x, ""];}
-    let x = Number.parseFloat(n / (1000 ** Math.floor(bLog(10, n) / 3, 0))).toFixed(numberOfDecimals);
+    x = Number.parseFloat(n / (1000 ** Math.floor(bLog(10, n) / 3, 0))).toFixed(numberOfDecimals);
     let y = "";
     let s = Math.floor(bLog(10, n) / 3, 0) - 1;
     let r = Math.floor((s - 4) / 26, 0) + 2;

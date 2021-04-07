@@ -440,6 +440,7 @@ function buildSumRow(columns = col_start, tid) {
             hero_img.alt = "sum of formation";
             hero_img.id = `img-sum`;
             td_div.appendChild(hero_img);
+            td_div.classList.add('centerAll', 'td-class');
         } else {
             td_div.innerText = stat;
         }
@@ -467,6 +468,7 @@ function updateSumRow() {
     // let sum = {'atk': 0, 'hp': 0, 'def': 0, 'critrate': 0, 'critdmg': 0, 'reload': 0, 
     // 'range': 0, 'move': 0, 'resist': 0, 'aoe': 0, 'dmg': 0, 'sum': 0}
     let sum = { 'atk': 0, 'hp': 0, 'def': 0, 'dmg': 0, 'sum': 0 }
+    let sumLog = { 'atk': 0, 'hp': 0, 'def': 0, 'dmg': 0, 'sum': 0 }
     let keysToAdd = Object.keys(sum);
     colnames.forEach(col => {
         sum[col] = 0;
@@ -517,7 +519,15 @@ function updateSumRow() {
         //     divAtt.innerText = shortStat[0] + shortStat[1];
         // }
         divAtt.innerText = shortStat[0] + shortStat[1];
+
+        if (Object.keys(col_row_emoji).includes(col)) {
+            sumLog[col] = col_row_emoji[col] + shortStat[0] + shortStat[1] + col_row_emoji[col]
+        } else {
+            sumLog[col] = shortStat[0] + shortStat[1];
+        }
+        // sumLog[col] = shortStat[0] + shortStat[1];
     });
+    console.log(`sum→ ${JSON.stringify(sumLog)}`);
 }
 
 
@@ -544,6 +554,8 @@ function toggleHero(heroID) {
         hero_img.dataset.heroLocation = `${formationTableID}-tbody`;
         if (!fheroIDs.includes(heroID)) {
             fheroIDs.push(heroID);
+        } else {
+            alert(`You can't add the same hero twice. \n This shouldn't be possible.`);
         }
     } else {
         // -- Remove from formation.
@@ -551,6 +563,7 @@ function toggleHero(heroID) {
         hero_row.classList.add = "row-in-tbody";
         hero_row.classList.remove = "row-in-fbody";
         hero_img.dataset.heroLocation = `${heroTableID}-tbody`;
+        // -♦- Reset Stats before removing.
         fheroIDs.splice(fheroIDs.indexOf(heroID), 1);
     }
     formationCount = fbody.children.length - 1;
@@ -600,19 +613,19 @@ function calcSum(rhero) {
     return rhero.sum;
 }
 
-function resetStats(){
-    fheroIDs.forEach(id => {
-        fhero[id] = {};
-        Object.keys(hero[id]).forEach(att => {
-            fhero[id][att] = hero[id][att];
-        });
-    });
-    Object.keys(fbuffs).forEach(buffTar => {
-        Object.keys(fbuffs[buffTar]).forEach(buffAtt => {
-            fbuffs[buffTar][buffAtt] = 0;
-        });
-    });
-}
+// function resetStats(){
+//     fheroIDs.forEach(id => {
+//         fhero[id] = {};
+//         Object.keys(hero[id]).forEach(att => {
+//             fhero[id][att] = hero[id][att];
+//         });
+//     });
+//     Object.keys(fbuffs).forEach(buffTar => {
+//         Object.keys(fbuffs[buffTar]).forEach(buffAtt => {
+//             fbuffs[buffTar][buffAtt] = 0;
+//         });
+//     });
+// }
 
 let skewedBuffs = ["AtkHPDef", "Atk", "HP", "Def", "CritDmg", "Shield"];
 function updateFormation(){
@@ -669,8 +682,8 @@ function updateFormation(){
             fhero[id][att] = stat_buffed;
             // console.log(`Att+ → ${fhero[id].name}: ${stat_buffed}`);
         });
-        let sum = calcSum(fhero[id]);
-        console.log(`Hero+ → ${fhero[id].name}: ${sum}`);
+        // let sum = calcSum(fhero[id]);
+        // console.log(`Hero+ → ${fhero[id].name}: ${sum}`);
     });
 
     Object.keys(fhero).forEach(id => {
@@ -680,59 +693,31 @@ function updateFormation(){
 }
 
 function updateHeroRow(id){
-    // `col-${col}`, `row-${h.id}`
-    // fheroIDs.forEach(id => {
-    //     col_update.forEach(col =>{
-    //         // let heroRow = document.getElementById(`row-${h.id}`);
-    //         // let heroAtt = heroRow.querySelector(`.col-${col}`);
-    //         let heroAtt = document.getElementById(`row-${id}`).querySelector(`.col-${col}`);
 
-    //         // -- update option
-    //         // let heroAttStat = heroAtt.querySelector(`.stat-${col}`);
-    //         // let shortStat = shortNumb(fhero[id][col]);
-    //         // heroAttStat.innerText = shortStat[0] + shortStat[1];
-
-    //         // -- add option
-    //         let heroAttStatBuffed = document.createElement('div');
-    //         let shortStat = shortNumb(fhero[id][col]);
-    //         heroAttStatBuffed.innerText = shortStat[0] + shortStat[1];
-    //         heroAttStatBuffed.style.color = "#20AA50"
-    //         heroAtt.appendChild(heroAttStatBuffed);
-    //     });
-    // });
-    // let heroRow = document.querySelectorAll(".col- .row-");
-    // document.getElementById("row-${h.id}").querySelector(".col-${col}");
     col_update.forEach(col =>{
-        // let heroRow = document.getElementById(`row-${h.id}`);
-        // let heroAtt = heroRow.querySelector(`.col-${col}`);
+
         let heroAtt = document.getElementById(`row-${id}`).querySelector(`.col-${col}`);
 
         // -- update option
         let heroAttStat = heroAtt.querySelector(`.stat-${col}`);
-        let shortStat = shortNumb(fhero[id][col]);
-        heroAttStat.innerText = shortStat[0] + shortStat[1];
-
-        // -- add option
-        // let heroAttStatBuffed = document.createElement('div');
-        // let shortStat = shortNumb(fhero[id][col]);
-        // heroAttStatBuffed.innerText = "+" + shortStat[0] + shortStat[1];
-        // heroAttStatBuffed.style.color = "#20AA50"
-        // heroAtt.appendChild(heroAttStatBuffed);
-
-        // -- add option
-        if(Object.keys(fbuffEach).includes(id) && Object.keys(fbuffEach[id]).includes(col)){
-            // let heroAttBuff = document.createElement('div');
+        if(fheroIDs.includes(id)){
+            let shortStat = shortNumb(fhero[id][col]);
+            heroAttStat.innerText = shortStat[0] + shortStat[1];
+        } else {
+            heroAttStat.innerText = hero[id][col];
+        }
+        
+        // -- add only if '>0'
+        if(Object.keys(fbuffEach).includes(id) && fbuffEach[id][col]>0){
             let heroAttBuff = document.getElementById(`${id}-stat-${col}-buff`);
-            let buffToDisplay = fbuffEach[id][col]*100;
+            let buffToDisplay = Math.round(fbuffEach[id][col]*100, 2);
+            // let buffToDisplay = fbuffEach[id][col]*100
             heroAttBuff.innerText = "+(" + buffToDisplay+ "%)";
-
-            // let heroAttBuff = document.createElement('div');
-            // heroAttBuff.style.color = "#20AA50";
-            // heroAtt.appendChild(heroAttBuff);
         } else {
             let heroAttBuff = document.getElementById(`${id}-stat-${col}-buff`);
             heroAttBuff.innerText = "";
         }
+
     });
 }
 
@@ -752,6 +737,7 @@ function resetStats() {
             fbuffs[buffTar][buffAtt] = 0;
         });
     });
+    fbuffEach = {};
 }
 
 
@@ -811,6 +797,7 @@ document.addEventListener('click', (ev) => {
         toggleHero(ev.target.dataset.heroId);
         updateSumRow();
         saveFormation();
+        updateHeroRow(ev.target.dataset.heroId);
     }
 });
 
@@ -840,3 +827,75 @@ updateSumRow();
 toggleColBy(".heroimg_hide", "heroimg_hide");
 
 console.log(" ─── End ─── ");
+
+
+
+
+
+// function updateHeroRow(id){
+//     // `col-${col}`, `row-${h.id}`
+//     // fheroIDs.forEach(id => {
+//     //     col_update.forEach(col =>{
+//     //         // let heroRow = document.getElementById(`row-${h.id}`);
+//     //         // let heroAtt = heroRow.querySelector(`.col-${col}`);
+//     //         let heroAtt = document.getElementById(`row-${id}`).querySelector(`.col-${col}`);
+
+//     //         // -- update option
+//     //         // let heroAttStat = heroAtt.querySelector(`.stat-${col}`);
+//     //         // let shortStat = shortNumb(fhero[id][col]);
+//     //         // heroAttStat.innerText = shortStat[0] + shortStat[1];
+
+//     //         // -- add option
+//     //         let heroAttStatBuffed = document.createElement('div');
+//     //         let shortStat = shortNumb(fhero[id][col]);
+//     //         heroAttStatBuffed.innerText = shortStat[0] + shortStat[1];
+//     //         heroAttStatBuffed.style.color = "#20AA50"
+//     //         heroAtt.appendChild(heroAttStatBuffed);
+//     //     });
+//     // });
+//     // let heroRow = document.querySelectorAll(".col- .row-");
+//     // document.getElementById("row-${h.id}").querySelector(".col-${col}");
+//     col_update.forEach(col =>{
+//         // let heroRow = document.getElementById(`row-${h.id}`);
+//         // let heroAtt = heroRow.querySelector(`.col-${col}`);
+//         let heroAtt = document.getElementById(`row-${id}`).querySelector(`.col-${col}`);
+
+//         // -- update option
+//         let heroAttStat = heroAtt.querySelector(`.stat-${col}`);
+//         let shortStat = shortNumb(fhero[id][col]);
+//         heroAttStat.innerText = shortStat[0] + shortStat[1];
+
+//         // -- add option
+//         // let heroAttStatBuffed = document.createElement('div');
+//         // let shortStat = shortNumb(fhero[id][col]);
+//         // heroAttStatBuffed.innerText = "+" + shortStat[0] + shortStat[1];
+//         // heroAttStatBuffed.style.color = "#20AA50"
+//         // heroAtt.appendChild(heroAttStatBuffed);
+
+//         // -- add option
+//         if(Object.keys(fbuffEach).includes(id) && Object.keys(fbuffEach[id]).includes(col)){
+//             // let heroAttBuff = document.createElement('div');
+//             let heroAttBuff = document.getElementById(`${id}-stat-${col}-buff`);
+//             let buffToDisplay = fbuffEach[id][col]*100;
+//             heroAttBuff.innerText = "+(" + buffToDisplay+ "%)";
+
+//             // let heroAttBuff = document.createElement('div');
+//             // heroAttBuff.style.color = "#20AA50";
+//             // heroAtt.appendChild(heroAttBuff);
+//         } else {
+//             let heroAttBuff = document.getElementById(`${id}-stat-${col}-buff`);
+//             heroAttBuff.innerText = "";
+//         }
+        
+//         // -- add only if '>0'
+//         if(fbuffEach[id][col]>0){
+//             let heroAttBuff = document.getElementById(`${id}-stat-${col}-buff`);
+//             let buffToDisplay = fbuffEach[id][col]*100;
+//             heroAttBuff.innerText = "+(" + buffToDisplay+ "%)";
+//         } else {
+//             let heroAttBuff = document.getElementById(`${id}-stat-${col}-buff`);
+//             heroAttBuff.innerText = "";
+//         }
+
+//     });
+// }
